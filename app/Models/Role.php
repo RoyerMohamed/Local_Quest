@@ -9,8 +9,6 @@ class Role extends Model
 {
     use HasFactory;
 
-    // foring key : a role could be asing to many users
-
     public function users(){
         return $this->hasMany(User::class); 
     }

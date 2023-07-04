@@ -20,6 +20,8 @@ return new class extends Migration
 
             $table->foreignId('role_id')->default(1)->constrained();
 
+            $table->string('api_token', 80)->after('password')->unique()->nullable()->default(null);
+
             $table->rememberToken();
             $table->timestamps();
         });

@@ -25,13 +25,12 @@ class DatabaseSeeder extends Seeder
         Review::factory()->times(100)->create();
         Opening_hour::factory()->times(10)->create();
         
-
-         $this->call(RegionSeeder::class);
-         $this->call(DepartmentSeeder::class);
-         $this->call(CategorySeeder::class);
-         $this->call(ShopSeeder::class);
-         $this->call(UserSeeder::class);
-         $this->call(ProductSeeder::class);
+        $this->call(RegionSeeder::class);
+        $this->call(DepartmentSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(ShopSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(ProductSeeder::class);
          
     }
 }
