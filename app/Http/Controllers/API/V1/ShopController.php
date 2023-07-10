@@ -1,26 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
+use App\Models\Shop;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\ShopResouce; 
+use App\Http\Resources\V1\ShopCollection; 
 
-class UserController extends Controller
+class ShopController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * returns all shops
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // creating a new filter
+       // $filter = new ShopQuery();  
+        // formating the filter to array 
+        //$queryItems = $filter->transform($request); //[['tabl']]
+        //Shop::where($filter)->paginate(); 
+
+        return new ShopCollection(Shop::paginate());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -30,12 +33,12 @@ class UserController extends Controller
         //
     }
 
-    /**
+       /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Shop $shop)
     {
-        //
+        return new ShopResouce($shop);
     }
 
     /**

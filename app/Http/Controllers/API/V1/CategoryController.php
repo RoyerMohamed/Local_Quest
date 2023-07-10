@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
 use Illuminate\Http\Request;
-
-class ReviewController extends Controller
+use App\Http\Controllers\Controller;
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
