@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ShopResouce; 
 use App\Http\Resources\V1\ShopCollection; 
+use App\Filter\V1\ShopQuery; 
 
 class ShopController extends Controller
 {
@@ -16,11 +17,15 @@ class ShopController extends Controller
     public function index(Request $request)
     {
         // creating a new filter
-       // $filter = new ShopQuery();  
+        $filter = new ShopQuery();  
         // formating the filter to array 
-        //$queryItems = $filter->transform($request); //[['tabl']]
-        //Shop::where($filter)->paginate(); 
+        $queryItems = $filter->transform($request); // [['colunm', 'operateur' , 'value']]
+       if(count($queryItems) === 0){
+           Shop::paginate(); 
+       }else{
+           Shop::where($queryItems)->paginate(); 
 
+       }
         return new ShopCollection(Shop::paginate());
     }
 
