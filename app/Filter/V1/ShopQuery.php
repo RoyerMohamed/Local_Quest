@@ -31,7 +31,7 @@ class ShopQuery
 
 
     // asigne nams to operators 
-    protected $operatorMap = [
+    protected $toto = [
         'eq' => '=',
         'lt' => '<',
         'lte' => '<=',
@@ -46,18 +46,19 @@ class ShopQuery
         $eloQuery = [];
 
         foreach ($this->allowedPrams as $params => $operators) {
-            $query = $request->query($params);
+            $query = $request->query($request->query($params));
             if (!isset($query)) {
                 continue;
             }
 
             $column = $this->columnMap[$params] ?? $params; 
-
+            
             foreach ($operators as $operator) {
-                dd($operator);
-               if(isset($query[$operator])){
-                $eloQuery[] = [$column , $this->operatorMap($operator), $query[$operator]];
-               }
+                
+                if(isset($query[$operator])){
+                    $eloQuery[] = [$column , $this->toto[$operator], $query[$operator]];
+                }
+                var_dump([$column , $this->toto[$operator], $query[$operator]]); 
             }
         }
 
