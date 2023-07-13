@@ -18,19 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::factory()->create(['role_name' => "admin"]);
-        Shop::factory()->times(50)->create();
-        Image::factory()->times(50)->create();
-        Recipe::factory()->times(30)->create();
-        Review::factory()->times(100)->create();
-        Opening_hour::factory()->times(10)->create();
-        
-        $this->call(RegionSeeder::class);
-        $this->call(DepartmentSeeder::class);
-        $this->call(CategorySeeder::class);
-        $this->call(ShopSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(ProductSeeder::class);
-         
+        $this->call([
+            RoleSeeder::class,
+            UserSeeder::class,
+            RegionSeeder::class,
+            DepartmentSeeder::class,
+            CategorySeeder::class,
+            ShopSeeder::class,
+            RecipeSeeder::class,
+            ImageSeeder::class,
+            ReviewSeeder::class,
+            ProductSeeder::class,
+            OpeningHourSeeder::class,
+        ]);
     }
 }

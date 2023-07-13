@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('rating');
+            $table->integer('rating', 1);
             $table->string('message');
+            $table->boolean('review_status');
     
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
             $table->unsignedBigInteger('recipe_id')->nullable();
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');

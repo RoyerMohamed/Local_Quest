@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
-            $table->string('recipe_title');
-            $table->enum('difficulty',['easy','meduim','hard']);
-            $table->integer('num_persons');
-            $table->text('ingredients');
+            $table->string('recipe_title', 100);
+            $table->enum('difficulty',['facile','moyen','difficile']);
+            $table->integer('num_persons',2);
+            $table->string('ingredients',255);
             $table->time('cooking_time');
             $table->time('preparation_time');
-            $table->integer('recipe_status');
+            $table->boolean('recipe_status');
     
             // user FK
             $table->unsignedBigInteger('user_id')->nullable();

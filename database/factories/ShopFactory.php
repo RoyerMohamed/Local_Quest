@@ -20,7 +20,7 @@ class ShopFactory extends Factory
             'shop_title' => fake()->company() , 
             'description' => fake()->sentence(), 
             'website' => fake()->domainName(), 
-            'phone_number' => '0590897865', 
+            'phone_number' => fake()->phoneNumber(),
             'zip_code' => fake()->numberBetween($min = 01000, $max = 97600), 
             'city' => fake()->city(), 
             'rating' => fake()->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 5), 

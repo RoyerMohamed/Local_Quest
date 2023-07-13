@@ -19,10 +19,10 @@ return new class extends Migration
             $table->char('phone_number',10);
             $table->char('zip_code',5);
             $table->string('city',150);
-            $table->float('rating');
+            $table->float('rating',2,1);
             $table->decimal('longitude',10,7);
             $table->decimal('latitude',10,7);
-            $table->tinyInteger('shop_status');
+            $table->boolean('shop_status');
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

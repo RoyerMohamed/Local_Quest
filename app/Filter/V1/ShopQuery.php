@@ -29,7 +29,6 @@ class ShopQuery
         'shopStatus' => 'shop_status',
     ];
 
-
     // asigne nams to operators 
     protected $toto = [
         'eq' => '=',
@@ -46,7 +45,9 @@ class ShopQuery
         $eloQuery = [];
 
         foreach ($this->allowedPrams as $params => $operators) {
-            $query = $request->query($request->query($params));
+            var_dump($params); 
+
+          /*   $query = $request->query($request->query($params));
             if (!isset($query)) {
                 continue;
             }
@@ -55,11 +56,10 @@ class ShopQuery
             
             foreach ($operators as $operator) {
                 
-                if(isset($query[$operator])){
-                    $eloQuery[] = [$column , $this->toto[$operator], $query[$operator]];
+                if(isset($query['zipCode'])){
+                    //$eloQuery = [$column , $this->toto[$operator], $query[$operator]];
                 }
-                var_dump([$column , $this->toto[$operator], $query[$operator]]); 
-            }
+            } */
         }
 
         return $eloQuery;
