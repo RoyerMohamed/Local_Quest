@@ -19,10 +19,10 @@ class ReviewFactory extends Factory
         return [
             'rating' => fake()->numberBetween($min = 0, $max = 5),
             'message' => fake()->sentence(),  
+            'review_status'=> rand(0,1),
             'user_id' => fake()->numberBetween($min = 1, $max = 30),  
             'shop_id' => fake()->numberBetween($min = 1, $max = 50),  
             'recipe_id' => fake()->numberBetween($min = 1, $max = 30),  
-        
         ];
     }
 }

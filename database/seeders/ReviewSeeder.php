@@ -12,6 +12,12 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        Review::factory()->times(100)->create();
+        for ($i=1; $i < 50 ; $i++) { 
+            Review::create([
+                'shop_id' =>rand(1,50) ,
+                'product_id' => rand(1,7)
+            ]);
+        }
+        Review::factory()->times(30)->create();
     }
 }

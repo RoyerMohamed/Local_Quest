@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('shop_title',100);
             $table->text('description',1000);
             $table->string('website');
-            $table->char('phone_number',10);
+            $table->char('phone_number',20);
             $table->char('zip_code',5);
             $table->string('city',150);
             $table->float('rating',2,1);

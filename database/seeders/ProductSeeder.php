@@ -13,49 +13,39 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()->create([
-            'product_name' => "carotte",
-            'product_icon' => "carotte.png",
+        Product::create([
+            'product_name' => "fruit",
+            'product_icon' => "fruit.png",
             'product_color' => "#ffffff"
         ]);
-        Product::factory()->create([
-            'product_name' => "tomate",
-            'product_icon' => "tomate.png",
+        Product::create([
+            'product_name' => "légume",
+            'product_icon' => "legume.png",
             'product_color' => "#ffffff"
         ]);
-        Product::factory()->create([
-            'product_name' => "Pomme de terre",
-            'product_icon' => "pommes-de-terre.png",
+        Product::create([
+            'product_name' => "produit laitier",
+            'product_icon' => "produit_laitier.png",
             'product_color' => "#ffffff"
         ]);
-        Product::factory()->create([
-            'product_name' => "courgette",
-            'product_icon' => "courgette.png",
+        Product::create([
+            'product_name' => "alcool",
+            'product_icon' => "alcool.png",
             'product_color' => "#ffffff"
         ]);
-        Product::factory()->create([
-            'product_name' => "haricots-verts",
-            'product_icon' => "haricots-verts.png",
+        Product::create([
+            'product_name' => "viande_rouge",
+            'product_icon' => "viande_rouge.png",
             'product_color' => "#ffffff"
         ]);
-        Product::factory()->create([
-            'product_name' => "poireau",
-            'product_icon' => "poireau.png",
+        Product::create([
+            'product_name' => "viande_blanch",
+            'product_icon' => "viande_blanch.png",
             'product_color' => "#ffffff"
         ]);
-        Product::factory()->create([
-            'product_name' => "aubergine",
-            'product_icon' => "aubergine.png",
-            'product_color' => "#ffffff"
-        ]);
-        Product::factory()->create([
-            'product_name' => "poivron",
-            'product_icon' => "poivron.png",
-            'product_color' => "#ffffff"
-        ]);
-        Product::factory()->create([
-            'product_name' => "radis",
-            'product_icon' => "un-radis.png",
+        Product::create([
+            'product_name' => "poisson",
+            'product_icon' => "poisson.png",
             'product_color' => "#ffffff"
         ]);
     }

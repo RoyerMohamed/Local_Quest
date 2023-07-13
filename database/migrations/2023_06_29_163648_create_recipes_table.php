@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('recipe_title', 100);
             $table->enum('difficulty',['facile','moyen','difficile']);
-            $table->integer('num_persons',2);
+            $table->Integer('num_persons');
             $table->string('ingredients',255);
             $table->time('cooking_time');
             $table->time('preparation_time');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
             // department FK
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             
             $table->timestamps();

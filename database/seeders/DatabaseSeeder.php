@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             ProductSeeder::class,
             OpeningHourSeeder::class,
+            ProductShopSeeder::class,
+            OpeningHourShopSeeder::class,
+            FavoriSeeder::class,
         ]);
     }
 }
