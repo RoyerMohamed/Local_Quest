@@ -60,5 +60,11 @@ class CategorySeeder extends Seeder
             'category_color' => "#ffffff"
           ]);
         
+        Category::create([
+            'category_name' => "produits locaux",
+            'category_icon' => "produits_locaux.png",
+            'category_color' => "#ffffff"
+          ]);
+        
     }
 }

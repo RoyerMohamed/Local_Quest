@@ -2,9 +2,9 @@
 
 namespace App\Filter\V1;
 
-use Illuminate\Http\Request;
+use App\Filter\ApiFilter; 
 
-class ShopQuery
+class ShopQuery extends ApiFilter
 {
 
     // filter option for each columns
@@ -28,40 +28,6 @@ class ShopQuery
         'shopTitle' => 'shop_title',
         'shopStatus' => 'shop_status',
     ];
-
-    // asigne nams to operators 
-    protected $toto = [
-        'eq' => '=',
-        'lt' => '<',
-        'lte' => '<=',
-        'gt' => '>',
-        'gte' => '>='
-    ];
-
-    //transforming the query params to eloquen
-
-    public function transform(Request $request)
-    {
-        $eloQuery = [];
-
-        foreach ($this->allowedPrams as $params => $operators) {
-            var_dump($params); 
-
-          /*   $query = $request->query($request->query($params));
-            if (!isset($query)) {
-                continue;
-            }
-
-            $column = $this->columnMap[$params] ?? $params; 
-            
-            foreach ($operators as $operator) {
-                
-                if(isset($query['zipCode'])){
-                    //$eloQuery = [$column , $this->toto[$operator], $query[$operator]];
-                }
-            } */
-        }
-
-        return $eloQuery;
-    }
+   
+    
 }

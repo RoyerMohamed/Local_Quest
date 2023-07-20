@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB; 
@@ -15,8 +17,8 @@ class FavoriSeeder extends Seeder
     {
         for ($i=1; $i < 50 ; $i++) { 
             DB::table("favoris")->insert([
-                'shop_id' =>rand(1,50) ,
-                'user_id' => rand(1,30)
+                'shop_id' =>rand(1,Shop::count()) ,
+                'user_id' => rand(1, User::count())
             ]);
         }
     }

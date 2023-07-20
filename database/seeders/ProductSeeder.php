@@ -13,9 +13,17 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // stock the code for iconnot the name
+        // Add more products for
         Product::create([
             'product_name' => "fruit",
             'product_icon' => "fruit.png",
+            'product_color' => "#ffffff"
+        ]);
+        Product::create([
+            'product_name' => "Produits secs",
+            'product_icon' => "Produits_secs.png",
             'product_color' => "#ffffff"
         ]);
         Product::create([
@@ -34,18 +42,23 @@ class ProductSeeder extends Seeder
             'product_color' => "#ffffff"
         ]);
         Product::create([
-            'product_name' => "viande_rouge",
+            'product_name' => "viande rouge",
             'product_icon' => "viande_rouge.png",
             'product_color' => "#ffffff"
         ]);
         Product::create([
-            'product_name' => "viande_blanch",
-            'product_icon' => "viande_blanch.png",
+            'product_name' => "viande blanche",
+            'product_icon' => "viande_blanche.png",
             'product_color' => "#ffffff"
         ]);
         Product::create([
             'product_name' => "poisson",
             'product_icon' => "poisson.png",
+            'product_color' => "#ffffff"
+        ]);
+        Product::create([
+            'product_name' => "spécialités locales",
+            'product_icon' => "spécialités_locales.png",
             'product_color' => "#ffffff"
         ]);
     }
