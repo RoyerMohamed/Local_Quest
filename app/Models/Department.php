@@ -9,6 +9,12 @@ class Department extends Model
 {
     use HasFactory;
 
+    protected $with = ["region"]; 
+    
+    public function recipes(){
+        return $this->hasMany(Recipe::class); 
+    }
+
     public function region(){
         return $this->belongsTo(Region::class); 
     }

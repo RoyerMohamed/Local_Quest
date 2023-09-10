@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+  //  protected $with = ["shops"]; 
+
     protected $fillable = [
         'category_name',
         'category_icon',

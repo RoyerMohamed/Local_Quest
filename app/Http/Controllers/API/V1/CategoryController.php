@@ -9,16 +9,21 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware("auth:sanctum")->except("index"); 
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        if (Category::count() < 0) {
-            return response()->json(['message' => 'Pas de categories trouvé'], 404);
+        if (Category::count() === 0) {
+            return response()->json(['message' => 'Pas de categorie trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Categories trouvé', 'Categories' => Category::all()], 200);
+        return response()->json(['message' => 'Categories trouvé', 'Categories' => Category::with("shops")->get()], 200);
     }
 
     /**
@@ -27,24 +32,22 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            "category_name" =>  'max:100|unique',
-            "category_icon" =>  'max:50|unique',
-            "category_color" => 'max:7|unique',
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                "category_name" =>  'max:50|string|required',
+                "category_icon" =>  'max:50|string|required',
+                "category_color" => 'max:7|string|required',
+            ]
+        );
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->json(['errors' => $validator->errors()],400);
         }
 
-        $category = new Category();
-        $category->category_name = $request->input('category_name');
-        $category->category_icon = $request->input('category_icon');
-        $category->category_color = $request->input('category_color');
+        $category = Category::create($request->all());
 
-        $category->save();
-
-        return response()->json(['message' => 'La Categorie a été ajouté ', 'Categorie' => $category], 200);
+        return response()->json( ['message' => 'La Categorie a été ajoutée ', 'Categorie' => $category],200);
     }
 
     /**
@@ -53,39 +56,36 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         if (!$category) {
-            return response()->json(['message' => 'Pas de categories trouvé'], 422);
+            return response()->json(['message' => "La categorie n'existe pas"], 404);
         }
-        return response()->json(['message' => 'Categorie trouvé', 'Categorie' => $category], 200);
+
+        return response()->json(['message' => 'Categorie trouvée', 'Categorie' => $category], 200);
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request , Category $category)
+    public function update(Request $request, Category $category)
     {
-        if (!$category) {
 
-            return response()->json(['message' => 'Pas de categories trouvé'], 404);
+        if (!$category) {
+            return response()->json(['message' => "La categorie n'existe pas"], 404);
         }
-        
+
         $validator = Validator::make($request->all(), [
-            "category_name" =>  'max:100',
-            "category_icon" =>  'max:50',
-            "category_color" => 'max:7',
+            "category_name" =>  'max:50|required',
+            "category_icon" =>  'max:50|required',
+            "category_color" => 'max:7|required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->json(['errors' => $validator->errors()], 401);
         }
 
-        $category->category_name = $request->input('category_name');
-        $category->category_icon = $request->input('category_icon');
-        $category->category_color = $request->input('category_color');
+        $category->update($request->all());
 
-        $category->update();
-
-        return response()->json(['message' => 'User updated successfully', 'user' => $category], 200);
+        return response()->json(['message' => 'La Categorie a été mise à jours', 'Categorie' => $category], 200);
     }
 
     /**
@@ -94,10 +94,10 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if (!$category) {
-            return response()->json(['message' => 'Pas de categories trouvé'], 404);
+            return response()->json(['message' => "La categorie n'existe pas"], 404);
         }
 
-        Category::destroy($category->id); 
-        return response()->json(['message' => 'La Categories a été supprimé '], 200);
+        Category::destroy($category->id);
+        return response()->json(['message' => 'La Categorie a été supprimé '], 200);
     }
 }

@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->enum('day',['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche']);
             $table->time('morning_opening_hour');
-            $table->time('morning_closing_hour');
-            $table->time('afternoon_opening_hour');
+            $table->time('morning_closing_hour')->nullable();
+            $table->time('afternoon_opening_hour')->nullable();
             $table->time('afternoon_closing_hour');
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
             $table->timestamps();
         });
     }

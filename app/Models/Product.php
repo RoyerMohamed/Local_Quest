@@ -9,7 +9,16 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function shop(){
-        return $this->hasMany(Shop::class);
+    protected $with = ["shops"]; 
+
+    protected $fillable = [
+        "product_name" ,
+        "product_icon" ,
+        "product_color" , 
+        'shop_id'
+    ];
+    
+    public function shops(){
+        return $this->belongsToMany(Shop::class , "products_shops");
     }
 }

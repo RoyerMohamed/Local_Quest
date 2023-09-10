@@ -9,8 +9,17 @@ class OpeningHour extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'day',
+        'morning_opening_hour',
+        'morning_closing_hour',
+        'afternoon_opening_hour',
+        'afternoon_closing_hour',
+        'user_id'
+    ];
+    
     public function shops(){
-        return $this->hasMany(Shop::class);
+        return $this->belongsToMany(Shop::class , "opening_hours_shops");
     }
     
 }

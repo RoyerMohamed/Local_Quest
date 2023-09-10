@@ -9,8 +9,24 @@ class Recipe extends Model
 {
     use HasFactory;
 
+    protected $with = ["user","reviews","department","images"]; 
+
+    protected $fillable = [
+        
+    "recipe_title",
+    'difficulty',
+    "num_persons",
+    "ingredients" ,
+    "cooking_time",
+    "preparation_time",
+    "recipe_status",
+    "department_id" ,
+    "user_id"
+    ];
+    
+
     public function reviews(){
-        return $this->hasMany(Rewiew::class);
+        return $this->hasMany(Review::class);
     }
 
     public function user(){
@@ -18,10 +34,10 @@ class Recipe extends Model
     }
 
     public function department(){
-        return $this->belongsTo(Rewiew::class);
+        return $this->belongsTo(Department::class);
     }
 
-    public function image(){
-        return $this->belongsTo(Image::class);
+    public function images(){
+        return $this->hasMany(Image::class);
     }
 }
