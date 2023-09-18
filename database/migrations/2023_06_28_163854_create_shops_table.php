@@ -19,7 +19,7 @@ return new class extends Migration
             $table->char('phone_number',20);
             $table->char('zip_code',5);
             $table->string('city',150);
-            $table->float('rating',2,1);
+            $table->float('rating',2,1)->nullable();
             $table->decimal('longitude',10,7);
             $table->decimal('latitude',10,7);
             $table->boolean('shop_status');

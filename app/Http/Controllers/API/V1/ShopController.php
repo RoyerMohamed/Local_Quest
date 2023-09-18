@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware("auth:sanctum")->except(["index" , "show"]); 
+    }
+    
       /**
      * Display a listing of the resource.
      */
@@ -26,6 +32,8 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
+
+        // a compléter 
         $validator = Validator::make(
             $request->all(),
             [
@@ -35,7 +43,7 @@ class ShopController extends Controller
                 "phone_number" =>  'required',
                 "zip_code" => 'required|max:5',
                 "city" => 'required|max:150',
-                "rating" => 'required',
+                "rating" => 'nullable',
                 "longitude" => 'required',
                 "latitude" => 'required',
                 "department_id" => 'required',
@@ -79,7 +87,7 @@ class ShopController extends Controller
             return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Commerçant trouvés', 'Commerçant' => $shop], 200);
+        return response()->json(['message' => 'Commerçant trouvé', 'Commerçant' => $shop], 200);
     }
 
     /**
@@ -96,7 +104,7 @@ class ShopController extends Controller
                 "phone_number" =>  'required',
                 "zip_code" => 'required|max:5',
                 "city" => 'required|max:150',
-                "rating" => 'required',
+                "rating" => 'nullable',
                 "longitude" => 'required',
                 "latitude" => 'required',
                 "department_id" => 'required',
@@ -127,7 +135,7 @@ class ShopController extends Controller
         );
         
 
-        return response()->json(['message' => 'Le commerçants a été modifié ', 'Commerçants' => $shop ], 200);
+        return response()->json(['message' => 'Le commerçant a été modifié ', 'Commerçant' => $shop ], 200);
     }
 
     /**
