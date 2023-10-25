@@ -22,7 +22,7 @@ class ProductController extends Controller
             return response()->json(['message' => 'Aucun produit trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Produits trouvé', 'Produits' => Product::all()], 200);
+        return response()->json(['message' => 'Produits trouvé', 'Produits' => Product::latest()->get()], 200);
     }
 
     /**

@@ -35,36 +35,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $validator = Validator::make(
             $request->all(),
             [
                 "user_name" =>  'required|max:100',
                 'email' => 'required|email|unique:users,email',
-                'image' => 'image|mimes:jpg,jpeg,png,svg|max:2048|nullable',
+                'image' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
                 'password' => 'required', Password::min(8)->letters()->mixedCase()->numbers(),
             ]
         );
 
+
         if ($validator->fails()) {
 
-            return response()->json(
-                [
-                    ['errors' => $validator->errors()]
-                ],
-                422
-            );
+            return response()->json([['errors' => $validator->errors()]],422 );
         }
         // ajouter le helper poour la sauvgarde d'images
         $user = User::create([
             "user_name" =>  $request->user_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'profil_picture' => 0
         ]);
 
-        if($request->has('image')){
-            UploadImage($request->image ,$user->id);
-        }
+         if($request->has('image')){
+            $user->update([
+                "profil_picture" => $request->has('image') ? UploadImage($request->image ,$user->id) : 0
+            ]);
+            $user->save();
+         }
+       
 
         return response()->json(['message' => 'L\'utilisateur a été ajouté ', 'Utilisateur' => $user], 200);
     }
@@ -86,20 +86,26 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                "user_name" => 'required|max:25',
-                "email"     => 'required|max:30',
-            ]
-        );
+        // $validator = Validator::make(
+        //     $request->all(),
+        //     [
+        //         "user_name" => 'required|max:25',
+        //         "email"     => 'required|max:30',  
+        //         'image'     => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
+        //     ]
+        // );
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }  
+        //   dd($validator->errors());
+        //  if ($validator->fails()) {
+        //      return response()->json(['errors' => $validator->errors()], 422);
+        //  } 
+
+        if($request->has('image') === true && $request->image !== null){
+            UploadImage($request->image ,$user->id);
+        }
+
 
         $user->update($request->all());
-
         return response()->json(['message' => 'L\'utilisateur a été modifier', 'user' => $user], 200);
     }
 
@@ -112,11 +118,12 @@ class UserController extends Controller
                 ->letters()
                 ->mixedCase()
                 ->numbers()],
-        ]);
+              
+            ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
+         if ($validator->fails()) {
+             return response()->json($validator->errors(), 422);
+         }
 
         if (Hash::check($request->password, $user->password)) {
             if ($request->password !== $request->new_password) {

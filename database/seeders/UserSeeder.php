@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('Password') , // password
             'remember_token' => Str::random(10),
-            'role_id' => 1
+            'role_id' => 1,
+            "profil_picture" => "default_shop.jpg"
          ]);
         User::create([
             'user_name' => 'visiteur',
@@ -29,7 +30,8 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('Password') , // password
             'remember_token' => Str::random(10),
-            'role_id' => 2
+            'role_id' => 2,
+            "profil_picture" => "default_shop.jpg"
          ]);
          
          User::factory()->times(48)->create();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -24,7 +25,7 @@ class ShopController extends Controller
             return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => Shop::latest()->paginate()], 200);
+        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => Shop::latest()->get()], 200);
     }
 
     /**
@@ -87,7 +88,8 @@ class ShopController extends Controller
             return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Commerçant trouvé', 'Commerçant' => $shop], 200);
+      
+        return response()->json(['message' => 'Commerçant trouvé', 'Commerçant' => Review::where($shop->id,"=","shop_id")], 200);
     }
 
     /**

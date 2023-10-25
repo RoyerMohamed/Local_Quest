@@ -19,7 +19,8 @@ class ImageSeeder extends Seeder
                 "image_status" => 1,
                 "user_id" => rand(1,50),
                 "shop_id" => $i,
-                "recipe_id" => null
+                "recipe_id" => null,
+                "is_profil" => rand(0,1),
             ]);
         }
     }

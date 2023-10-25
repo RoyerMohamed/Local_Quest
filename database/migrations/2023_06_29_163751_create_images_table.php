@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('image_name',100);
             $table->boolean('image_status');
+            $table->boolean('is_profil')->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

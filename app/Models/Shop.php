@@ -9,46 +9,55 @@ class Shop extends Model
 {
     use HasFactory;
 
-    protected $with = ["user","department","category"]; 
+    protected $with = ["user", "department", "category", "images", "products" , "reviews" ];
 
     protected $fillable = [
         "shop_title",
         'description',
         "website",
-        "phone_number" ,
+        "phone_number",
         "zip_code",
         "city",
         "rating",
         "shop_status",
-        "longitude" ,
+        "longitude",
         "latitude",
         "user_id",
         "department_id",
         "category_id"
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function department(){
+    public function department()
+    {
         return $this->belongsTo(Department::class);
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function products(){
-        return $this->belongsToMany(Product::class , "products_shops");
-    }
-    
-    public function opening_hours(){
-        return $this->belongsToMany(OpeningHour::class , "openingHours_shops");
+    public function products()
+    {
+        return $this->belongsToMany(Product::class,'shops_products',  'shop_id' ,'product_id');
     }
 
-    public function images(){
+    public function opening_hours()
+    {
+        return $this->belongsToMany(OpeningHour::class, "openingHours_shops");
+    }
+
+    public function images()
+    {
         return $this->hasMany(Image::class);
     }
-
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

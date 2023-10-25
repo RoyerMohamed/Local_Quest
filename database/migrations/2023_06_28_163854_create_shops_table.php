@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->string('shop_title',100);
-            $table->text('description',1000);
+            $table->text('description',10000);
+            $table->string('adresse',100);
             $table->string('website');
             $table->char('phone_number',20);
             $table->char('zip_code',5);

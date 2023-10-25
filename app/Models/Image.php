@@ -14,7 +14,8 @@ class Image extends Model
         "image_status" ,
         "user_id" , 
         "shop_id", 
-        "recipe_id"
+        "recipe_id",
+        "is_profil"
     ];
 
     public function user(){
@@ -22,7 +23,7 @@ class Image extends Model
     }
 
     public function user_profil(){
-        return $this->hasOne(User::class); 
+        return $this->belongsTo(User::class); 
     }
 
     public function shop(){

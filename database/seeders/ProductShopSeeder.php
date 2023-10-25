@@ -16,7 +16,7 @@ class ProductShopSeeder extends Seeder
     public function run(): void
     {
         for ($i=1; $i < 50 ; $i++) { 
-            DB::table("products_shops")->insert([
+            DB::table("shops_products")->insert([
                 'shop_id' =>rand(1,Shop::count()) ,
                 'product_id' => rand(1, Product::count())
             ]);

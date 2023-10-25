@@ -18,8 +18,9 @@ class ShopFactory extends Factory
     {
         return [
             'shop_title' => fake()->company() , 
-            'description' => fake()->sentence(), 
+            'description' => fake()->paragraph($nbSentences = 100, $variableNbSentences = true), 
             'website' => fake()->domainName(), 
+            'adresse' => fake()->streetAddress(), 
             'phone_number' => fake()->phoneNumber(),
             'zip_code' => fake()->numberBetween($min = 01000, $max = 97600), 
             'city' => fake()->city(), 

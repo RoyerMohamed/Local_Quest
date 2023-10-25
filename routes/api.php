@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::apiResource('/shops', App\Http\Controllers\API\V1\ShopController::class);
     Route::apiResource('/products',  App\Http\Controllers\API\V1\ProductController::class);
     Route::apiResource('/images',  App\Http\Controllers\API\V1\ImageController::class);
+    Route::get('/images/getImageById/{id}',  [App\Http\Controllers\API\V1\ImageController::class , 'getImageById']);
     Route::apiResource('/reviews',  App\Http\Controllers\API\V1\ReviewController::class);
     Route::apiResource('/recipes',  App\Http\Controllers\API\V1\RecipeController::class);
     Route::apiResource('/opening_hours',  App\Http\Controllers\API\V1\OpeningHourController::class);

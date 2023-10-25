@@ -29,8 +29,9 @@ class ReviewController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                "rating" => 'required|max:5',
+                "rating" => 'nullable|max:5',
                 'message' => 'required|string',
+                'user_id' => 'required',
                 "recipe_id" => 'nullable',
                 "shop_id" => 'nullable'
             ]

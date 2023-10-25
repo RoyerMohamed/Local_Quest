@@ -11,6 +11,7 @@ class Review extends Model
     // the rewiew belonge's to a shop 
     // example: the review that says 'the best shop ever !! '
     // can only be posted to one and only shop 
+    protected $with = ["user"];
 
     protected $fillable = [
         "rating",
