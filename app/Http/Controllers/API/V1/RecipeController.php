@@ -24,7 +24,7 @@ class RecipeController extends Controller
             return response()->json(['message' => "Aucune recette trouvée"], 404);
         }
 
-        return response()->json(['message' => 'Recettes trouvées', 'Recette' => Recipe::latest()->paginate()], 200);
+        return response()->json(['message' => 'Recettes trouvées', 'Recette' => Recipe::latest()->get()], 200);
     }
 
     /**

@@ -9,7 +9,7 @@ class Shop extends Model
 {
     use HasFactory;
 
-    protected $with = ["user", "department", "category", "images", "products" , "reviews" ];
+    protected $with = ["user", "department", "category", "images", "products" , "reviews" , "opening_hours" ];
 
     protected $fillable = [
         "shop_title",
@@ -49,7 +49,7 @@ class Shop extends Model
 
     public function opening_hours()
     {
-        return $this->belongsToMany(OpeningHour::class, "openingHours_shops");
+        return $this->belongsToMany(OpeningHour::class, "opening_hours_shops",'opening_hour_id','shop_id');
     }
 
     public function images()
