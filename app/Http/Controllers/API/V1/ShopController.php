@@ -145,14 +145,16 @@ class ShopController extends Controller
 
     public function sortShops(Request $request){
         //dd($request->department_id);
+
+// use Spatie\QueryBuilder\QueryBuilder;
         $shops  =  Shop::where('department_id' , '=' , $request->department_id)->where('category_id' , '=' , $request->category_id )->get(); 
         return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $shops], 200);
     }
 
     public function test(){
         return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => Shop::latest()->get()], 200);
-        //$shops  =  Shop::where('department_id' , '=' , $data)->get(); 
-        //return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $shops], 200);
+        $shops  =  Shop::where('department_id' , '=' , $data)->get(); 
+        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $shops], 200);
     }
 
 
