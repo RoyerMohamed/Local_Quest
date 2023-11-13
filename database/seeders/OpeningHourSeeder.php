@@ -68,7 +68,7 @@ class OpeningHourSeeder extends Seeder
             'morning_opening_hour' => '09:00:00',
             'morning_closing_hour' => null,
             'afternoon_opening_hour' => null,
-            'afternoon_closing_hour' => '17:00:00',
+            'afternoon_closing_hour' => '22:00:00',
             "user_id" => 1
         ]);
 

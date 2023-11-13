@@ -7,6 +7,7 @@
                         <!-- filter by departments -->
                         <div class="filter_department">
                             <select name="department" v-model="selectDepartment">
+                                <option value="null" ></option>
                                 <option :value="department.id" v-for="department in this.departments">{{
                                     department.department_name }}</option>
                             </select>
@@ -14,20 +15,29 @@
                         <!-- filter by category -->
                         <div class="filter_category">
                             <select name="categories" v-model="selectCategory">
+                                <option value="null" ></option>
                                 <option :value="categorie.id" v-for="categorie in this.categories">{{
                                     categorie.category_name }}</option>
                             </select>
                         </div>
                         <!-- filter by opening hours -->
-                        <div class="filter_openingHours">
-                            <select name=""  v-model="selectOpeningHours">
+                        <!-- <div class="filter_openingHours">
+                            <select name="" v-model="selectOpeningHours">
                                 <optgroup :label="openingHours.day" v-for="openingHours in this.OpeningHours">
-                                    <option :value="openingHours.morning_opening_hour">{{ openingHours.morning_opening_hour }}</option>
-                                    <option :value="openingHours.morning_closing_hour">{{ openingHours.morning_closing_hour }}</option>
-                                    <option :value="openingHours.afternoon_opening_hour">{{ openingHours.afternoon_opening_hour }}</option>
-                                    <option :value="openingHours.afternoon_closing_hour">{{ openingHours.afternoon_closing_hour }}</option>
+                                    <option :value="openingHours.morning_opening_hour">{{ openingHours.morning_opening_hour
+                                    }}</option>
+                                    <option :value="openingHours.morning_closing_hour">{{ openingHours.morning_closing_hour
+                                    }}</option>
+                                    <option :value="openingHours.afternoon_opening_hour">{{
+                                        openingHours.afternoon_opening_hour }}</option>
+                                    <option :value="openingHours.afternoon_closing_hour">{{
+                                        openingHours.afternoon_closing_hour }}</option>
                                 </optgroup>
                             </select>
+                        </div> -->
+                        
+                        <div class="search">
+                            <input type="search" name="adresse" id="" v-model="adresse">
                         </div>
                         <button type="submit">filtré</button>
                     </form>
@@ -54,7 +64,10 @@ export default {
         return {
             selectDepartment: null,
             selectCategory: null,
-            selectOpeningHours: null,
+           // selectOpeningHours: null,
+            adresse:null,
+          
+
         }
     },
     computed: {
@@ -62,7 +75,12 @@ export default {
     }, methods: {
         ...mapActions(useShopStore, ['filterShops']),
         sort() {
-            this.filterShops({ department_id: this.selectDepartment, categoriy_id: this.selectCategory, OpeningHours_id: this.selectOpeningHours })
+
+            this.filterShops({
+                department_id: this.selectDepartment === null ? null : this.selectDepartment,
+                category_id: this.selectCategory === null ?  null : this.selectCategory ,
+                adresse: this.adresse !== null ? this.adresse : null
+            })
         }
     }
 }

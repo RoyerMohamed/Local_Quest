@@ -16,10 +16,16 @@
                     <l-map ref="map" v-model:zoom="zoom" v-model:center="center">
                         <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
                         <l-marker v-for="shop in this.shops" :key="shop.id" :lat-lng="[shop.latitude, shop.longitude]">
-                            <l-icon :icon-url="previewImage + shop.images[0].image_name"
+                            <l-icon :icon-url="previewImage + shop.category.category_icon"
                                 :icon-size="[45, 45]" />
-                            <l-popup>
-                                <h1>{{ shop.shop_title }}</h1>
+                                <l-popup>
+                                    <div class="row">
+                                        <div class="col col-sm-6">   <img width="30" :src="previewImage + shop.images[0].image_name" alt=""></div>
+                                        <div class="col col-sm-6"><h1>{{ shop.shop_title }}</h1></div>
+                                     
+                                        
+                                    </div>
+                                <p>{{ shop.category.category_name }}</p>
                                 <h3>{{ shop.adresse }}</h3>
                                 <div>
                                
@@ -49,8 +55,8 @@ export default {
             map: null,
             userLatitude: null,
             userLongitude: null,
-            zoom: ref(6),
-            center: [48.8534100, 2.3488000],// init map in france 
+            zoom: ref(9),
+            center: [48.925, 2.625],// init map in france 
             previewImage: "http://[::1]:5173/public/images/",
         }
     },

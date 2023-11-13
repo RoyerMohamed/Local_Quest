@@ -8,8 +8,8 @@ export const useShopStore = defineStore({
   state: () => ({
     shops: [],
     departments: [],
-    categories: [], 
-    OpeningHours:[]
+    categories: [],
+    OpeningHours: []
   }),
 
   actions: {
@@ -36,8 +36,8 @@ export const useShopStore = defineStore({
 
       if (this.OpeningHours.length === 0) {
         axios.get('http://127.0.0.1:8000/api/opening_hours').then((res) => {
-       // console.log(res.data.horaire); 
-        this.OpeningHours = res.data.horaire
+          // console.log(res.data.horaire); 
+          this.OpeningHours = res.data.horaire
         }).catch((err) => console.log(err))
       }
 
@@ -45,23 +45,24 @@ export const useShopStore = defineStore({
 
     filterShops(data) {
       this.shops = []
-      let departmentFilter = data.department_id !== null ? `department_id=${data.department_id}` : ""
-      let categoryFilter = data.category_id !== null ? `category_id=${data.categoriy_id}` : ""; // returns category_id=3 
+      //console.log(data);
+      let result = [];
 
-      const params = [departmentFilter, categoryFilter]
-      let filterParams = []
-      params.map((value, key) => {
-        key === (params.length - 1) ? filterParams.push(value) : filterParams.push(value + "&")
-      })
-      filterParams = filterParams.toString().replace(",", "");
-      axios.get(`http://127.0.0.1:8000/api/sortShops?${filterParams}`).then((res) => {
-        this.shops = res.data.Commerçants
+      for (const key in data) {
+          if (data.hasOwnProperty(key) && data[key] !== null) {
+              result.push(`filter[${key}]=${data[key]}`);
+          }
+      }
+  
+    result = result.join('&');
+    console.log(result);
+
+      axios.get(`http://127.0.0.1:8000/api/sortShops?${result}`).then((res) => {
+        console.log(res.data.Commerçants) 
+        res.data.Commerçants.lenght !== 0 ? this.shops = res.data.Commerçants : this.shops = []
       }).catch((err) => console.log(err))
     },
-    
-    filterShopsByCategory(category_id) {
-      this.shops = this.categories.filter((c) => c.id === category_id)[0].shops
-    }
+
   },
   getters: {
     getShopById: (state) => {

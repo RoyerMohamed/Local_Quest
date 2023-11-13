@@ -79,7 +79,7 @@ export default {
         if(!this.userLocation){
             if(navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(position =>{
-                    userStore.setLo
+                    userStore.setLocation({latutitude : position.coords.latitude, longitude : position.coords.longitude})
                 })  
             }
         }

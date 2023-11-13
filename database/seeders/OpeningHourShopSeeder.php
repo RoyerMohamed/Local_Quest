@@ -50,10 +50,17 @@ class OpeningHourShopSeeder extends Seeder
             ]);
         }
         for ($i=1; $i < 50 ; $i++) { 
-            DB::table("opening_hours_shops")->insert([
-                'shop_id' => $i,
-                'opening_hour_id' => 7
-            ]);
+            if($i === 3){
+                DB::table("opening_hours_shops")->insert([
+                    'shop_id' => $i,
+                    'opening_hour_id' => 7
+                ]);
+            }else{
+                DB::table("opening_hours_shops")->insert([
+                    'shop_id' => $i,
+                    'opening_hour_id' => 5
+                ]);
+            }
         }
     }
 }

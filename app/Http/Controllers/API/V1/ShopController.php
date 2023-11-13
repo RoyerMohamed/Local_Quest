@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Department;
 use App\Models\Review;
 use App\Models\Shop;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\QueryBuilder;
+
 
 class ShopController extends Controller
 {
@@ -144,17 +144,8 @@ class ShopController extends Controller
 
 
     public function sortShops(Request $request){
-        //dd($request->department_id);
-
-// use Spatie\QueryBuilder\QueryBuilder;
-        $shops  =  Shop::where('department_id' , '=' , $request->department_id)->where('category_id' , '=' , $request->category_id )->get(); 
-        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $shops], 200);
-    }
-
-    public function test(){
-        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => Shop::latest()->get()], 200);
-        $shops  =  Shop::where('department_id' , '=' , $data)->get(); 
-        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $shops], 200);
+      $sorted_shops = QueryBuilder::for(Shop::class)->allowedFilters(["department_id" , "category_id","shop_title"])->get(); 
+      return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $sorted_shops], 200);
     }
 
 
