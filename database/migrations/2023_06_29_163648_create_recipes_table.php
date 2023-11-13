@@ -28,6 +28,7 @@ return new class extends Migration
             // department FK
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+
             
             $table->timestamps();
         });

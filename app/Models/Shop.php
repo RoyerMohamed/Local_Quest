@@ -44,7 +44,7 @@ class Shop extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class,'shops_products',  'shop_id' ,'product_id');
+        return $this->belongsToMany(Product::class,'shops_products', 'shop_id' ,'product_id');
     }
 
     public function opening_hours()

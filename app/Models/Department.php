@@ -18,4 +18,7 @@ class Department extends Model
     public function region(){
         return $this->belongsTo(Region::class); 
     }
+    public function shops(){
+        return $this->hasMany(Shop::class); 
+    }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\Review;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
@@ -13,7 +15,7 @@ class ShopController extends Controller
 
     public function __construct()
     {
-        $this->middleware("auth:sanctum")->except(["index" , "show"]); 
+        $this->middleware("auth:sanctum")->except(["index" , "show","sortByDepartments"]); 
     }
     
       /**
@@ -139,6 +141,20 @@ class ShopController extends Controller
 
         return response()->json(['message' => 'Le commerçant a été modifié ', 'Commerçant' => $shop ], 200);
     }
+
+
+    public function sortShops(Request $request){
+        //dd($request->department_id);
+        $shops  =  Shop::where('department_id' , '=' , $request->department_id)->where('category_id' , '=' , $request->category_id )->get(); 
+        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $shops], 200);
+    }
+
+    public function test(){
+        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => Shop::latest()->get()], 200);
+        //$shops  =  Shop::where('department_id' , '=' , $data)->get(); 
+        //return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $shops], 200);
+    }
+
 
     /**
      * Remove the specified resource from storage.

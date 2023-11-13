@@ -12,7 +12,6 @@ class Recipe extends Model
     protected $with = ["user","reviews","department","images"]; 
 
     protected $fillable = [
-        
     "recipe_title",
     'difficulty',
     "num_persons",
@@ -24,7 +23,6 @@ class Recipe extends Model
     "user_id"
     ];
     
-
     public function reviews(){
         return $this->hasMany(Review::class);
     }
