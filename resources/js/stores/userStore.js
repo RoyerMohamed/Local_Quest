@@ -10,9 +10,9 @@ export const useUserStore = defineStore({
     role_id: '',
     token: '',
     image: '',
-    logitude: '',
+    longitude: '',
     latitude: '',
-    userLocation: false,
+    userLocationAnswered : false
 
   }),
 
@@ -26,10 +26,11 @@ export const useUserStore = defineStore({
       this.image = user.profil_picture;
     },
     setLocation(data) {
-      this.userLocation = true
       this.latitude = data.latutitude;
-      this.logitude = data.longitude;
-      
+      this.longitude = data.longitude;
+    }
+    ,setLocationAnswered(){
+      this.userLocationAnswered = true ; 
     }
 
   },

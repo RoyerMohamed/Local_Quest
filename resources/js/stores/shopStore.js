@@ -9,7 +9,8 @@ export const useShopStore = defineStore({
     shops: [],
     departments: [],
     categories: [],
-    OpeningHours: []
+    OpeningHours: [], 
+    products : []
   }),
 
   actions: {
@@ -40,12 +41,19 @@ export const useShopStore = defineStore({
           this.OpeningHours = res.data.horaire
         }).catch((err) => console.log(err))
       }
+      
+      if(this.products.length === 0){
+        axios.get('http://127.0.0.1:8000/api/products').then((res) => {
+          this.products = res.data.Produits
+        }).catch((err) => console.log(err))
+
+      }
+      
 
     },
 
     filterShops(data) {
-      this.shops = []
-      //console.log(data);
+      this.shops = [];
       let result = [];
 
       for (const key in data) {
@@ -55,11 +63,10 @@ export const useShopStore = defineStore({
       }
   
     result = result.join('&');
-    console.log(result);
 
       axios.get(`http://127.0.0.1:8000/api/sortShops?${result}`).then((res) => {
         console.log(res.data.Commerçants) 
-        res.data.Commerçants.lenght !== 0 ? this.shops = res.data.Commerçants : this.shops = []
+        res.data.Commerçants.length !== 0 ? this.shops = res.data.Commerçants : this.shops = []
       }).catch((err) => console.log(err))
     },
 
@@ -67,6 +74,14 @@ export const useShopStore = defineStore({
   getters: {
     getShopById: (state) => {
       return (shopId) => state.shops.find((shop) => shop.id === shopId)
+    } , 
+    getFilteredShopByProducts() {
+      return(filters)=>{
+
+        //console.log(filters);
+      }
+
+     
     }
   },
 

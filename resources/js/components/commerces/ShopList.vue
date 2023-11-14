@@ -3,13 +3,12 @@
         <!-- <div>
             <h1 @click="location">localisation</h1>
         </div> -->
-        <ShopFilter />
+        <ShopFilter :allShops="this.shops" />
 
 
         <div class="shops-container">
-            <div class="shop-list-card">
-                <Shop v-if="this.shops" v-for="shop in this.shops" :shop="shop" />
-
+            <div class="shop-list-card" v-if="this.shops">
+                <Shop  v-for="shop in this.shops" :shop="shop" :key="shop.id" />
             </div>
             <div class="shop-list-map">
                 <div style="height:600px; width:800px">
@@ -22,8 +21,6 @@
                                     <div class="row">
                                         <div class="col col-sm-6">   <img width="30" :src="previewImage + shop.images[0].image_name" alt=""></div>
                                         <div class="col col-sm-6"><h1>{{ shop.shop_title }}</h1></div>
-                                     
-                                        
                                     </div>
                                 <p>{{ shop.category.category_name }}</p>
                                 <h3>{{ shop.adresse }}</h3>
@@ -41,7 +38,7 @@
 
 <script>
 import 'leaflet/dist/leaflet.css'; // Chargez également les styles CSS
-import Shop from "../commerces/shop.vue";
+import Shop from "./Shop.vue";
 import ShopFilter from "./ShopFilter.vue";
 import { useShopStore } from "../../stores/shopStore";
 // import { useUserStore } from "../../stores/userStore";

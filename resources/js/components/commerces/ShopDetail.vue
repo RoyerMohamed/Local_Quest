@@ -15,6 +15,13 @@
                         <i v-else class="fa-solid fa-star" style="color: #f2072b;"></i>
                     </div>
                 </div>
+                <div v-if="this.setCurrentShop.products" class="shop-products">
+                    <h2><b>nos produit</b></h2>
+                    <ul class="">
+                        <li v-for="product in this.setCurrentShop.products"><i class="fa-solid fa-check"></i> {{
+                            product.product_name }}</li>
+                    </ul>
+                </div>
 
             </div>
         </div>
@@ -26,12 +33,7 @@
                         <p> {{ this.setCurrentShop.description }}</p>
                     </div>
 
-                    <div v-if="this.setCurrentShop.products" class="shop-products">
-                        <h2><b>nos produit</b></h2>
-                        <ul class="">
-                            <li v-for="product in this.setCurrentShop.products"><i class="fa-solid fa-check"></i> {{ product.product_name }}</li>
-                        </ul>
-                    </div>
+
 
                 </div>
                 <div class="shop-info">
@@ -45,31 +47,33 @@
                             <h4>{{ this.setCurrentShop.shop_title }}</h4>
                         </div>
                         <div class="shop-info-map-adress ">
-                            <span>{{ this.setCurrentShop.adresse }} {{ this.setCurrentShop.department.department_name }}, {{ this.setCurrentShop.zip_code }} </span>
+                            <span>{{ this.setCurrentShop.adresse }} {{ this.setCurrentShop.department.department_name }}, {{
+                                this.setCurrentShop.zip_code }} </span>
 
                         </div>
                         <div class="shop-info-map-number">
-                            <i class="fa-solid fa-phone"></i>  <a href=""  >{{ this.setCurrentShop.phone_number }}</a>
-                       
+                            <i class="fa-solid fa-phone"></i> <a href="">{{ this.setCurrentShop.phone_number }}</a>
+
                         </div>
                         <div class="shop-info-map-website">
-                            <i class="fa-solid fa-globe"></i> <a href="http://"> https:// {{ this.setCurrentShop.website }}</a>
+                            <i class="fa-solid fa-globe"></i> <a href="http://"> https:// {{ this.setCurrentShop.website
+                            }}</a>
                         </div>
 
-                       
+
                     </div>
                     <div class="shop-info-hours">
-                            <h4>heurs d'ouverture </h4>
-                            <div v-for="opening_hours in this.setCurrentShop.opening_hours">
-                                <span>{{ opening_hours.day }}</span>
-                                <ul>
-                                    <li> {{ opening_hours.morning_opening_hour }} - {{
-                                        opening_hours.morning_closing_hour }}</li>
-                                    <li>{{ opening_hours.afternoon_opening_hour }} - {{
-                                        opening_hours.afternoon_closing_hour }}</li>
-                                </ul>
+                        <h4>heurs d'ouverture </h4>
+                        <div v-for="opening_hours in this.setCurrentShop.opening_hours">
+                            <span>{{ opening_hours.day }}</span>
+                            <ul>
+                                <li> {{ opening_hours.morning_opening_hour }} - {{
+                                    opening_hours.morning_closing_hour }}</li>
+                                <li>{{ opening_hours.afternoon_opening_hour }} - {{
+                                    opening_hours.afternoon_closing_hour }}</li>
+                            </ul>
 
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,7 +104,7 @@ export default {
         Reviews
     }
     , computed: {
-        ...mapState(useUserStore , ["id"]),
+        ...mapState(useUserStore, ["id"]),
         setCurrentShop() {
             const store = useShopStore();
             // this.shop = store.getShopById(parseInt(this.$route.params.id))
@@ -141,15 +145,16 @@ export default {
     margin: .5rem 0;
 }
 
-.shop-wrapper{
+.shop-wrapper {
     background-color: #F4F4F4;
 }
-.shop-desc{
+
+.shop-desc {
     display: flex;
     width: 80vw;
     margin: 0 auto;
     gap: 2rem;
-   
+
 }
 
 .shop_hero>img {
@@ -157,58 +162,67 @@ export default {
     height: 100%;
 }
 
-.shop-info{
-margin-top: -5%;
-display: flex;
-flex-direction: column;
-gap: 2rem;
+.shop-info {
+    margin-top: -5%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 
 }
-.shop-info-hours{
+
+.shop-info-hours {
     background-color: white;
     padding: 1.5rem;
     border: 1px solid #fafafa;
 }
-.shop-info-hours > h4{
-font-size: 1.5rem;
-font-weight: bold;
-text-transform: capitalize;
-}
-.shop-info-hours > div > span{
 
-font-weight: bold;
-text-transform: capitalize;
+.shop-info-hours>h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
 }
-.shop-info-hours > div {
 
-display: flex;
-justify-content: space-between;
-width: 60%;
-gap: 1rem;
-margin: 1rem 0;
+.shop-info-hours>div>span {
+
+    font-weight: bold;
+    text-transform: capitalize;
 }
-.shop-info-map{
+
+.shop-info-hours>div {
+
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.shop-info-map {
     background-color: white;
     padding: 1.5rem;
     border: 1px solid #fafafa;
 }
-.shop-info > p{
+
+.shop-info>p {
     margin: 1rem;
     text-align: justify;
 }
-.shop-info-map-title{
+
+.shop-info-map-title {
     font-weight: bold;
     font-size: 1.5rem;
-    margin-top: 1rem ;
+    margin-top: 1rem;
 }
-.shop-info-map-adress{
+
+.shop-info-map-adress {
     margin-bottom: 1rem;
 }
 
-.shop-info-map-number > i{
+.shop-info-map-number>i {
     margin-right: .5rem;
 }
-.shop-info-map-website > i{
+
+.shop-info-map-website>i {
     margin-right: .5rem;
 }
 
@@ -220,20 +234,21 @@ margin: 1rem 0;
     gap: 2rem;
 }
 
-.shop-review{
+.shop-review {
     padding: 1rem;
     width: 85%;
     margin: 0 auto;
 }
-.shop-products > ul{
+
+.shop-products>ul {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
 
 }
-.shop-products > h2{
-font-size: 1.5rem;
-text-transform: capitalize;
 
-}
-</style>
+.shop-products>h2 {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+
+}</style>

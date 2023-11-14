@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <HeaderNav />
   <main>
     <div v-if="$route.path == '/'">
       <p v-if="this.test"></p>
@@ -12,12 +12,12 @@
 </template>
 
 <script>
-  import Header from "./components/template/header.vue";
+  import HeaderNav from "./components/template/HeaderNav.vue";
   import { useShopStore } from "./stores/shopStore";
   import { mapActions } from "pinia";
   export default {
     components:{
-      Header
+      HeaderNav
     } , methods :{
       ...mapActions(useShopStore , ['setShop']),
       test(){

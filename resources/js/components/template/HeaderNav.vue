@@ -17,30 +17,30 @@
                         </router-link>
                     </li>
                     <li>
-                       <router-link @click="this.setAllShop" to="/commerces"  class="navbar-brand" >commerces</router-link>
+                        <router-link @click="this.setAllShop" to="/commerces" class="navbar-brand">commerces</router-link>
                     </li>
                     <li>
-                       <router-link to="/blog" >Articles</router-link>
+                        <router-link to="/blog">Articles</router-link>
                     </li>
                     <li>
-                       <router-link @click="this.setAllRecipe" to="/recipes"  class="navbar-brand">Recipe</router-link>
+                        <router-link @click="this.setAllRecipe" to="/recipes" class="navbar-brand">Recipe</router-link>
                     </li>
                 </div>
                 <div v-else class="d-flex">
                     <li>
-                       <button @click="logOut"  class="navbar-brand" >deconnection</button>
+                        <button @click="logOut" class="navbar-brand">deconnection</button>
                     </li>
                     <li>
-                       <router-link to="/profil"  class="navbar-brand" >Profile</router-link>
+                        <router-link to="/profil" class="navbar-brand">Profile</router-link>
                     </li>
                     <li>
-                       <router-link @click="this.setAllShop" to="/commerces"  class="navbar-brand">commerces</router-link>
+                        <router-link @click="this.setAllShop" to="/commerces" class="navbar-brand">commerces</router-link>
                     </li>
                     <li>
-                       <router-link to="/blog"  class="navbar-brand" >Articles</router-link>
+                        <router-link to="/blog" class="navbar-brand">Articles</router-link>
                     </li>
                     <li>
-                       <router-link @click="this.setAllRecipe" to="/recipes"  class="navbar-brand">Recipe</router-link>
+                        <router-link @click="this.setAllRecipe" to="/recipes" class="navbar-brand">Recipe</router-link>
                     </li>
                 </div>
                 <li></li>
@@ -56,46 +56,52 @@ import axios from 'axios';
 import { useUserStore } from '../../stores/userStore';
 import { useShopStore } from '../../stores/shopStore'
 import { useRecipeStore } from '../../stores/recipeShop'
-import { mapState } from 'pinia';
+import { mapState, mapActions } from 'pinia';
 export default {
-    name : 'header',
+    name: 'HeaderNav',
     computed: {
-        ...mapState(useUserStore, ['token', "userLocation"]),
-    } ,
-    methods : {
-        logOut(){
+        ...mapState(useUserStore, ['token', "userLocationAnswered"]),
+       
+        
+    },
+    methods: {
+        ...mapActions(useUserStore, ['setLocationAnswered', 'setLocation']),
+        logOut() {
             const userStore = useUserStore();
             const shopStore = useShopStore();
             userStore.$reset();
             shopStore.$reset();
             axios.defaults.headers.common.Authorization = ''
             this.$router.push('/')
-        }, 
-        setAllShop(){
+        },
+        setAllShop() {
             const shopStore = useShopStore();
-            const userStore = useUserStore();
-            
 
-        if(!this.userLocation){
-            if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(position =>{
-                    userStore.setLocation({latutitude : position.coords.latitude, longitude : position.coords.longitude})
-                })  
+
+
+            if (!this.userLocationAnswered) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(position => {
+                        this.setLocationAnswered();
+                        this.setLocation({ latutitude: position.coords.latitude, longitude: position.coords.longitude })
+                    }, () => {
+                        this.setLocationAnswered();
+                    })
+                }
             }
-        }
 
             if (shopStore.shops.length === 0) {
                 shopStore.setShop()
-            }else{
+            } else {
                 shopStore.$reset()
                 shopStore.setShop()
             }
-        }, 
-        setAllRecipe(){
+        },
+        setAllRecipe() {
             const useRecipe = useRecipeStore();
             if (useRecipe.recipes.length === 0) {
                 useRecipe.setRecipe()
-            }else{
+            } else {
                 useRecipe.$reset()
                 useRecipe.setRecipe()
             }

@@ -143,8 +143,8 @@ class ShopController extends Controller
     }
 
 
-    public function sortShops(Request $request){
-      $sorted_shops = QueryBuilder::for(Shop::class)->allowedFilters(["department_id" , "category_id","shop_title"])->get(); 
+    public function sortShops(){
+      $sorted_shops = QueryBuilder::for(Shop::class)->allowedFilters(["department_id" , "category_id","shop_title", "products"])->get(); 
       return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $sorted_shops], 200);
     }
 
