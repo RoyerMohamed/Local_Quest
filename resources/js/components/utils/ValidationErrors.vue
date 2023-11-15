@@ -1,13 +1,14 @@
 <template>
     <div data-aos="fade-left"  v-if="validationErrors">
         <ul class="alert alert-danger list-unstyled">
-            <li v-for="(value, key, index) in validationErrors">{{ value }}</li>
+            <li v-for="(value, key) in validationErrors" :key="key">{{ value }}</li>
         </ul>
     </div>
 </template>
 
 <script>
 export default {
+    name : 'ValidationErrors',
 
     props: ['errors'],
 

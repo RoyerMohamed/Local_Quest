@@ -42,6 +42,9 @@
                     <li>
                         <router-link @click="this.setAllRecipe" to="/recipes" class="navbar-brand">Recipe</router-link>
                     </li>
+                    <li>
+                        <router-link  to="/ajoutCommerce" class="navbar-brand">Ajouter un Commerce</router-link>
+                    </li>
                 </div>
                 <li></li>
                 <li></li>

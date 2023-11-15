@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">password</label>
-                <input type="password" class="form-control" id="password" v-model="password">
+                <input required type="password" class="form-control" id="password" v-model="password">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -46,7 +46,10 @@ export default {
             this.formData.append('email', this.email)
             this.formData.append('image', this.$refs.image.files[0] ) 
             this.formData.append('password', this.password)
-            axios.post('http://127.0.0.1:8000/api/users', this.formData, { 'content-type': 'multipart/form-data' })
+           // console.log({user_name :this.user_name ,email: this.email ,image : this.$refs.image.files[0] , password :this.password},);
+            axios.post('http://127.0.0.1:8000/api/users',{user_name :this.user_name ,email: this.email ,image : this.$refs.image.files[0] , password : this.password}, {headers: {
+        'Content-Type': 'multipart/form-data'
+      } })
                  .then(res => {
                     this.validationErrors = "" ; 
                     this.$router.push("/login")
@@ -56,7 +59,7 @@ export default {
                     console.log("err",err);
                         this.validationErrors = err.response.data[0].errors
                 } )
-        }
+         }
     }
 }
 </script>

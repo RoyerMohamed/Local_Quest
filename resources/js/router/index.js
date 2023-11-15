@@ -26,6 +26,11 @@ const routes = [
         component : () => import('../components/commerces/ShopList.vue')
     },
     {
+        name: 'AjoutCommerce',
+        path: '/ajoutCommerce',
+        component : () => import('../components/commerces/AddShop.vue')
+    },
+    {
         name: 'DetailCommerce',
         path: '/commerce/:id',
         component : () => import('../components/commerces/ShopDetail.vue')

@@ -37,5 +37,6 @@ Route::get('/shops/sortByCategories/{id}', [App\Http\Controllers\API\V1\ShopCont
 Route::apiResource('/department',  App\Http\Controllers\API\V1\DepartmentController::class);
 Route::apiResource('/categories',  App\Http\Controllers\API\V1\CategoryController::class);
 Route::apiResource('/users',  App\Http\Controllers\API\V1\UserController::class);
+Route::post('/users/updateImage/{id}',  [App\Http\Controllers\API\V1\UserController::class , 'updateImage']);
 Route::put('/update-password/{user}',  [App\Http\Controllers\API\V1\UserController::class , "updatepassword"])->name('updatePasswors');
 Route::post('/login' , [App\Http\Controllers\API\V1\LoginController::class , 'loginUser'])->name('login');

@@ -31,6 +31,8 @@ export const useUserStore = defineStore({
     }
     ,setLocationAnswered(){
       this.userLocationAnswered = true ; 
+    }, setUserImage(data){
+      this.image = data; 
     }
 
   },

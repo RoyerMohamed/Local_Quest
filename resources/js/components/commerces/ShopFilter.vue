@@ -11,6 +11,7 @@
                 <option
                   :value="department.id"
                   v-for="department in this.departments"
+                  :key="department.id"
                 >
                   {{ department.department_name }}
                 </option>
@@ -23,6 +24,7 @@
                 <option
                   :value="categorie.id"
                   v-for="categorie in this.categories"
+                  :key="categorie.id"
                 >
                   {{ categorie.category_name }}
                 </option>
