@@ -120,6 +120,15 @@ class RecipeController extends Controller
         return response()->json(['message' => 'La recette a été modifiée ', 'Recette' => $recipe], 200);
     }
 
+
+
+
+
+    public function getLasteAddedRecipes(Request $request){
+
+        return response()->json(['message' => 'Recettes trouvées', 'Recette' => Recipe::orderBy('id', 'desc')->take(5)->get() ], 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

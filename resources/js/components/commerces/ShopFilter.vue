@@ -31,20 +31,28 @@
               </select>
             </div>
             <!-- filter by opening hours -->
-            <!-- <div class="filter_openingHours">
-                            <select name="" v-model="selectOpeningHours">
-                                <optgroup :label="openingHours.day" v-for="openingHours in this.OpeningHours">
-                                    <option :value="openingHours.morning_opening_hour">{{ openingHours.morning_opening_hour
-                                    }}</option>
-                                    <option :value="openingHours.morning_closing_hour">{{ openingHours.morning_closing_hour
-                                    }}</option>
-                                    <option :value="openingHours.afternoon_opening_hour">{{
-                                        openingHours.afternoon_opening_hour }}</option>
-                                    <option :value="openingHours.afternoon_closing_hour">{{
-                                        openingHours.afternoon_closing_hour }}</option>
-                                </optgroup>
-                            </select>
-                        </div> -->
+            <div class="filter_openingHours">
+              <select name="" v-model="selectOpeningHours">
+                <optgroup
+                  :label="openingHours.day"
+                  v-for="openingHours in this.OpeningHours"
+                  :key="openingHours.id"
+                >
+                  <option :value="openingHours.morning_opening_hour">
+                    {{ openingHours.morning_opening_hour }}
+                  </option>
+                  <option :value="openingHours.morning_closing_hour">
+                    {{ openingHours.morning_closing_hour }}
+                  </option>
+                  <option :value="openingHours.afternoon_opening_hour">
+                    {{ openingHours.afternoon_opening_hour }}
+                  </option>
+                  <option :value="openingHours.afternoon_closing_hour">
+                    {{ openingHours.afternoon_closing_hour }}
+                  </option>
+                </optgroup>
+              </select>
+            </div>
 
             <div class="search">
               <input
@@ -103,9 +111,9 @@ export default {
       shop_title: null,
       checkValues: [],
       sortedShops: [],
-
     };
-  },props:['allShops'],
+  },
+  props: ["allShops"],
   computed: {
     ...mapState(useShopStore, [
       "departments",
@@ -143,8 +151,7 @@ export default {
       this.setShop();
     },
     selectedProductsHandler(product_name) {
-      
-      //this.shops = this.allShops; 
+      //this.shops = this.allShops;
 
       if (!this.checkValues.includes(product_name)) {
         this.checkValues.push(product_name);
@@ -154,8 +161,7 @@ export default {
         );
       }
 
-      
-      const result= this.shops.filter((shop) => {
+      const result = this.shops.filter((shop) => {
         // on fait le tableau des noms de produits vendus par le shop
         let nomsProduits = shop.products.map((product) => {
           return product.product_name;
@@ -165,7 +171,7 @@ export default {
           return this.checkValues.includes(produit);
         });
       });
-      
+
       console.log(product_name);
     },
   },

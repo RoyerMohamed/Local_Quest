@@ -16,7 +16,6 @@ function UploadImage($image, $user_id, $shop_id = null, $recipe_id = null, $is_p
     $image->move(public_path('images'), $imageName);
     $user = User::find($user_id);
 
-
     $oldImage =  Image::where("user_id", "=", $user_id)->get();
     if (count($oldImage) > 0) {
         foreach ($oldImage as $value) {
@@ -24,6 +23,7 @@ function UploadImage($image, $user_id, $shop_id = null, $recipe_id = null, $is_p
             $image_temp->delete();
         }
     }
+    
     Image::create([
         "image_name" => $imageName,
         "image_status" => $user->role->role_name === "admin" || $shop_id === null && $recipe_id === null ? 1 : 0,

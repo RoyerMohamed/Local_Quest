@@ -14,6 +14,7 @@ class User extends Authenticatable
 
     protected $with = ["role"];
 
+    protected $table = "users";  // add secur to you table :TODO LOOK UP 
     /**
      * The attributes that are mass assignable.
      *

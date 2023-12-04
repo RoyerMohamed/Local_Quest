@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import { Value } from 'sass';
 
 export const useShopStore = defineStore({
   id: 'useShopStore',
@@ -48,8 +47,6 @@ export const useShopStore = defineStore({
         }).catch((err) => console.log(err))
 
       }
-      
-
     },
 
     filterShops(data) {
@@ -68,8 +65,7 @@ export const useShopStore = defineStore({
         console.log(res.data.Commerçants) 
         res.data.Commerçants.length !== 0 ? this.shops = res.data.Commerçants : this.shops = []
       }).catch((err) => console.log(err))
-    },
-
+    }
   },
   getters: {
     getShopById: (state) => {
