@@ -26,7 +26,7 @@ export const useUserStore = defineStore({
       this.image = user.profil_picture;
     },
     setLocation(data) {
-      this.latitude = data.latutitude;
+      this.latitude = data.latitude;
       this.longitude = data.longitude;
     }
     ,setLocationAnswered(){

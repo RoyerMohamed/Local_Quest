@@ -1,12 +1,12 @@
 <template>
   
  
-    <div v-if="this.shop" class="card shop-card">
-      <img :src="this.previewImage + this.shop.images[0].image_name" class="card-img-top" alt="">
-      <div class="card-body">
-        <h5 class="card-title">{{ shop.shop_title }}</h5>
-        <p class="card-text">{{ shop.description }}</p>
-        <router-link class="btn btn-primary" :to="`/commerce/${this.shop.id}`">en savoir plus</router-link>
+    <div v-if="this.shop" class=" shop-card">
+      <img :src="this.previewImage + this.shop.images[0].image_name" class="" alt="">
+      <div class="">
+        <h5 class="">{{ shop.shop_title }}</h5>
+        <p class="">{{ shop.description }}</p>
+        <router-link class="" :to="`/commerce/${this.shop.id}`">en savoir plus</router-link>
       </div>
     </div>
     
@@ -26,9 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.shop-card{
-  width: 45%;
-}
+
 p{
   display: -webkit-box;
     -webkit-box-orient: vertical;

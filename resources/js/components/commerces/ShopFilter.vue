@@ -111,6 +111,7 @@ export default {
       shop_title: null,
       checkValues: [],
       sortedShops: [],
+      selectOpeningHours:[]
     };
   },
   props: ["allShops"],

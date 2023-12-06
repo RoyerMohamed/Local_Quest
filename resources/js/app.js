@@ -4,7 +4,9 @@ import App  from './App.vue';
 import { createPinia } from 'pinia';
 import router from './router'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-
+//bootstrap
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 
 
 const app = createApp(App);

@@ -205,23 +205,6 @@ export default {
     setAllShop() {
       const shopStore = useShopStore();
 
-      if (!this.userLocationAnswered) {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              this.setLocationAnswered();
-              this.setLocation({
-                latutitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-              });
-            },
-            () => {
-              this.setLocationAnswered();
-            }
-          );
-        }
-      }
-
       if (shopStore.shops.length === 0) {
         shopStore.setShop();
       } else {
@@ -229,6 +212,7 @@ export default {
         shopStore.setShop();
       }
     },
+    
     setAllRecipe() {
       const useRecipe = useRecipeStore();
       if (useRecipe.recipes.length === 0) {

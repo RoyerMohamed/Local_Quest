@@ -203,6 +203,10 @@ label {
 }
 .addShop_title {
   width: 40vw;
+  
+}
+.addShop_title h1 {
+  font-size: 1rem;
 }
 .addShop_wrapper {
   width: 40vw;
