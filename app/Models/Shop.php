@@ -24,7 +24,8 @@ class Shop extends Model
         "latitude",
         "user_id",
         "department_id",
-        "category_id"
+        "category_id", 
+        'adresse'
     ];
 
     public function user()

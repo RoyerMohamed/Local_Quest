@@ -65,6 +65,18 @@ export const useShopStore = defineStore({
         console.log(res.data.Commerçants) 
         res.data.Commerçants.length !== 0 ? this.shops = res.data.Commerçants : this.shops = []
       }).catch((err) => console.log(err))
+    }, 
+    addShop(data){
+      console.log(data);
+      let validation = ""
+      axios.post(`http://127.0.0.1:8000/api/shops`,data).then((res) => {
+        validation = res.data.message;
+        
+        // res.data.Commerçants.forEach(element => {
+        //   this.shops.push(element)
+        // });
+      }).catch((err) => console.log(err))
+      
     }
   },
   getters: {

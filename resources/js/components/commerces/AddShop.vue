@@ -1,5 +1,13 @@
 <template>
   <div class="addShop">
+    <ValidationErrors
+      :errors="this.validationErrors"
+      v-if="this.validationErrors"
+    />
+    <ValidationResponse
+    :message="this.validationResponse"
+    v-if="this.validationResponse"
+  />
     <div class="addShop_title">
       <div><h1>Suggérer un commerçant</h1></div>
       <div>
@@ -10,7 +18,7 @@
       </div>
     </div>
     <div class="addShop_wrapper">
-      <form action="">
+      <form @submit.prevent="handleForm" enctype="multipart/form-data">
         <div class="addShop_shopName">
           <label for="">Identité</label>
           <input
@@ -56,7 +64,9 @@
           <label for="category">Commerce</label>
 
           <select name="categories" v-model="selectCategory">
-            <option id="placeholderValue" value="" disabled selected>Type de commerce</option>
+            <option id="placeholderValue" value="" disabled selected>
+              Type de commerce
+            </option>
             <option
               :value="categorie.id"
               v-for="categorie in this.categories"
@@ -155,9 +165,13 @@
 import { mapState, mapActions } from "pinia";
 import { useShopStore } from "../../stores/shopStore";
 import { useUserStore } from "../../stores/userStore";
+import ValidationErrors from "../utils/ValidationErrors.vue";
+import ValidationResponse from "../utils/ValidationResponse.vue";
+import axios from "axios";
 
 export default {
   name: "AddShop",
+  components: { ValidationErrors, ValidationResponse },
   data() {
     return {
       shop_title: "",
@@ -170,6 +184,10 @@ export default {
       web_site: "",
       selectOpeningHours: "",
       phone_number: "",
+      longitude: "",
+      latitude: "",
+      validationErrors: "",
+      validationResponse: "",
     };
   },
   computed: {
@@ -180,6 +198,42 @@ export default {
       "OpeningHours",
     ]),
     ...mapState(useUserStore, ["id"]),
+  },
+  methods: {
+    ...mapActions(useShopStore, ["addShop"]),
+
+    async handleForm() {
+      await axios
+        .get(
+          `https://nominatim.openstreetmap.org/search?street=${this.adresse}&city=${this.ville}&county=france&postalcode=${this.zipCode}&format=json`
+        )
+        .then((res) => {
+          console.log(res.data[0].boundingbox);
+          this.validationErrors = "";
+          this.longitude = res.data[0].boundingbox[2];
+          this.latitude = res.data[0].boundingbox[0];
+        })
+        .catch((err) => {
+          this.validationErrors = err.response.data[0].errors;
+        });
+
+        // add 
+      if (this.longitude && this.latitude) {
+        this.addShop({
+          shop_title: this.shop_title,
+          adresse: this.adresse,
+          category_id: this.selectCategory,
+          department_id: this.selectDepartment,
+          city: this.ville,
+          description: this.description,
+          zip_code: this.zipCode,
+          website: this.web_site,
+          phone_number: this.phone_number,
+          longitude: this.longitude,
+          latitude: this.latitude,
+        });
+      }
+    },
   },
 };
 </script>
@@ -203,7 +257,6 @@ label {
 }
 .addShop_title {
   width: 40vw;
-  
 }
 .addShop_title h1 {
   font-size: 1rem;
@@ -238,14 +291,13 @@ label {
 .addShop_adresse_inputs input:nth-child(3) {
   width: 30%;
 }
-.addShop_category{
+.addShop_category {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin: 1.5rem 0;
 }
 .addShop_category select {
-  padding: .5rem;
+  padding: 0.5rem;
 }
-
 </style>

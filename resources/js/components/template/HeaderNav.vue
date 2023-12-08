@@ -91,7 +91,7 @@
         <div class="search_category">
           <div class="search_category_image">
             <img
-              :src="this.previewImage + 'Fruits&légumes.png'"
+            :src="this.previewImage + 'epicerie.png'"
               alt=""
               srcset=""
             />
@@ -103,7 +103,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'meat.png'" alt="" srcset="" />
+            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
           </div>
           <div class="search_category_name">
             <span>Boucherie</span>
@@ -112,7 +112,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'fish.png'" alt="" srcset="" />
+            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
           </div>
           <div class="search_category_name">
             <span>Poissonerie</span>
@@ -121,7 +121,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'cheese.png'" alt="" srcset="" />
+            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
           </div>
           <div class="search_category_name">
             <span>Fromagerie</span>
@@ -130,7 +130,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'vin.png'" alt="" srcset="" />
+            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
           </div>
           <div class="search_category_name">
             <span>Vin</span>
@@ -140,7 +140,7 @@
         <div class="search_category">
           <div class="search_category_image">
             <img
-              :src="this.previewImage + 'Marche_producteurs.png'"
+            :src="this.previewImage + 'epicerie.png'" 
               alt=""
               srcset=""
             />

@@ -27,7 +27,7 @@
 <script>
 import { mapActions } from 'pinia';
 import { useUserStore } from '../../stores/userStore';
-import ValidationErrors from '../utils/ValidationErrors.vue'
+import ValidationErrors from '../utils/ValidationErrors'
 
 
 export default {

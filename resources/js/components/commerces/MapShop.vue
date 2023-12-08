@@ -44,12 +44,11 @@ export default {
               let fontAwesomeIcon = L.divIcon({
                 // on crée un icône correspondant à celui choisi pour la catégorie
                 html: `<img src="${this.previewImage + shop.category.category_icon}"/>`,
-            iconSize: [40, 40],
+                iconSize: [40, 40],
                 className: 'dummy',
           });
 
-          L.marker([shop.latitude, shop.longitude],{icon: fontAwesomeIcon
-          }).addTo(map);
+          L.marker([shop.latitude, shop.longitude],{icon: fontAwesomeIcon}).addTo(map);
 
           });
 
