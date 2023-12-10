@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Models\Shop;
+use App\Models\Image;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -52,6 +54,7 @@ class ShopController extends Controller
                 "latitude" => 'required',
                 "department_id" => 'required',
                 "category_id" => 'required',
+                'image' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
             ]
         );
         if ($validator->fails()) {
@@ -79,12 +82,30 @@ class ShopController extends Controller
             ]
         );
 
+        if(count($request->products_id) > 0){
+            
+            foreach($request->products_id as $product_id){
+                DB::table("shops_products")->insert([
+                    'shop_id' => $shop->id ,
+                    'product_id' => $product_id
+                ]);
+            }
+        }
+        $shopImage = "";
         if ($request->hasFile('image')){
-            $shopImage = UploadImage($request->image, Auth::user()->id);
+            $shopImage = UploadImage($request->image, Auth::user()->id ,$shop->id );
+        }else{
+            Image::create([
+                "image_name" => "default_shop.jpg",
+                "image_status" => Auth::user()->role->role_name === "admin"  ? 1 : 0,
+                "user_id" => Auth::user()->id,
+                "shop_id" =>  $shop->id,
+                "recipe_id" => null,
+                "is_profil" =>null
+            ]);
         }
 
-
-        return response()->json(['message' => 'Le commerçants a été ajouté ', 'Commerçants' => $shop], 200);
+        return response()->json(['message' => 'Le commerçants a été ajouté ', 'Commerçants' => $shop ,$shopImage ], 200);
     }
 
     /**
@@ -155,7 +176,16 @@ class ShopController extends Controller
         return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $sorted_shops], 200);
     }
 
+    public function getShopByUserId(){
 
+        $userShops = Shop::where("user_id","=", auth::user()->id)->latest()->get();
+
+        if (count($userShops) === 0) {
+            return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
+        }
+
+        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $userShops], 200);
+    }
     /**
      * Remove the specified resource from storage.
      */

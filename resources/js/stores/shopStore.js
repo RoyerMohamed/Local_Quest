@@ -9,7 +9,8 @@ export const useShopStore = defineStore({
     departments: [],
     categories: [],
     OpeningHours: [], 
-    products : []
+    products : [], 
+    userShop : []
   }),
 
   actions: {
@@ -77,6 +78,15 @@ export const useShopStore = defineStore({
         // });
       }).catch((err) => console.log(err))
       
+    },
+    getShopByUserId(){
+      
+      axios.get("http://127.0.0.1:8000/api/getShopByUserId").then(res => {
+       this.userShop = res.data.Commerçants;
+      }).catch(err =>{
+        console.log(err);
+      })
+     
     }
   },
   getters: {

@@ -1,13 +1,13 @@
 <template>
-  <div class="addShop">
-    <ValidationErrors
-      :errors="this.validationErrors"
-      v-if="this.validationErrors"
-    />
-    <ValidationResponse
+  <ValidationErrors
+    :errors="this.validationErrors"
+    v-if="this.validationErrors"
+  />
+  <ValidationResponse
     :message="this.validationResponse"
     v-if="this.validationResponse"
   />
+  <div class="addShop">
     <div class="addShop_title">
       <div><h1>Suggérer un commerçant</h1></div>
       <div>
@@ -59,9 +59,21 @@
             />
           </div>
         </div>
-
+        <div class="addShop_department">
+          <label for="">Départment</label>
+              <select name="department" v-model="selectDepartment">
+                <option :value="null"></option>
+                <option
+                  :value="department.id"
+                  v-for="department in this.departments"
+                  :key="department.id"
+                >
+                  {{ department.department_name }}
+                </option>
+              </select>
+        </div>
         <div class="addShop_category">
-          <label for="category">Commerce</label>
+          <label for="category">Type de commerce</label>
 
           <select name="categories" v-model="selectCategory">
             <option id="placeholderValue" value="" disabled selected>
@@ -76,54 +88,34 @@
             </option>
           </select>
         </div>
-        <label for="department">
-          departements
-          <select name="department" v-model="selectDepartment">
-            <option :value="null"></option>
-            <option
-              :value="department.id"
-              v-for="department in this.departments"
-              :key="department.id"
-            >
-              {{ department.department_name }}
-            </option>
-          </select>
-        </label>
-        <label for="city">ville :</label>
-        <label for="description"
-          >description :
-          <textarea name="description" id="" v-model="description"></textarea>
-        </label>
-        <label for="image"
-          >images :<input type="file" name="image" id="image" ref="image"
-        /></label>
+        <div class="addShop_product">
+          <!-- a voir  -->
+          <label for="product"> Products </label>
+          <div class="filter_product">
+            <div v-for="product in products" :key="product" >
+              <input type="checkbox" name="product" id="checkbox" :value="product.id"  v-model="products_id"/>
+              <label for="scales">{{ product.product_name }}</label>
+            </div>
+          </div>
+        </div>
 
-        <label for=""> code postal </label>
+        <div class="addShop_description">
+          <label for="description">Description : </label>
+          <textarea name="description" id="" v-model="description"></textarea>
+        </div>
+
+        <div class="assShop_image">
+          <label for="image">images </label>
+          <input type="file" ref="image" name="image" />
+        </div>
+
         <label for="">
           site internet
           <input type="url" name="" id="" v-model="web_site" />
         </label>
 
-        <!-- a voir  -->
-        <label for="product">
-          Products
-          <div class="filter_product">
-            <div class="filter_products_selected">
-              <span
-                v-for="product in checkValues"
-                :key="product"
-                class="badge rounded-pill bg-success"
-                >{{ product }}</span
-              >
-            </div>
-            <div class="filter_products_list">
-              <div v-for="product in products" :key="product">
-                <input type="checkbox" name="product" />
-                <label for="scales">{{ product.product_name }}</label>
-              </div>
-            </div>
-          </div>
-        </label>
+        
+
         <label for="">
           horaires d'ouverture proposé
           <select name="" v-model="selectOpeningHours">
@@ -188,6 +180,8 @@ export default {
       latitude: "",
       validationErrors: "",
       validationResponse: "",
+      formData: new FormData(),
+      products_id : []
     };
   },
   computed: {
@@ -203,6 +197,10 @@ export default {
     ...mapActions(useShopStore, ["addShop"]),
 
     async handleForm() {
+      this.formData.append("image", this.$refs.image.files[0]);
+      console.log(this.products_id);
+      console.log(this.formData.get("image"));
+
       await axios
         .get(
           `https://nominatim.openstreetmap.org/search?street=${this.adresse}&city=${this.ville}&county=france&postalcode=${this.zipCode}&format=json`
@@ -217,21 +215,49 @@ export default {
           this.validationErrors = err.response.data[0].errors;
         });
 
-        // add 
       if (this.longitude && this.latitude) {
-        this.addShop({
-          shop_title: this.shop_title,
-          adresse: this.adresse,
-          category_id: this.selectCategory,
-          department_id: this.selectDepartment,
-          city: this.ville,
-          description: this.description,
-          zip_code: this.zipCode,
-          website: this.web_site,
-          phone_number: this.phone_number,
-          longitude: this.longitude,
-          latitude: this.latitude,
-        });
+        axios
+          .post(
+            `http://127.0.0.1:8000/api/shops`,
+            {
+              shop_title: this.shop_title,
+              adresse: this.adresse,
+              category_id: this.selectCategory,
+              department_id: this.selectDepartment,
+              city: this.ville,
+              description: this.description,
+              zip_code: this.zipCode,
+              website: this.web_site,
+              phone_number: this.phone_number,
+              longitude: this.longitude,
+              latitude: this.latitude,
+              image: this.$refs.image.files[0],
+              products_id :this.products_id
+            },
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((res) => {
+            this.validationResponse = res.data.message;
+          })
+          .catch((err) => (this.validationErrors = err));
+
+        // this.addShop({
+        //   shop_title: this.shop_title,
+        //   adresse: this.adresse,
+        //   category_id: this.selectCategory,
+        //   department_id: this.selectDepartment,
+        //   city: this.ville,
+        //   description: this.description,
+        //   zip_code: this.zipCode,
+        //   website: this.web_site,
+        //   phone_number: this.phone_number,
+        //   longitude: this.longitude,
+        //   latitude: this.latitude,
+        // });
       }
     },
   },
@@ -242,7 +268,7 @@ export default {
 input,
 select,
 textarea {
-  height: 3rem;
+  min-height: 3rem;
   border-radius: 5px;
   padding: 1rem;
 }
@@ -291,6 +317,12 @@ label {
 .addShop_adresse_inputs input:nth-child(3) {
   width: 30%;
 }
+.addShop_department{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
 .addShop_category {
   display: flex;
   flex-direction: column;
@@ -300,4 +332,25 @@ label {
 .addShop_category select {
   padding: 0.5rem;
 }
+.filter_product > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-basis: 25%;
+}
+.filter_product {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.addShop_description{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+.addShop_description > textarea{
+height: 20vh;
+}
+
 </style>

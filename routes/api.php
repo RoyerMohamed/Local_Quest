@@ -32,6 +32,7 @@ Route::apiResource('/recipes',  App\Http\Controllers\API\V1\RecipeController::cl
 Route::apiResource('/opening_hours',  App\Http\Controllers\API\V1\OpeningHourController::class);
 Route::apiResource('/shops', App\Http\Controllers\API\V1\ShopController::class);
 Route::get('/sortShops', [App\Http\Controllers\API\V1\ShopController::class , 'sortShops']);
+Route::get('/getShopByUserId', [App\Http\Controllers\API\V1\ShopController::class , 'getShopByUserId']);
 //Route::get('/truc', [App\Http\Controllers\API\V1\ShopController::class , 'test']);
 Route::get('/shops/sortByCategories/{id}', [App\Http\Controllers\API\V1\ShopController::class , 'sortByCategories']);
 Route::apiResource('/department',  App\Http\Controllers\API\V1\DepartmentController::class);

@@ -58,7 +58,7 @@
                   ></router-link>
                 </li>
                 <li>
-                  <router-link to="/profil" id="btn_profil"
+                  <router-link to="/profil" id="btn_profil" @click="setUserShop"
                     ><i class="fa-solid fa-user" style="color: #ffffff"></i
                   ></router-link>
                 </li>
@@ -194,6 +194,7 @@ export default {
   },
   methods: {
     ...mapActions(useUserStore, ["setLocationAnswered", "setLocation"]),
+    ...mapActions(useShopStore, ["getShopByUserId"]),
     logOut() {
       const userStore = useUserStore();
       const shopStore = useShopStore();
@@ -222,6 +223,9 @@ export default {
         useRecipe.setRecipe();
       }
     },
+    setUserShop(){
+      this.getShopByUserId();
+    }
   },
 };
 </script>
