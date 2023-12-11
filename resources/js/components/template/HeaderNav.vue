@@ -62,6 +62,11 @@
                     ><i class="fa-solid fa-user" style="color: #ffffff"></i
                   ></router-link>
                 </li>
+
+                <li v-if="this.is_admin" >
+                 <router-link to="/admin">Admin</router-link>
+                </li>
+                
                 <li>
                   <a @click="logOut" id="log_out"
                     ><i
@@ -70,6 +75,7 @@
                     ></i
                   ></a>
                 </li>
+
               </div>
             </div>
           </ul>
@@ -189,7 +195,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(useUserStore, ["token", "userLocationAnswered"]),
+    ...mapState(useUserStore, ["token", "userLocationAnswered" , "is_admin"]),
     ...mapState(useShopStore, ["categories"]),
   },
   methods: {

@@ -169,6 +169,7 @@ import { useShopStore } from "../../stores/shopStore";
 import ValidationErrors from "../utils/ValidationErrors.vue";
 import ValidationResponse from "../utils/ValidationResponse.vue";
 import axios from "axios";
+
 export default {
   name: "Profil",
   components: { ValidationErrors, ValidationResponse },

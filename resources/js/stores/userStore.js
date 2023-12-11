@@ -12,7 +12,8 @@ export const useUserStore = defineStore({
     image: '',
     longitude: '',
     latitude: '',
-    userLocationAnswered : false
+    userLocationAnswered : false, 
+    is_admin : false,
 
   }),
 
@@ -33,8 +34,10 @@ export const useUserStore = defineStore({
       this.userLocationAnswered = true ; 
     }, setUserImage(data){
       this.image = data; 
+    } , 
+    setIsAdmin(data){
+      this.is_admin = data; 
     }
-
   },
 
   persist: true,

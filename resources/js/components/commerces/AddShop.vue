@@ -1,154 +1,160 @@
 <template>
-  <ValidationErrors
-    :errors="this.validationErrors"
-    v-if="this.validationErrors"
-  />
-  <ValidationResponse
-    :message="this.validationResponse"
-    v-if="this.validationResponse"
-  />
-  <div class="addShop">
-    <div class="addShop_title">
-      <div><h1>Suggérer un commerçant</h1></div>
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipiscing elit nunc commodo
-          ornare, lobortis cubilia ultrices odio luctus sed conubia.
-        </p>
-      </div>
-    </div>
-    <div class="addShop_wrapper">
-      <form @submit.prevent="handleForm" enctype="multipart/form-data">
-        <div class="addShop_shopName">
-          <label for="">Identité</label>
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Entrez l’identité du commerce"
-            v-model="shop_title"
-          />
+  <div>
+    <ValidationErrors
+      :errors="this.validationErrors"
+      v-if="this.validationErrors"
+    />
+    <ValidationResponse
+      :message="this.validationResponse"
+      v-if="this.validationResponse"
+    />
+    <div class="addShop">
+      <div class="addShop_title">
+        <div><h1>Suggérer un commerçant</h1></div>
+        <div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipiscing elit nunc commodo
+            ornare, lobortis cubilia ultrices odio luctus sed conubia.
+          </p>
         </div>
-
-        <div class="addShop_adresse">
-          <div class="addShop_adresse_label">
-            <label for="adresse">Adresse</label>
-          </div>
-          <div class="addShop_adresse_inputs">
+      </div>
+      <div class="addShop_wrapper">
+        <form @submit.prevent="handleForm" enctype="multipart/form-data">
+          <div class="addShop_shopName">
+            <label for="">Identité</label>
             <input
               type="text"
-              name="adresse"
-              id=""
-              v-model="adresse"
-              placeholder="Adresse"
-            />
-            <input
-              type="number"
               name=""
               id=""
-              max="99999"
-              v-model="zipCode"
-              placeholder="Code postale"
-            />
-            <input
-              type="text"
-              name="city"
-              id=""
-              v-model="ville"
-              placeholder="Ville"
+              placeholder="Entrez l’identité du commerce"
+              v-model="shop_title"
             />
           </div>
-        </div>
-        <div class="addShop_department">
-          <label for="">Départment</label>
-              <select name="department" v-model="selectDepartment">
-                <option :value="null"></option>
-                <option
-                  :value="department.id"
-                  v-for="department in this.departments"
-                  :key="department.id"
-                >
-                  {{ department.department_name }}
-                </option>
-              </select>
-        </div>
-        <div class="addShop_category">
-          <label for="category">Type de commerce</label>
 
-          <select name="categories" v-model="selectCategory">
-            <option id="placeholderValue" value="" disabled selected>
-              Type de commerce
-            </option>
-            <option
-              :value="categorie.id"
-              v-for="categorie in this.categories"
-              :key="categorie.id"
-            >
-              {{ categorie.category_name }}
-            </option>
-          </select>
-        </div>
-        <div class="addShop_product">
-          <!-- a voir  -->
-          <label for="product"> Products </label>
-          <div class="filter_product">
-            <div v-for="product in products" :key="product" >
-              <input type="checkbox" name="product" id="checkbox" :value="product.id"  v-model="products_id"/>
-              <label for="scales">{{ product.product_name }}</label>
+          <div class="addShop_adresse">
+            <div class="addShop_adresse_label">
+              <label for="adresse">Adresse</label>
+            </div>
+            <div class="addShop_adresse_inputs">
+              <input
+                type="text"
+                name="adresse"
+                id=""
+                v-model="adresse"
+                placeholder="Adresse"
+              />
+              <input
+                type="number"
+                name=""
+                id=""
+                max="99999"
+                v-model="zipCode"
+                placeholder="Code postale"
+              />
+              <input
+                type="text"
+                name="city"
+                id=""
+                v-model="ville"
+                placeholder="Ville"
+              />
             </div>
           </div>
-        </div>
-
-        <div class="addShop_description">
-          <label for="description">Description : </label>
-          <textarea name="description" id="" v-model="description"></textarea>
-        </div>
-
-        <div class="assShop_image">
-          <label for="image">images </label>
-          <input type="file" ref="image" name="image" />
-        </div>
-
-        <label for="">
-          site internet
-          <input type="url" name="" id="" v-model="web_site" />
-        </label>
-
-        
-
-        <label for="">
-          horaires d'ouverture proposé
-          <select name="" v-model="selectOpeningHours">
-            <optgroup
-              :label="openingHours.day"
-              v-for="openingHours in this.OpeningHours"
-              :key="openingHours.id"
-            >
-              <option :value="openingHours.morning_opening_hour">
-                {{ openingHours.morning_opening_hour }}
+          <div class="addShop_department">
+            <label for="">Départment</label>
+            <select name="department" v-model="selectDepartment">
+              <option :value="null"></option>
+              <option
+                :value="department.id"
+                v-for="department in this.departments"
+                :key="department.id"
+              >
+                {{ department.department_name }}
               </option>
-              <option :value="openingHours.morning_closing_hour">
-                {{ openingHours.morning_closing_hour }}
+            </select>
+          </div>
+          <div class="addShop_category">
+            <label for="category">Type de commerce</label>
+
+            <select name="categories" v-model="selectCategory">
+              <option id="placeholderValue" value="" disabled selected>
+                Type de commerce
               </option>
-              <option :value="openingHours.afternoon_opening_hour">
-                {{ openingHours.afternoon_opening_hour }}
+              <option
+                :value="categorie.id"
+                v-for="categorie in this.categories"
+                :key="categorie.id"
+              >
+                {{ categorie.category_name }}
               </option>
-              <option :value="openingHours.afternoon_closing_hour">
-                {{ openingHours.afternoon_closing_hour }}
-              </option>
-            </optgroup>
-          </select>
-        </label>
-        <label for=""> horaires d'ouverture personalisé </label>
-        <label for="">
-          Numero de Telephone
-          <input type="number" v-model="phone_number" />
-        </label>
-        <!-- latitude,longitude-->
-        <div class="btn_validation">
-          <button type="submit">Ajouté mon commerce</button>
-        </div>
-      </form>
+            </select>
+          </div>
+          <div class="addShop_product">
+            <!-- a voir  -->
+            <label for="product"> Products </label>
+            <div class="filter_product">
+              <div v-for="product in products" :key="product">
+                <input
+                  type="checkbox"
+                  name="product"
+                  id="checkbox"
+                  :value="product.id"
+                  v-model="products_id"
+                />
+                <label for="scales">{{ product.product_name }}</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="addShop_description">
+            <label for="description">Description : </label>
+            <textarea name="description" id="" v-model="description"></textarea>
+          </div>
+
+          <div class="assShop_image">
+            <label for="image">images </label>
+            <input type="file" ref="image" name="image" />
+          </div>
+
+          <label for="">
+            site internet
+            <input type="url" name="" id="" v-model="web_site" />
+          </label>
+
+          <label for="">
+            horaires d'ouverture proposé
+            <select name="" v-model="selectOpeningHours">
+              <optgroup
+                :label="openingHours.day"
+                v-for="openingHours in this.OpeningHours"
+                :key="openingHours.id"
+              >
+                <option :value="openingHours.morning_opening_hour">
+                  {{ openingHours.morning_opening_hour }}
+                </option>
+                <option :value="openingHours.morning_closing_hour">
+                  {{ openingHours.morning_closing_hour }}
+                </option>
+                <option :value="openingHours.afternoon_opening_hour">
+                  {{ openingHours.afternoon_opening_hour }}
+                </option>
+                <option :value="openingHours.afternoon_closing_hour">
+                  {{ openingHours.afternoon_closing_hour }}
+                </option>
+              </optgroup>
+            </select>
+          </label>
+          <label for=""> horaires d'ouverture personalisé </label>
+          <label for="">
+            Numero de Telephone
+            <input type="number" v-model="phone_number" />
+          </label>
+          <!-- latitude,longitude-->
+          <div class="btn_validation">
+            <button type="submit">Ajouté mon commerce</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -181,7 +187,7 @@ export default {
       validationErrors: "",
       validationResponse: "",
       formData: new FormData(),
-      products_id : []
+      products_id: [],
     };
   },
   computed: {
@@ -232,7 +238,7 @@ export default {
               longitude: this.longitude,
               latitude: this.latitude,
               image: this.$refs.image.files[0],
-              products_id :this.products_id
+              products_id: this.products_id,
             },
             {
               headers: {
@@ -317,7 +323,7 @@ label {
 .addShop_adresse_inputs input:nth-child(3) {
   width: 30%;
 }
-.addShop_department{
+.addShop_department {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -341,16 +347,14 @@ label {
 .filter_product {
   display: flex;
   flex-wrap: wrap;
-
 }
-.addShop_description{
+.addShop_description {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin: 1.5rem 0;
 }
-.addShop_description > textarea{
-height: 20vh;
+.addShop_description > textarea {
+  height: 20vh;
 }
-
 </style>

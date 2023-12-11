@@ -41,3 +41,8 @@ Route::apiResource('/users',  App\Http\Controllers\API\V1\UserController::class)
 Route::post('/users/updateImage/{id}',  [App\Http\Controllers\API\V1\UserController::class , 'updateImage']);
 Route::put('/update-password/{user}',  [App\Http\Controllers\API\V1\UserController::class , "updatepassword"])->name('updatePasswors');
 Route::post('/login' , [App\Http\Controllers\API\V1\LoginController::class , 'loginUser'])->name('login');
+
+Route::middleware(['checkRole'])->group(function () {
+    Route::apiResource('/admin', App\Http\Controllers\AdminContoller\UserAdminController::class);
+});
+

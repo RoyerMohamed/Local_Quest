@@ -49,7 +49,6 @@ export const useShopStore = defineStore({
 
       }
     },
-
     filterShops(data) {
       this.shops = [];
       let result = [];
@@ -102,7 +101,5 @@ export const useShopStore = defineStore({
      
     }
   },
-
-
   persist: true,
 });

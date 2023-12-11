@@ -55,6 +55,11 @@ const routes = [
         path: '/recipe/:id',
         component : () => import('../components/recipe/RecipeDetail.vue')
     },
+    {
+        name: 'IndexBackOffice',
+        path: '/admin',
+        component : () => import('../components/backOffice/IndexBackOffice.vue')
+    },
 ];
 
 const router = createRouter({

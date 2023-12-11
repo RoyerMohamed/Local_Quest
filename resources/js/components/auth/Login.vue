@@ -32,19 +32,23 @@ export default {
   },
 
   methods : {
-    ...mapActions(useUserStore ,['setUser']),
+    ...mapActions(useUserStore ,['setUser', 'setIsAdmin']),
     ...mapActions(useShopStore ,['setShop']),
-    handleLogin(){
-      axios.get("sanctum/csrf-cookie").then(()=>{
+
+  async handleLogin(){
+     axios.get("sanctum/csrf-cookie").then(()=>{
         axios.post('http://127.0.0.1:8000/api/login', {user_name : this.user.user_name , password : this.user.password })
         .then((res)=>{
-          console.log(res.data);
-          //this.setShop();
+         // console.log(res.data);
+          axios.get('http://127.0.0.1:8000/api/admin').then((res)=>{
+               this.setIsAdmin(true);
+          }).catch((err)=>{ this.setIsAdmin(false)})
+        
          this.setUser(res.data.user)
          axios.defaults.headers.common.Authorization = `Bearer ${useUserStore().token}`
          this.$router.push('/')
         }).catch(err =>{
-          console.log(err.response);
+          //console.log(err.response);
           this.validationErrors = err.response.data
         } )
       }).catch(err => console.log(err))
