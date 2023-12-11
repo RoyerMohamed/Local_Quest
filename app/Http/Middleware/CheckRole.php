@@ -16,11 +16,11 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-      // dd(Auth::user()->role->role_name == "admin" );
-        if (Auth::user()->role->role_name == "admin" ) {
-            return $next($request);
-        }
-
+      if (Auth::user()->role->role_name == "admin" ) {
+        return $next($request);
+      }
+      dd(Auth::user() );
+      
         // Redirigez l'utilisateur s'il n'a pas le rôle requis
         return redirect('/')->response()->json(['message' => 'Accès non autorisé.'], 404);
        // return redirect('/')->with('error', 'Accès non autorisé.');

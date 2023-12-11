@@ -44,5 +44,6 @@ Route::post('/login' , [App\Http\Controllers\API\V1\LoginController::class , 'lo
 
 Route::middleware(['checkRole'])->group(function () {
     Route::apiResource('/admin', App\Http\Controllers\AdminContoller\UserAdminController::class);
+    Route::apiResource('/adminShops', App\Http\Controllers\AdminContoller\ShopAdminController::class);
 });
 

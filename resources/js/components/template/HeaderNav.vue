@@ -63,8 +63,8 @@
                   ></router-link>
                 </li>
 
-                <li v-if="this.is_admin" >
-                 <router-link to="/admin">Admin</router-link>
+                <li v-if="this.is_admin" @click="getAllAdminShop">
+                 <router-link  to="/admin">Admin</router-link>
                 </li>
                 
                 <li>
@@ -231,6 +231,12 @@ export default {
     },
     setUserShop(){
       this.getShopByUserId();
+    },getAllAdminShop(){
+        axios.get("http://127.0.0.1:8000/api/adminShops").then((res)=>{
+           this.shops = res.data.Commerçants ;
+        }).catch(err=>{
+            console.log(err);
+        })
     }
   },
 };
