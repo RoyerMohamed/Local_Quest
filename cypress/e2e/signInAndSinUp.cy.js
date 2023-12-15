@@ -17,9 +17,8 @@ describe('display Local Quest Home Page + sign up page', () => {
         cy.get('input[type=submit]').click()
         cy.url().should('include', '/login')
         cy.wait(3000)
-
-
     })
+
     it('sign in', () => {
         cy.visit('http://localhost:8000')
 
@@ -32,12 +31,19 @@ describe('display Local Quest Home Page + sign up page', () => {
         .should("have.value", "Seemeecome971@")
 
         cy.get('input[type=submit]').click()
+        cy.url().should('include', '/')
     })
-    
+
     it('Delete the created user', function () {
-        cy.task('queryDb', `DELETE FROM users ORDER BY id desc LIMIT 1`).then((result) => {
-          expect(result.message).to.equal("")
-        })
-      })
+        cy.task('queryDb', 'DELETE FROM users ORDER BY id DESC LIMIT 1', { log: false })
+          .then(result => {
+            // Log the result for debugging purposes
+            cy.log('Query Result:', result);
+            
+            // Perform assertions using Cypress commands
+            cy.wrap(result.affectedRows).should('be.greaterThan', 0);
+          });
+      });
+      
   })
   

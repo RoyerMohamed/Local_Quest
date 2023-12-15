@@ -24,7 +24,7 @@
             <label for="">Identité</label>
             <input
               type="text"
-              name=""
+              name="shop_title"
               id=""
               placeholder="Entrez l’identité du commerce"
               v-model="shop_title"
@@ -45,7 +45,7 @@
               />
               <input
                 type="number"
-                name=""
+                name="zipCode"
                 id=""
                 max="99999"
                 v-model="zipCode"
@@ -118,7 +118,7 @@
 
           <label for="">
             site internet
-            <input type="url" name="" id="" v-model="web_site" />
+            <input type="url" name="webSite" id="" v-model="web_site" />
           </label>
 
           <label for="">
@@ -147,11 +147,11 @@
           <label for=""> horaires d'ouverture personalisé </label>
           <label for="">
             Numero de Telephone
-            <input type="number" v-model="phone_number" />
+            <input type="number" name="phoneNumber" v-model="phone_number" />
           </label>
           <!-- latitude,longitude-->
           <div class="btn_validation">
-            <button type="submit">Ajouté mon commerce</button>
+            <input type="submit" value="ajouter un commerce">
           </div>
         </form>
       </div>
@@ -248,6 +248,7 @@ export default {
           )
           .then((res) => {
             this.validationResponse = res.data.message;
+            this.$router.push('/commerces')
           })
           .catch((err) => (this.validationErrors = err));
 

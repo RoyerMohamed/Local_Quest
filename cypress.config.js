@@ -1,19 +1,23 @@
 import { defineConfig } from 'cypress';
 import mysql from 'mysql2/promise';
 
-function queryTestDb(query, config) {
-  const connection = mysql.createConnection(config.env.db);
-  connection.connect();
+async function queryTestDb(query, config) {
+  // creates a new mysql connection using credentials from cypress.json env's
+  const connection = await mysql.createConnection(config.env.db);
 
-  return new Promise((resolve, reject) => {
-    connection.query(query, (error, results) => {
-      if (error) reject(error);
-      else {
-        connection.end();
-        resolve(results);
-      }
-    });
-  });
+  try {
+    // start connection to db
+    await connection.connect();
+
+    // exec query + disconnect to db as a Promise
+    const [results] = await connection.query(query);
+    return results;
+  } catch (error) {
+    throw error;
+  } finally {
+    // Close the connection in the 'finally' block to ensure it always happens
+    await connection.end();
+  }
 }
 
 const config = defineConfig({
