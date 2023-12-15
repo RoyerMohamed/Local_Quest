@@ -60,6 +60,11 @@ const routes = [
         path: '/admin',
         component : () => import('../components/backOffice/IndexBackOffice.vue')
     },
+    {
+        name: 'editShop',
+        path: '/editShop/:id',
+        component : () => import('../components/user/EditShop.vue')
+    },
 ];
 
 const router = createRouter({

@@ -3,7 +3,8 @@
     <h1 @click="getAllAdminShop" class="btn btn-primary">liste de commerces</h1>
     <div
       class="favoris_valide"
-      v-if="Array.isArray(this.shops) && this.shops.length > 0"
+      v-if="Array.isArray(this.shops) && this.shops.length > 0 && this.toggle"
+      :style="this.show"
     >
       <table class="table">
         <thead>
@@ -78,23 +79,25 @@
 import axios from "axios";
 export default {
   name: "ShopsBackOffice",
+  props : ['shops'], 
   data() {
     return {
-      shops: [],
       previewImagePublic: "http://[::1]:5173/public/images/",
       previewImageStorage: "http://[::1]:5173/public/storage/",
+      toggle:false,
+      show:"display : none"
     };
   },
   methods: {
     getAllAdminShop() {
-      axios
-        .get("http://127.0.0.1:8000/api/adminShops")
-        .then((res) => {
-          this.shops = res.data.Commerçants;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+      if (this.show == "display : none" ) {
+        this.show = "display : flex"
+      }else{
+        this.show = "display : none"
+      }
+      this.toggle = !this.toggle
+     
     },
     deleteShop(id) {
       //const shopStore = useShopStore();

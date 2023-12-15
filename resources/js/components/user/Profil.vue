@@ -87,7 +87,7 @@
     </div>
     <div class="favoris">
       <h2>liste de commerce ajouté</h2>
-      {{ console.log(this.userShop.length ) }}
+      {{ console.log(this.userShop.length) }}
       <div
         class="favoris_valide"
         v-if="Array.isArray(this.userShop) && this.userShop.length > 0"
@@ -113,39 +113,38 @@
           </thead>
           <tbody>
             <tr v-for="shop in this.userShop" :key="shop.id">
-              <th scope="row">{{ shop.id }}</th>
-              <td>
-                <input type="text" v-model="shop.shop_title" />
-              </td>
-              <td>{{ shop.adresse }}</td>
-              <td>{{ shop.city }}</td>
-              <td>{{ shop.zip_code }}</td>
-              <td>{{ shop.department.department_name }}</td>
-              <td>{{ shop.category.category_name }}</td>
-              <td>
-                <span v-for="product in shop.products" :key="product.id">{{
-                  product.product_name + "\n"
-                }}</span>
-              </td>
-              <td>{{ shop.description }}</td>
-              <td>
-                <img
-                  :src="
-                    shop.images[0].image_name === 'default_shop.jpg'
-                      ? this.previewImagePublic + shop.images[0].image_name
-                      : this.previewImageStorage + shop.images[0].image_name
-                  "
-                  class=""
-                  alt=""
-                />
-              </td>
-              <td>{{ shop.website }}</td>
-              <td>{{ shop.phone_number }}</td>
-              <td>
-                <form @submit.prevent="shopUpdate">
-                  <button type="submit">Modifier</button>
-                </form>
-              </td>
+                <th scope="row">{{ shop.id }}</th>
+                <td>
+                  <input type="text" v-model="shop.shop_title"  />
+                </td>
+                <td>{{ shop.adresse }}</td>
+                <td>{{ shop.city }}</td>
+                <td>{{ shop.zip_code }}</td>
+                <td>{{ shop.department.department_name }}</td>
+                <td>{{ shop.category.category_name }}</td>
+                <td>
+                  <span v-for="product in shop.products" :key="product.id">{{
+                    product.product_name + "\n"
+                  }}</span>
+                </td>
+                <td>{{ shop.description }}</td>
+                <td>
+                  <img
+                    :src="
+                      shop.images[0].image_name === 'default_shop.jpg'
+                        ? this.previewImagePublic + shop.images[0].image_name
+                        : this.previewImageStorage + shop.images[0].image_name
+                    "
+                    class=""
+                    alt=""
+                  />
+                </td>
+                <td>{{ shop.website }}</td>
+                <td>{{ shop.phone_number }}</td>
+                <td>
+                  <router-link :to='`/editShop/${shop.id}`'>modifier</router-link>
+                </td>
+         
               <td>
                 <form @submit.prevent="deleteShop(shop.id)">
                   <button type="submit">supprimer</button>
@@ -207,7 +206,7 @@ export default {
   },
   components: {
     ValidationErrors,
-    ValidationResponse,
+    ValidationResponse, 
   },
   computed: {
     ...mapWritableState(useUserStore, ["id", "user_name", "email", "image"]),

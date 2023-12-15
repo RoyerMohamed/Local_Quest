@@ -4,12 +4,12 @@
 
         <form @submit.prevent="register" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="pseudo" class="form-label">Pseudo</label>
-                <input type="text" class="form-control" id="pseudo" v-model="user_name">
+                <label for="pseudo"  class="form-label" >Pseudo</label>
+                <input type="text" class="form-control" id="pseudo" name="pseudo" v-model="user_name">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" v-model="email">
+                <input type="email" class="form-control" id="email" name="email" v-model="email">
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">image</label>
@@ -17,9 +17,9 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">password</label>
-                <input required type="password" class="form-control" id="password" v-model="password">
+                <input required type="password" class="form-control" id="password" name="password" v-model="password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="submit" class="btn btn-primary" value="Submit">
         </form>
     </div>
 </template>

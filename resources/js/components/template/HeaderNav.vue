@@ -31,7 +31,7 @@
                   <router-link to="/login"> connexion </router-link>
                 </li>
                 <li>
-                  <router-link to="/register"> Inscription </router-link>
+                  <router-link to="/register">Inscription</router-link>
                 </li>
               </div>
             </div>
@@ -231,8 +231,8 @@ export default {
     },
     setUserShop(){
       this.getShopByUserId();
-    },getAllAdminShop(){
-        axios.get("http://127.0.0.1:8000/api/adminShops").then((res)=>{
+    },getAllAdminData(){
+        axios.get("http://127.0.0.1:8000/api/admin").then((res)=>{
            this.shops = res.data.Commerçants ;
         }).catch(err=>{
             console.log(err);

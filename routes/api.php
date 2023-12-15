@@ -43,7 +43,6 @@ Route::put('/update-password/{user}',  [App\Http\Controllers\API\V1\UserControll
 Route::post('/login' , [App\Http\Controllers\API\V1\LoginController::class , 'loginUser'])->name('login');
 
 Route::middleware(['checkRole'])->group(function () {
-    Route::apiResource('/admin', App\Http\Controllers\AdminContoller\UserAdminController::class);
-    Route::apiResource('/adminShops', App\Http\Controllers\AdminContoller\ShopAdminController::class);
+    Route::get('/admin',[App\Http\Controllers\API\V1\AdminController::class , 'getAllData']);
 });
 

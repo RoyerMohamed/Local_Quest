@@ -19,6 +19,7 @@ class ShopController extends Controller
     public function __construct()
     {
         $this->middleware("auth:sanctum")->except(["index", "show", "sortByDepartments"]);
+        
     }
 
     /**
@@ -118,7 +119,7 @@ class ShopController extends Controller
         }
 
 
-        return response()->json(['message' => 'Commerçant trouvé', 'Commerçant' => Review::where($shop->id, "=", "shop_id")], 200);
+        return response()->json(['message' => 'Commerçant trouvé', 'shop' => $shop], 200);
     }
 
     /**
@@ -129,17 +130,17 @@ class ShopController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                "shop_title" => 'required|string|max:100',
-                'description' => 'required|string',
-                "website" => 'required',
-                "phone_number" =>  'required',
-                "zip_code" => 'required|max:5',
-                "city" => 'required|max:150',
+                "shop_title" => 'nullable|string|max:100',
+                'description' => 'nullable|string',
+                "website" => 'nullable',
+                "phone_number" =>  'nullable',
+                "zip_code" => 'nullable|max:5',
+                "city" => 'nullable|max:150',
                 "rating" => 'nullable',
-                "longitude" => 'required',
-                "latitude" => 'required',
-                "department_id" => 'required',
-                "category_id" => 'required',
+                "longitude" => 'nullable',
+                "latitude" => 'nullable',
+                "department_id" => 'nullable',
+                "category_id" => 'nullable',
             ]
         );
         if ($validator->fails()) {
@@ -165,6 +166,8 @@ class ShopController extends Controller
             ]
         );
 
+        $shop->products()->detach();
+        $shop->products()->attach($request->products_id);
 
         return response()->json(['message' => 'Le commerçant a été modifié ', 'Commerçant' => $shop], 200);
     }

@@ -6,7 +6,7 @@
     <form @submit.prevent="handleLogin">
       <input type="text" name="user_name" v-model="user.user_name" placeholder="user_name" />
       <input type="password" name="password" v-model="user.password" placeholder="Password" />
-      <button type="submit">Login</button>
+      <input type="submit" value="login"/>
     </form>
   </div>
 </div>
@@ -39,11 +39,13 @@ export default {
      axios.get("sanctum/csrf-cookie").then(()=>{
         axios.post('http://127.0.0.1:8000/api/login', {user_name : this.user.user_name , password : this.user.password })
         .then((res)=>{
-         // console.log(res.data);
-          axios.get('http://127.0.0.1:8000/api/admin').then((res)=>{
-               this.setIsAdmin(true);
-          }).catch((err)=>{ this.setIsAdmin(false)})
-        
+          if(res.data.user.role.role_name === "admin"){
+            console.log(res.data.user.role.role_name);
+            this.setIsAdmin(true)
+          }else{
+            this.setIsAdmin(false)
+          }
+
          this.setUser(res.data.user)
          axios.defaults.headers.common.Authorization = `Bearer ${useUserStore().token}`
          this.$router.push('/')
