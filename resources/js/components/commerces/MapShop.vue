@@ -43,8 +43,9 @@ export default {
             
               let fontAwesomeIcon = L.divIcon({
                 // on crée un icône correspondant à celui choisi pour la catégorie
-                html: `<img src="${this.previewImage + shop.category.category_icon}"/>`,
-                iconSize: [40, 40],
+                html: `<<img src="${this.previewImage + shop.category.category_icon}"/>>`,
+                html: `<span>${shop.category.category_icon}</span>`,
+                iconSize: [60, 60],
                 className: 'dummy',
           });
 

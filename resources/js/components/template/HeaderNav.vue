@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header v-if="this.$route.name == 'Home'">
     <!-- header navigations -->
     <nav>
       <div class="menu_wrapper">
@@ -53,7 +53,10 @@
               </div>
               <div class="menu_visitor_links_right">
                 <li>
-                  <router-link @click="this.setAllShop" to="/ajoutCommerce" id="btn_add_shop"
+                  <router-link
+                    @click="this.setAllShop"
+                    to="/ajoutCommerce"
+                    id="btn_add_shop"
                     >Ajouter un commerce <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
@@ -64,9 +67,9 @@
                 </li>
 
                 <li v-if="this.is_admin" @click="getAllAdminShop">
-                 <router-link  to="/admin">Admin</router-link>
+                  <router-link to="/admin">Admin</router-link>
                 </li>
-                
+
                 <li>
                   <a @click="logOut" id="log_out"
                     ><i
@@ -75,7 +78,6 @@
                     ></i
                   ></a>
                 </li>
-
               </div>
             </div>
           </ul>
@@ -96,11 +98,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img
-            :src="this.previewImage + 'epicerie.png'"
-              alt=""
-              srcset=""
-            />
+            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
           </div>
           <div class="search_category_name">
             <span>Fruits & légumes</span>
@@ -145,11 +143,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img
-            :src="this.previewImage + 'epicerie.png'" 
-              alt=""
-              srcset=""
-            />
+            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
           </div>
           <div class="search_category_name">
             <span>Marché producteurs</span>
@@ -177,7 +171,92 @@
         </form>
       </div>
     </div>
-    
+  </header>
+  <header v-else style="height: 10vh; background-image: none">
+    <!-- header navigations -->
+    <nav>
+      <div class="menu_wrapper">
+        <div class="menu_logo">
+          <router-link to="/" class="">
+            <img src="../../../../public/images/logo.png" alt="" />
+          </router-link>
+        </div>
+        <div class="menu_links">
+          <ul>
+            <div v-if="!this.token" class="menu_visitor_links">
+              <div class="menu_visitor_links_left">
+                <li>
+                  <router-link to="/">Acceuil</router-link>
+                </li>
+                <li>
+                  <router-link @click="this.setAllShop" to="/commerces"
+                    >commerces</router-link
+                  >
+                </li>
+                <li>
+                  <router-link @click="this.setAllRecipe" to="/recipes"
+                    >Recettes</router-link
+                  >
+                </li>
+              </div>
+              <div class="menu_visitor_links_right">
+                <li>
+                  <router-link to="/login"> connexion </router-link>
+                </li>
+                <li>
+                  <router-link to="/register">Inscription</router-link>
+                </li>
+              </div>
+            </div>
+            <div v-else class="menu_user_links">
+              <div class="menu_visitor_links_left">
+                <li>
+                  <router-link to="/">Acceuil</router-link>
+                </li>
+                <li>
+                  <router-link @click="this.setAllShop" to="/commerces"
+                    >commerces</router-link
+                  >
+                </li>
+                <li>
+                  <router-link @click="this.setAllRecipe" to="/recipes"
+                    >Recettes</router-link
+                  >
+                </li>
+              </div>
+              <div class="menu_visitor_links_right">
+                <li>
+                  <router-link
+                    @click="this.setAllShop"
+                    to="/ajoutCommerce"
+                    id="btn_add_shop"
+                    >Ajouter un commerce <i class="fa-solid fa-plus"></i
+                  ></router-link>
+                </li>
+                <li>
+                  <router-link to="/profil" id="btn_profil" @click="setUserShop"
+                    ><i class="fa-solid fa-user" style="color: #ffffff"></i
+                  ></router-link>
+                </li>
+
+                <li v-if="this.is_admin" @click="getAllAdminShop">
+                  <router-link to="/admin">Admin</router-link>
+                </li>
+
+                <li>
+                  <a @click="logOut" id="log_out"
+                    ><i
+                      class="fa-solid fa-right-from-bracket"
+                      style="color: #ffffff"
+                    ></i
+                  ></a>
+                </li>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
 </template>
 
@@ -192,10 +271,11 @@ export default {
   data() {
     return {
       previewImage: "http://[::1]:5173/public/images/",
+      headerStyle: "style='height:0vh'",
     };
   },
   computed: {
-    ...mapState(useUserStore, ["token", "userLocationAnswered" , "is_admin"]),
+    ...mapState(useUserStore, ["token", "userLocationAnswered", "is_admin"]),
     ...mapState(useShopStore, ["categories"]),
   },
   methods: {
@@ -219,7 +299,7 @@ export default {
         shopStore.setShop();
       }
     },
-    
+
     setAllRecipe() {
       const useRecipe = useRecipeStore();
       if (useRecipe.recipes.length === 0) {
@@ -229,21 +309,30 @@ export default {
         useRecipe.setRecipe();
       }
     },
-    setUserShop(){
+    setUserShop() {
       this.getShopByUserId();
-    },getAllAdminData(){
-        axios.get("http://127.0.0.1:8000/api/admin").then((res)=>{
-           this.shops = res.data.Commerçants ;
-        }).catch(err=>{
-            console.log(err);
+    },
+    getAllAdminData() {
+      axios
+        .get("http://127.0.0.1:8000/api/admin")
+        .then((res) => {
+          this.shops = res.data.Commerçants;
         })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  created() {
+    if (this.$route.name != "Home") {
+      this.headerStyle = "height:10vh";
     }
   },
 };
 </script>
 
 <style  scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap");
 header {
   background-image: url(../../../../public/images/hero.png);
   background-repeat: no-repeat;
@@ -331,7 +420,7 @@ a:hover {
   align-items: center;
   gap: 25%;
   height: 75%;
- margin: 5rem auto;
+  margin: 5rem auto;
 }
 .search_category {
   display: flex;
@@ -403,5 +492,4 @@ a:hover {
   font-size: 20px;
 }
 /* type of shops  */
-
 </style>

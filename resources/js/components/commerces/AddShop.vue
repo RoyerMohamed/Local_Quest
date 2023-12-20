@@ -63,7 +63,6 @@
           <div class="addShop_department">
             <label for="">Départment</label>
             <select name="department" v-model="selectDepartment">
-              <option :value="null"></option>
               <option
                 :value="department.id"
                 v-for="department in this.departments"
@@ -77,9 +76,6 @@
             <label for="category">Type de commerce</label>
 
             <select name="categories" v-model="selectCategory">
-              <option id="placeholderValue" value="" disabled selected>
-                Type de commerce
-              </option>
               <option
                 :value="categorie.id"
                 v-for="categorie in this.categories"
@@ -209,7 +205,7 @@ export default {
 
       await axios
         .get(
-          `https://nominatim.openstreetmap.org/search?street=${this.adresse}&city=${this.ville}&county=france&postalcode=${this.zipCode}&format=json`
+          `https://nominatim.openstreetmap.org/search?street=${this.adresse}&city=${this.ville}&country=france&postalcode=${this.zipCode}&format=json`
         )
         .then((res) => {
           console.log(res.data[0].boundingbox);

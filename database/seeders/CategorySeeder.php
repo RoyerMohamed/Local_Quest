@@ -15,60 +15,60 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'category_name' => "épiceries",
-            'category_icon' => "epicerie.png",
+            'category_icon' => "<i class=\"fa-solid fa-shop\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
             'category_name' => "boulangeries",
-            'category_icon' => "boutique.png",
+            'category_icon' => "<i class=\"fa-solid fa-bread-slice\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
             'category_name' => "boucheries-charcuteries",
-            'category_icon' => "boucherie.png",
+            'category_icon' => "<i class=\"fa-solid fa-drumstick-bite\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
             'category_name' => "marchés de producteurs locaux",
-            'category_icon' => "marche.png",
+            'category_icon' => "<i class=\"fa-solid fa-carrot\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
             'category_name' => "fromageries",
-            'category_icon' => "fromage.png",
+            'category_icon' => "<i class=\"fa-solid fa-cheese\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
             'category_name' => "poissonneries",
-            'category_icon' => "poissonnerie.png",
+            'category_icon' => "<i class=\"fa-solid fa-fish\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
             'category_name' => "vendeurs de fruits et légumes",
-            'category_icon' => "des-legumes.png",
+            'category_icon' => "<i class=\"fa-solid fa-seedling\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
             'category_name' => "fermes",
-            'category_icon' => "grange.png",
+            'category_icon' => "<i class=\"fa-solid fa-tractor\"></i>",
             'category_color' => "#ffffff"
         ]);
         
         Category::create([
             'category_name' => "pâtisseries",
-            'category_icon' => "patisserie.png",
+            'category_icon' => "<i class=\"fa-solid fa-cake-candles\"></i>",
             'category_color' => "#ffffff"
           ]);
         Category::create([
             'category_name' => "produits locaux",
-            'category_icon' => "produits_locaux.png",
+            'category_icon' => "<i class=\"fa-solid fa-leaf\"></i>",
             'category_color' => "#ffffff"
           ]);
     }

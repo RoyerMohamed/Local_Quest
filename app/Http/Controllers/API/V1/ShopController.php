@@ -34,6 +34,13 @@ class ShopController extends Controller
         return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => Shop::latest()->get()], 200);
     }
 
+    public function getShopByCategorie(){
+        if (Shop::count() === 0) {
+            return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
+            
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */
