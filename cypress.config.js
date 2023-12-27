@@ -26,6 +26,7 @@ const config = defineConfig({
     setupNodeEvents(on, config) {
       on('task', { queryDb: query => queryTestDb(query, config) });
     },
+    supportFile :false
   },
 
   env: {

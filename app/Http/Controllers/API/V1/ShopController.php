@@ -112,7 +112,6 @@ class ShopController extends Controller
                 "is_profil" =>null
             ]);
         }
-
         return response()->json(['message' => 'Le commerçants a été ajouté ', 'Commerçants' => $shop ,$shopImage ], 200);
     }
 
@@ -178,7 +177,6 @@ class ShopController extends Controller
 
         return response()->json(['message' => 'Le commerçant a été modifié ', 'Commerçant' => $shop], 200);
     }
-
 
     public function sortShops()
     {

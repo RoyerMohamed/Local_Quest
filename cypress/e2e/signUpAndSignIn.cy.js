@@ -19,6 +19,7 @@ describe('display Local Quest Home Page + sign up page', () => {
         cy.wait(3000)
     })
 
+
     it('sign in', () => {
         cy.visit('http://localhost:8000')
 

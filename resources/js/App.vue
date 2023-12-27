@@ -13,39 +13,45 @@
         </div>
         <div class="shops_type_grid">
           <div class="shops_type_grid_top">
-            <div class="shops_type_grid_top_card_one">
-              <div class="shops_type_grid_infos">
-                <div class="shops_type_grid_infos_image">
-                  <img
-                    :src="this.previewImage + 'epicerie-icon.png'"
-                    alt=""
-                    srcset=""
-                  />
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Épicerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </div>
-            </div>
-            <div class="shops_type_grid_top_card_two">
-              <div class="shops_type_grid_infos">
-                <div class="shops_type_grid_infos_image">
-                  <img
-                    :src="this.previewImage + 'des-legumes.png'"
-                    alt=""
-                    srcset=""
-                  />
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fruits et légumes</strong>
-                  <span>Voir la sélection</span>
+            <router-link to="/commerces" @click="this.categories(1)">
+              <div class="shops_type_grid_top_card_one">
+                <div class="shops_type_grid_infos">
+                  <div class="shops_type_grid_infos_image">
+                    <img
+                      :src="this.previewImage + 'epicerie-icon.png'"
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                  <div class="shops_type_grid_infos_text">
+                    <strong>Épicerie</strong>
+                    <span>Voir la sélection</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </router-link>
+
+            <router-link to="/commerces" @click="this.categories(7)">
+              <div class="shops_type_grid_top_card_two">
+                <div class="shops_type_grid_infos">
+                  <div class="shops_type_grid_infos_image">
+                    <img
+                      :src="this.previewImage + 'des-legumes.png'"
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                  <div class="shops_type_grid_infos_text">
+                    <strong>Fruits et légumes</strong>
+                    <span>Voir la sélection</span>
+                  </div>
+                </div>
+              </div>
+            </router-link>
           </div>
           <div class="shops_type_grid_buttom">
-            <div class="shops_type_grid_buttom_card_one">
+            <router-link to="/commerces" @click="this.categories(2)">
+              <div class="shops_type_grid_buttom_card_one">
               <div class="shops_type_grid_infos">
                 <div class="shops_type_grid_infos_image">
                   <img
@@ -55,12 +61,14 @@
                   />
                 </div>
                 <div class="shops_type_grid_infos_text">
-                  <strong>Boucherie</strong>
+                  <strong>boulangeries</strong>
                   <span>Voir la sélection</span>
                 </div>
               </div>
             </div>
-            <div class="shops_type_grid_buttom_card_two">
+            </router-link>
+            <router-link to="/commerces" @click="this.categories(6)">
+              <div class="shops_type_grid_buttom_card_two">
               <div class="shops_type_grid_infos">
                 <div class="shops_type_grid_infos_image">
                   <img
@@ -75,7 +83,9 @@
                 </div>
               </div>
             </div>
-            <div class="shops_type_grid_buttom_card_three">
+            </router-link>
+            <router-link to="/commerces" @click="this.categories(5)">
+              <div class="shops_type_grid_buttom_card_three">
               <div class="shops_type_grid_infos">
                 <div class="shops_type_grid_infos_image">
                   <img
@@ -90,6 +100,7 @@
                 </div>
               </div>
             </div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -123,96 +134,129 @@
         <div class="see_recipes_title">
           <h2>Les recettes locales proposées</h2>
         </div>
+
         <div class="see_recipes-flex">
           <div class="see_recipes_wrapper">
-          <div class="see_recipes_card">
-            <div class="see_recipes_card_bg">
-              <div class="see_recipes_card_img">
-                <i class="fa-solid fa-utensils p-3" style="color: #ff8528;"></i>
+            <div class="see_recipes_card">
+              <div class="see_recipes_card_bg">
+                <div class="see_recipes_card_img">
+                  <i
+                    class="fa-solid fa-utensils p-3"
+                    style="color: #ff8528"
+                  ></i>
+                </div>
+              </div>
+              <div class="see_recipes_card_infos">
+                <div class="see_recipes_card_infos_title">
+                  <h4>Recipie label</h4>
+                </div>
+                <div class="see_recipes_card_infos_wrapper">
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>20 minn</span>
+                  </div>
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>Facile</span>
+                  </div>
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>Bon marché</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="see_recipes_card_infos">
-              <div class="see_recipes_card_infos_title">
-                <h4>Recipie label</h4>
+          </div>
+          <div class="see_recipes_wrapper">
+            <div class="see_recipes_card">
+              <div class="see_recipes_card_bg">
+                <div class="see_recipes_card_img">
+                  <i
+                    class="fa-solid fa-utensils p-3"
+                    style="color: #ff8528"
+                  ></i>
+                </div>
               </div>
-              <div class="see_recipes_card_infos_wrapper">
-                <div class="see_recipes_card_infos_time">
-                  <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                  <span>20 minn</span>
+              <div class="see_recipes_card_infos">
+                <div class="see_recipes_card_infos_title">
+                  <h4>Recipie label</h4>
+                </div>
+                <div class="see_recipes_card_infos_wrapper">
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>20 minn</span>
+                  </div>
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>Facile</span>
+                  </div>
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>Bon marché</span>
+                  </div>
+                </div>
               </div>
-              <div class="see_recipes_card_infos_time">
-                <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                <span>Facile</span>
+            </div>
+          </div>
+          <div class="see_recipes_wrapper">
+            <div class="see_recipes_card">
+              <div class="see_recipes_card_bg">
+                <div class="see_recipes_card_img">
+                  <i
+                    class="fa-solid fa-utensils p-3"
+                    style="color: #ff8528"
+                  ></i>
+                </div>
               </div>
-              <div class="see_recipes_card_infos_time">
-                <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                <span>Bon marché</span>
+              <div class="see_recipes_card_infos">
+                <div class="see_recipes_card_infos_title">
+                  <h4>Recipie label</h4>
+                </div>
+                <div class="see_recipes_card_infos_wrapper">
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>20 minn</span>
+                  </div>
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>Facile</span>
+                  </div>
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>Bon marché</span>
+                  </div>
+                </div>
               </div>
-              </div>
-             
             </div>
           </div>
         </div>
-        <div class="see_recipes_wrapper">
-          <div class="see_recipes_card">
-            <div class="see_recipes_card_bg">
-              <div class="see_recipes_card_img">
-                <i class="fa-solid fa-utensils p-3" style="color: #ff8528;"></i>
-              </div>
-            </div>
-            <div class="see_recipes_card_infos">
-              <div class="see_recipes_card_infos_title">
-                <h4>Recipie label</h4>
-              </div>
-              <div class="see_recipes_card_infos_wrapper">
-                <div class="see_recipes_card_infos_time">
-                  <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                  <span>20 minn</span>
-              </div>
-              <div class="see_recipes_card_infos_time">
-                <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                <span>Facile</span>
-              </div>
-              <div class="see_recipes_card_infos_time">
-                <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                <span>Bon marché</span>
-              </div>
-              </div>
-             
-            </div>
-          </div>
-        </div>
-        <div class="see_recipes_wrapper">
-          <div class="see_recipes_card">
-            <div class="see_recipes_card_bg">
-              <div class="see_recipes_card_img">
-                <i class="fa-solid fa-utensils p-3" style="color: #ff8528;"></i>
-              </div>
-            </div>
-            <div class="see_recipes_card_infos">
-              <div class="see_recipes_card_infos_title">
-                <h4>Recipie label</h4>
-              </div>
-              <div class="see_recipes_card_infos_wrapper">
-                <div class="see_recipes_card_infos_time">
-                  <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                  <span>20 minn</span>
-              </div>
-              <div class="see_recipes_card_infos_time">
-                <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                <span>Facile</span>
-              </div>
-              <div class="see_recipes_card_infos_time">
-                <i class="fa-solid fa-hourglass-start" style="color: #ff8528;"></i>
-                <span>Bon marché</span>
-              </div>
-              </div>
-             
-            </div>
-          </div>
-        </div>
-        </div>
-        
       </div>
       <div class="cta_recipes">
         <div class="cta_recipes_wrapper">
@@ -238,7 +282,6 @@
           </div>
         </div>
       </div>
-
     </section>
     <div class="" v-else>
       <router-view v-bind:key="$route.fullPath"></router-view>
@@ -260,13 +303,21 @@ export default {
     HeaderNav,
   },
   methods: {
-    ...mapActions(useShopStore, ["setShop"]),
+    ...mapActions(useShopStore, ["setShop", "filterShops"]),
+    categories(type) {
+      this.filterShops({
+        category_id: type,
+      });
+    },
   },
 };
 </script>
 <style>
 html {
   scroll-behavior: smooth;
+}
+a{
+  text-decoration: none !important;
 }
 .shops_type {
   margin: 5rem 5%;
@@ -378,7 +429,7 @@ html {
 }
 .search_bar_btn {
   display: flex;
-  justify-content: center;
+  gap: 1rem;
 }
 .search_bar_btn > button {
   background: #ff8528;
@@ -390,16 +441,18 @@ html {
   align-items: center;
   gap: 0.5rem;
   font-size: 20px;
+  min-width: 150px;
+  justify-content: center;
 }
-.see_recipes{
- width: 80vw;
+.see_recipes {
+  width: 80vw;
   margin: 0 auto;
 }
-.see_recipes_title  {
+.see_recipes_title {
   text-align: center;
- font-size: 2rem;
+  font-size: 2rem;
 }
-.see_recipes_card_bg{
+.see_recipes_card_bg {
   background-image: url(../../public/images/recette-burger.jpg);
   background-position: center;
   background-size: cover;
@@ -408,37 +461,35 @@ html {
   min-width: 340px;
   display: flex;
 }
-.see_recipes_card{
-  
+.see_recipes_card {
 }
-.see_recipes_card_infos{
-  border-right: 1px solid #EFEFEF;
-border-left: 1px solid #EFEFEF;
-border-bottom: 1px solid #EFEFEF;
-padding: 1.5rem;
+.see_recipes_card_infos {
+  border-right: 1px solid #efefef;
+  border-left: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  padding: 1.5rem;
 }
-.see_recipes_card_infos_wrapper{
+.see_recipes_card_infos_wrapper {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
   padding: 1.5rem;
 }
-.see_recipes_card_infos_title > h4{
+.see_recipes_card_infos_title > h4 {
   font-size: 1.5rem;
-}   
-.see_recipes_card_infos_time{
+}
+.see_recipes_card_infos_time {
   display: flex;
   align-items: center;
-  gap: .5rem;
-
+  gap: 0.5rem;
 }
-.see_recipes-flex{
+.see_recipes-flex {
   display: flex;
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
 }
-.see_recipes_wrapper{
+.see_recipes_wrapper {
   margin: 1.5rem 0;
 }
 </style>

@@ -14,7 +14,6 @@ export const useUserStore = defineStore({
     latitude: '',
     userLocationAnswered : false, 
     is_admin : false,
-
   }),
 
   actions: {

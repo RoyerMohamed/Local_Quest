@@ -1,42 +1,5 @@
 <template>
   <div>
-    <!-- <form @submit.prevent="shopUpdate">
-      <div>
-        <label for=""></label>
-        <input type="text" v-model="this.shop.shop_title"/>
-    </div>
-      <div>
-        <label for=""></label>
-        <input type="text" v-model="this.shop.adresse"/>
-    </div>
-      <div>
-        <label for=""></label>
-        <input type="text" v-model="this.shop.city "/>
-    </div>
-      <div>
-        <label for=""></label>
-        <input type="text" v-model="this.shop.department.department_name"/>
-    </div>
-      <div>
-        <label for=""></label>
-        <input type="text" v-model="this.shop.category.category_name"/>
-    </div>
-      <div>
-        <span v-for="product in shop.products" :key="product.id">{{
-                    product.product_name + "\n"
-                  }}</span>
-        <label for=""></label>
-        <input type="chekbos" v-model="this.shop."/>
-    </div>
-      <div>
-        <label for=""></label>
-        <input type="text" v-model="this.shop."/>
-    </div>
-      <div>
-        <label for=""></label>
-        <input type="text" v-model="this.shop."/>
-    </div>
-</form> -->
     <div class="addShop_wrapper">
       <form @submit.prevent="shopUpdate(this.shop.id)" enctype="multipart/form-data">
         <div class="addShop_shopName">
@@ -154,29 +117,6 @@
           <input type="url" name="" id="" v-model="this.shop.website" />
         </label>
 
-        <label for="">
-          horaires d'ouverture proposé
-          <!-- <select name="" v-model="selectOpeningHours">
-              <optgroup
-                :label="openingHours.day"
-                v-for="openingHours in this.OpeningHours"
-                :key="openingHours.id"
-              >
-                <option :value="openingHours.morning_opening_hour">
-                  {{ openingHours.morning_opening_hour }}
-                </option>
-                <option :value="openingHours.morning_closing_hour">
-                  {{ openingHours.morning_closing_hour }}
-                </option>
-                <option :value="openingHours.afternoon_opening_hour">
-                  {{ openingHours.afternoon_opening_hour }}
-                </option>
-                <option :value="openingHours.afternoon_closing_hour">
-                  {{ openingHours.afternoon_closing_hour }}
-                </option>
-              </optgroup>
-            </select> -->
-        </label>
         <label for=""> horaires d'ouverture personalisé </label>
         <label for="">
           Numero de Telephone

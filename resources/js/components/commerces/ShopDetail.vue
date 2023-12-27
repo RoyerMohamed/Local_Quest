@@ -2,6 +2,9 @@
     <div id="shop">
         <div class="shop_hero">
             <img :src="this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
+            <img :src="this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
+            <img :src="this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
+            <img :src="this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
         </div>
         <div class="after-hero ">
             <div class="container pt-3">
@@ -10,7 +13,7 @@
                 <span>{{ this.setCurrentShop.adresse }} {{ this.setCurrentShop.department.department_name }}, {{
                     this.setCurrentShop.zip_code }}</span>
                 <div class="after-hero-stars">
-                    <div v-for="star in 5">
+                    <div v-for="star in 5" :key="star">
                         <i v-if="star > Math.round(this.setCurrentShop.rating)" class="fa-regular fa-star"></i>
                         <i v-else class="fa-solid fa-star" style="color: #f2072b;"></i>
                     </div>
@@ -18,7 +21,7 @@
                 <div v-if="this.setCurrentShop.products" class="shop-products">
                     <h2><b>nos produit</b></h2>
                     <ul class="">
-                        <li v-for="product in this.setCurrentShop.products"><i class="fa-solid fa-check"></i> {{
+                        <li v-for="product in this.setCurrentShop.products" :key="product.id"><i class="fa-solid fa-check"></i> {{
                             product.product_name }}</li>
                     </ul>
                 </div>
@@ -64,7 +67,7 @@
                     </div>
                     <div class="shop-info-hours">
                         <h4>heurs d'ouverture </h4>
-                        <div v-for="opening_hours in this.setCurrentShop.opening_hours">
+                        <div v-for="opening_hours in this.setCurrentShop.opening_hours" :key="opening_hours.id">
                             <span>{{ opening_hours.day }}</span>
                             <ul>
                                 <li> {{ opening_hours.morning_opening_hour }} - {{

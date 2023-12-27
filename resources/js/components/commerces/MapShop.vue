@@ -1,5 +1,7 @@
 <template>
-  <div id="map"></div>
+  <div class="toto">
+    <div id="map"></div>
+  </div>
 </template>
   
   <script>
@@ -115,5 +117,13 @@ export default {
   width: 50vw;
   max-width: 800px;
   margin: auto;
+  position: fixed;
+  right: 5%;
+  border-radius: 5px;
+
+  box-shadow: -1px 1px 9px 1px #ABABAB;
+-webkit-box-shadow: -1px 1px 9px 1px  #ABABAB;
+-moz-box-shadow: -1px 1px 9px 1px #ABABAB;
 }
+
 </style>

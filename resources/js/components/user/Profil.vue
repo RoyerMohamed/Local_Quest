@@ -10,6 +10,7 @@
   <section
     class="container-fluid d-flex justify-content-between flex-direction"
   >
+    <h1>Profil</h1>
     <div class="text-center w-25">
       <h3 class="p-5"><strong>Modifier vos informations perso</strong></h3>
       <form @submit.prevent="userUpdate" enctype="multipart/form-data">
@@ -40,7 +41,6 @@
         <button type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>
-
     <div class="text-center w-25">
       <h3 class="p-5"><strong>Modifier votre mot de passe</strong></h3>
 
@@ -87,7 +87,6 @@
     </div>
     <div class="favoris">
       <h2>liste de commerce ajouté</h2>
-      {{ console.log(this.userShop.length) }}
       <div
         class="favoris_valide"
         v-if="Array.isArray(this.userShop) && this.userShop.length > 0"
@@ -113,38 +112,38 @@
           </thead>
           <tbody>
             <tr v-for="shop in this.userShop" :key="shop.id">
-                <th scope="row">{{ shop.id }}</th>
-                <td>
-                  <input type="text" v-model="shop.shop_title"  />
-                </td>
-                <td>{{ shop.adresse }}</td>
-                <td>{{ shop.city }}</td>
-                <td>{{ shop.zip_code }}</td>
-                <td>{{ shop.department.department_name }}</td>
-                <td>{{ shop.category.category_name }}</td>
-                <td>
-                  <span v-for="product in shop.products" :key="product.id">{{
-                    product.product_name + "\n"
-                  }}</span>
-                </td>
-                <td>{{ shop.description }}</td>
-                <td>
-                  <img
-                    :src="
-                      shop.images[0].image_name === 'default_shop.jpg'
-                        ? this.previewImagePublic + shop.images[0].image_name
-                        : this.previewImageStorage + shop.images[0].image_name
-                    "
-                    class=""
-                    alt=""
-                  />
-                </td>
-                <td>{{ shop.website }}</td>
-                <td>{{ shop.phone_number }}</td>
-                <td>
-                  <router-link :to='`/editShop/${shop.id}`'>modifier</router-link>
-                </td>
-         
+              <th scope="row">{{ shop.id }}</th>
+              <td>
+                <input type="text" v-model="shop.shop_title" />
+              </td>
+              <td>{{ shop.adresse }}</td>
+              <td>{{ shop.city }}</td>
+              <td>{{ shop.zip_code }}</td>
+              <td>{{ shop.department.department_name }}</td>
+              <td>{{ shop.category.category_name }}</td>
+              <td>
+                <span v-for="product in shop.products" :key="product.id">{{
+                  product.product_name + "\n"
+                }}</span>
+              </td>
+              <td>{{ shop.description }}</td>
+              <td>
+                <img
+                  :src="
+                    shop.images[0].image_name === 'default_shop.jpg'
+                      ? this.previewImagePublic + shop.images[0].image_name
+                      : this.previewImageStorage + shop.images[0].image_name
+                  "
+                  class=""
+                  alt=""
+                />
+              </td>
+              <td>{{ shop.website }}</td>
+              <td>{{ shop.phone_number }}</td>
+              <td>
+                <router-link :to="`/editShop/${shop.id}`">modifier</router-link>
+              </td>
+
               <td>
                 <form @submit.prevent="deleteShop(shop.id)">
                   <button type="submit">supprimer</button>
@@ -206,7 +205,7 @@ export default {
   },
   components: {
     ValidationErrors,
-    ValidationResponse, 
+    ValidationResponse,
   },
   computed: {
     ...mapWritableState(useUserStore, ["id", "user_name", "email", "image"]),

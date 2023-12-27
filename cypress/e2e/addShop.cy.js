@@ -1,6 +1,5 @@
 describe('add and edit shop', () => {
 
-
     it('add a shop', () => {
         cy.visit('http://localhost:8000')
         cy.contains('connexion').click()
@@ -49,8 +48,9 @@ describe('add and edit shop', () => {
         cy.url().should('include', '/commerces')
 
     })
+
     it('Delete the created shop', function () {
-        cy.task('queryDb', 'DELETE FROM shop ORDER BY id DESC LIMIT 1', { log: false })
+        cy.task('queryDb', 'DELETE FROM shops ORDER BY id DESC LIMIT 1', { log: false })
           .then(result => {
             // Log the result for debugging purposes
             cy.log('Query Result:', result);

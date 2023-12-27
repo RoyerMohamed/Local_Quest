@@ -151,10 +151,18 @@
         </div>
       </div>
       <div class="search_bar">
-        <form action="">
+        <form @submit.prevent="handleForm">
           <div class="serach_bar_container">
-            <label for="">Recherche par mots-clés</label>
-            <input type="text" />
+            <label for="">Recherche par categories</label>
+            <select name="categories" v-model="selectCategory" id="">
+              <option
+                v-for="category in this.categories"
+                :key="category.id"
+                :value="category.id"
+              >
+                {{ category.category_name }}
+              </option>
+            </select>
             <span
               ><i
                 class="fa-solid fa-magnifying-glass"
@@ -272,6 +280,7 @@ export default {
     return {
       previewImage: "http://[::1]:5173/public/images/",
       headerStyle: "style='height:0vh'",
+      selectCategory: "",
     };
   },
   computed: {
@@ -280,7 +289,7 @@ export default {
   },
   methods: {
     ...mapActions(useUserStore, ["setLocationAnswered", "setLocation"]),
-    ...mapActions(useShopStore, ["getShopByUserId"]),
+    ...mapActions(useShopStore, ["getShopByUserId" , "filterShops", 'setShop' ]),
     logOut() {
       const userStore = useUserStore();
       const shopStore = useShopStore();
@@ -299,7 +308,6 @@ export default {
         shopStore.setShop();
       }
     },
-
     setAllRecipe() {
       const useRecipe = useRecipeStore();
       if (useRecipe.recipes.length === 0) {
@@ -322,11 +330,16 @@ export default {
           console.log(err);
         });
     },
+    handleForm() {
+      this.filterShops({category_id :this.selectCategory })
+      this.$router.push("/commerces")
+    },
   },
   created() {
     if (this.$route.name != "Home") {
       this.headerStyle = "height:10vh";
     }
+    this.setShop()
   },
 };
 </script>
@@ -452,7 +465,7 @@ a:hover {
   display: flex;
   align-items: center;
 }
-.serach_bar_container > input {
+.serach_bar_container > select {
   width: 80%;
   height: 60px;
 }

@@ -86,6 +86,16 @@ export const useShopStore = defineStore({
         console.log(err);
       })
      
+    },
+    sortShopByProduct(data){
+      console.log(this.shops);
+      if (data.length > 0) {
+        this.shops = data
+        console.log(this.shops);
+      } else {
+        console.log("no data");
+       this.setShop();
+      }
     }
   },
   getters: {
