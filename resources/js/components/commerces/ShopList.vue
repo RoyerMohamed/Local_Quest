@@ -23,7 +23,7 @@
 import { mapState } from "pinia";
 import MapShop from "./MapShop.vue";
 import ShopFilter from "./ShopFilter.vue";
-import Shop from "./Shop";
+import Shop from "./Shop.vue";
 import { useShopStore } from "../../stores/shopStore";
 
 export default {
