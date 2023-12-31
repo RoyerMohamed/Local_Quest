@@ -107,47 +107,50 @@
             <textarea name="description" id="" v-model="description"></textarea>
           </div>
 
-          <div class="assShop_image">
-            <label for="image">images </label>
-            <input type="file" ref="image" name="image" />
-          </div>
-
-          <label for="">
-            site internet
-            <input type="url" name="webSite" id="" v-model="web_site" />
-          </label>
-
-          <label for="">
-            horaires d'ouverture proposé
-            <select name="" v-model="selectOpeningHours">
-              <optgroup
-                :label="openingHours.day"
-                v-for="openingHours in this.OpeningHours"
-                :key="openingHours.id"
+          <div class="addShop_image">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupFile01"
+                >images</label
               >
-                <option :value="openingHours.morning_opening_hour">
-                  {{ openingHours.morning_opening_hour }}
-                </option>
-                <option :value="openingHours.morning_closing_hour">
-                  {{ openingHours.morning_closing_hour }}
-                </option>
-                <option :value="openingHours.afternoon_opening_hour">
-                  {{ openingHours.afternoon_opening_hour }}
-                </option>
-                <option :value="openingHours.afternoon_closing_hour">
-                  {{ openingHours.afternoon_closing_hour }}
-                </option>
-              </optgroup>
-            </select>
-          </label>
-          <label for=""> horaires d'ouverture personalisé </label>
-          <label for="">
-            Numero de Telephone
+              <input
+                type="file"
+                ref="image"
+                name="image"
+                class="form-control"
+                id="inputGroupFile01"
+                multiple
+              />
+            </div>
+
+            <!-- <label for="image">images </label>
+            <input type="file" ref="image" name="image" /> -->
+          </div>
+          <div class="addShop_website">
+            <div class="mb-3">
+              <label for="basic-url" class="form-label">site internet</label>
+              <div class="input-group">
+               
+                <input
+                  type="text"
+                  class="form-control"
+                  id="basic-url"
+                  aria-describedby="basic-addon3 basic-addon4"
+                  name="webSite"
+                  v-model="web_site"
+                  placeholder="https://example.com"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="addShop_number">
+            <label for="" class="mb-2">
+              Numero de Telephone
+            </label>
             <input type="number" name="phoneNumber" v-model="phone_number" />
-          </label>
+          </div>
           <!-- latitude,longitude-->
           <div class="btn_validation">
-            <input type="submit" value="ajouter un commerce">
+            <button type="submit">Ajouter un commerce</button>
           </div>
         </form>
       </div>
@@ -244,7 +247,7 @@ export default {
           )
           .then((res) => {
             this.validationResponse = res.data.message;
-            this.$router.push('/commerces')
+            this.$router.push("/commerces");
           })
           .catch((err) => (this.validationErrors = err));
 
@@ -344,6 +347,8 @@ label {
 .filter_product {
   display: flex;
   flex-wrap: wrap;
+
+  padding: 1rem;
 }
 .addShop_description {
   display: flex;
@@ -353,5 +358,23 @@ label {
 }
 .addShop_description > textarea {
   height: 20vh;
+}
+.addShop_image {
+  display: flex;
+}
+.addShop_number{
+  display: flex;
+  flex-direction: column;
+}
+.btn_validation{
+ margin: 1rem 0;
+ display: flex;
+ justify-content: end;
+}
+.btn_validation > button{
+  background-color: #ff8528;
+  padding: .5rem 1rem;
+  border-radius: 5px; 
+  color: white;
 }
 </style>

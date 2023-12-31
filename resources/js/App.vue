@@ -318,6 +318,7 @@ html {
 }
 a{
   text-decoration: none !important;
+
 }
 .shops_type {
   margin: 5rem 5%;

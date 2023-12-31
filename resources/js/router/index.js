@@ -11,11 +11,6 @@ const routes = [
         component : () => import('../components/auth/Login.vue')
     },
     {
-        name: 'register', 
-        path: '/register',
-        component : () => import('../components/auth/Register.vue')
-    },
-    {
         name: 'Profil', 
         path: '/profil',
         component : () => import('../components/user/Profil.vue')

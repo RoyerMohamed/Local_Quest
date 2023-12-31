@@ -26,12 +26,24 @@
                   >
                 </li>
               </div>
-              <div class="menu_visitor_links_right">
-                <li>
-                  <router-link to="/login"> connexion </router-link>
+              
+              <div class="menu_visitor_links_right ">
+                
+                <li id="btn_add_shop">
+                  <router-link
+                    @click="this.setAllShop"
+                    to="/ajoutCommerce"
+                    
+                    >Ajouter un commerce <i class="fa-solid fa-plus"></i
+                  ></router-link>
                 </li>
                 <li>
-                  <router-link to="/register">Inscription</router-link>
+                  <router-link to="/profil" id="btn_profil" @click="setUserShop"
+                    ><i class="fa-solid fa-user" style="color: white"></i
+                  ></router-link>
+                </li>
+                <li>
+                  <router-link to="/login"> connexion </router-link>
                 </li>
               </div>
             </div>
@@ -52,32 +64,32 @@
                 </li>
               </div>
               <div class="menu_visitor_links_right">
-                <li>
+                <li id="btn_add_shop">
                   <router-link
                     @click="this.setAllShop"
                     to="/ajoutCommerce"
-                    id="btn_add_shop"
+                    
                     >Ajouter un commerce <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
-                <li>
+                <li id="profil_btn">
                   <router-link to="/profil" id="btn_profil" @click="setUserShop"
                     ><i class="fa-solid fa-user" style="color: #ffffff"></i
                   ></router-link>
                 </li>
-
-                <li v-if="this.is_admin" @click="getAllAdminShop">
-                  <router-link to="/admin">Admin</router-link>
-                </li>
-
-                <li>
-                  <a @click="logOut" id="log_out"
-                    ><i
-                      class="fa-solid fa-right-from-bracket"
-                      style="color: #ffffff"
-                    ></i
-                  ></a>
-                </li>
+                <div id="toggle_menu">
+                  <li v-if="this.is_admin" @click="getAllAdminShop">
+                    <router-link to="/admin">Admin</router-link>
+                  </li>
+                  <li>
+                    <a @click="logOut" id="log_out"
+                      ><i
+                        class="fa-solid fa-right-from-bracket"
+                        style="color: #ffffff"
+                      ></i
+                    ></a>
+                  </li>
+                </div>
               </div>
             </div>
           </ul>
@@ -89,7 +101,7 @@
       <div class="search_categories">
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
+            <i style="color : white; font-size: 2rem" class="fa-solid fa-shop"></i>
           </div>
           <div class="search_category_name">
             <span>Épicerie</span>
@@ -98,7 +110,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
+            <i style="color : white; font-size: 2rem" class="fa-solid fa-seedling"></i>
           </div>
           <div class="search_category_name">
             <span>Fruits & légumes</span>
@@ -107,7 +119,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
+            <i style="color : white; font-size: 2rem" class="fa-solid fa-drumstick-bite"></i>
           </div>
           <div class="search_category_name">
             <span>Boucherie</span>
@@ -116,7 +128,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
+            <i style="color : white; font-size: 2rem" class="fa-solid fa-fish"></i>
           </div>
           <div class="search_category_name">
             <span>Poissonerie</span>
@@ -125,7 +137,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
+            <i style="color : white; font-size: 2rem" class="fa-solid fa-cheese"></i>
           </div>
           <div class="search_category_name">
             <span>Fromagerie</span>
@@ -134,7 +146,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
+            <i style="color : white; font-size: 2rem" class="fa-solid fa-wine-glass"></i>
           </div>
           <div class="search_category_name">
             <span>Vin</span>
@@ -143,7 +155,7 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <img :src="this.previewImage + 'epicerie.png'" alt="" srcset="" />
+            <i style="color : white; font-size: 2rem" class="fa-solid fa-carrot"></i>
           </div>
           <div class="search_category_name">
             <span>Marché producteurs</span>
@@ -192,7 +204,7 @@
         <div class="menu_links">
           <ul>
             <div v-if="!this.token" class="menu_visitor_links">
-              <div class="menu_visitor_links_left">
+              <div class="menu_visitor_links_left nav2">
                 <li>
                   <router-link to="/">Acceuil</router-link>
                 </li>
@@ -207,55 +219,65 @@
                   >
                 </li>
               </div>
-              <div class="menu_visitor_links_right">
+              
+              <div class="menu_visitor_links_right nav2">
                 <li>
                   <router-link to="/login"> connexion </router-link>
                 </li>
-                <li>
-                  <router-link to="/register">Inscription</router-link>
-                </li>
-              </div>
-            </div>
-            <div v-else class="menu_user_links">
-              <div class="menu_visitor_links_left">
-                <li>
-                  <router-link to="/">Acceuil</router-link>
-                </li>
-                <li>
-                  <router-link @click="this.setAllShop" to="/commerces"
-                    >commerces</router-link
-                  >
-                </li>
-                <li>
-                  <router-link @click="this.setAllRecipe" to="/recipes"
-                    >Recettes</router-link
-                  >
-                </li>
-              </div>
-              <div class="menu_visitor_links_right">
-                <li>
+                <li id="btn_add_shop">
                   <router-link
                     @click="this.setAllShop"
                     to="/ajoutCommerce"
-                    id="btn_add_shop"
+                    
                     >Ajouter un commerce <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
                 <li>
                   <router-link to="/profil" id="btn_profil" @click="setUserShop"
-                    ><i class="fa-solid fa-user" style="color: #ffffff"></i
+                    ><i class="fa-solid fa-user" style="color: black"></i
                   ></router-link>
                 </li>
-
+                
+              </div>
+            </div>
+            <div v-else class="menu_user_links">
+              <div class="menu_visitor_links_left nav2">
+                <li>
+                  <router-link to="/">Acceuil</router-link>
+                </li>
+                <li>
+                  <router-link @click="this.setAllShop" to="/commerces"
+                    >commerces</router-link
+                  >
+                </li>
+                <li>
+                  <router-link @click="this.setAllRecipe" to="/recipes"
+                    >Recettes</router-link
+                  >
+                </li>
+              </div>
+              <div class="menu_visitor_links_right nav2">
+                <li id="btn_add_shop">
+                  <router-link
+                    @click="this.setAllShop"
+                    to="/ajoutCommerce"
+                    
+                    >Ajouter un commerce <i class="fa-solid fa-plus"></i
+                  ></router-link>
+                </li>
+                <li>
+                  <router-link to="/profil" id="btn_profil" @click="setUserShop"
+                    ><i class="fa-solid fa-user" style="color: black"></i
+                  ></router-link>
+                </li>
                 <li v-if="this.is_admin" @click="getAllAdminShop">
                   <router-link to="/admin">Admin</router-link>
                 </li>
-
                 <li>
                   <a @click="logOut" id="log_out"
                     ><i
                       class="fa-solid fa-right-from-bracket"
-                      style="color: #ffffff"
+                      style="color: black"
                     ></i
                   ></a>
                 </li>
@@ -266,6 +288,7 @@
       </div>
     </nav>
   </header>
+
 </template>
 
 <script>
@@ -353,18 +376,48 @@ header {
   background-size: cover;
   height: 90vh;
 }
+@keyframes show { 
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 a:hover {
-  color: #ff8528 !important;
+  color: #ff8528;
+}
+a{
+  color: white;
 }
 .menu_wrapper {
   display: flex;
   margin: 0 5%;
   padding-top: 1rem;
 }
+#toggle_menu {
+  position: absolute;
+  right: 0;
+  top: 130%;
+  display: flex;
+  width: 35%;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .5rem;
+  padding: .5rem 1rem;
+  display: none;
+  animation-name: show;
+  animation-duration: 500ms;
+}
 .menu_logo {
   flex-basis: 20%;
   display: flex;
   align-items: center;
+}
+#profil_btn:hover+#toggle_menu{
+  display: flex;
+ 
 }
 .menu_logo > img {
   width: 100%;
@@ -395,6 +448,7 @@ a:hover {
   display: flex;
   gap: 2rem;
   align-items: center;
+  position: relative;
 }
 #btn_add_shop {
   border: 2px solid white;
@@ -413,12 +467,23 @@ a:hover {
   padding: 0.75rem;
   font-size: 1rem;
 }
+#btn_profil > a:hover {
+color: white !important;
+}
 #log_out {
   font-size: 1.5rem;
 }
 .menu_visitor_links_left,
-.menu_visitor_links_right > li > a {
-  color: white;
+.menu_visitor_links_right > li {
+  color: white ;
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+}
+.nav2 > li > a {
+  color: black;
   font-family: "Raleway", sans-serif;
   font-size: 18px;
   text-transform: capitalize;
