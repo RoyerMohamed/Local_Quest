@@ -13,8 +13,8 @@
         </div>
         <div class="shops_type_grid">
           <div class="shops_type_grid_top">
-            <router-link to="/commerces" @click="this.categories(1)">
-              <div class="shops_type_grid_top_card_one">
+            <div class="shops_type_grid_top_card_one">
+              <router-link to="/commerces" @click="this.categories(1)">
                 <div class="shops_type_grid_infos">
                   <div class="shops_type_grid_infos_image">
                     <img
@@ -28,11 +28,11 @@
                     <span>Voir la sélection</span>
                   </div>
                 </div>
-              </div>
-            </router-link>
+              </router-link>
+            </div>
 
-            <router-link to="/commerces" @click="this.categories(7)">
-              <div class="shops_type_grid_top_card_two">
+            <div class="shops_type_grid_top_card_two">
+              <router-link to="/commerces" @click="this.categories(7)">
                 <div class="shops_type_grid_infos">
                   <div class="shops_type_grid_infos_image">
                     <img
@@ -46,61 +46,61 @@
                     <span>Voir la sélection</span>
                   </div>
                 </div>
-              </div>
-            </router-link>
+              </router-link>
+            </div>
           </div>
           <div class="shops_type_grid_buttom">
-            <router-link to="/commerces" @click="this.categories(2)">
-              <div class="shops_type_grid_buttom_card_one">
-              <div class="shops_type_grid_infos">
-                <div class="shops_type_grid_infos_image">
-                  <img
-                    :src="this.previewImage + 'epicerie.png'"
-                    alt=""
-                    srcset=""
-                  />
+            <div class="shops_type_grid_buttom_card_one">
+              <router-link to="/commerces" @click="this.categories(2)">
+                <div class="shops_type_grid_infos">
+                  <div class="shops_type_grid_infos_image">
+                    <img
+                      :src="this.previewImage + 'epicerie.png'"
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                  <div class="shops_type_grid_infos_text">
+                    <strong>boulangeries</strong>
+                    <span>Voir la sélection</span>
+                  </div>
                 </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>boulangeries</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </div>
+              </router-link>
             </div>
-            </router-link>
-            <router-link to="/commerces" @click="this.categories(6)">
-              <div class="shops_type_grid_buttom_card_two">
-              <div class="shops_type_grid_infos">
-                <div class="shops_type_grid_infos_image">
-                  <img
-                    :src="this.previewImage + 'epicerie.png'"
-                    alt=""
-                    srcset=""
-                  />
+            <div class="shops_type_grid_buttom_card_two">
+              <router-link to="/commerces" @click="this.categories(6)">
+                <div class="shops_type_grid_infos">
+                  <div class="shops_type_grid_infos_image">
+                    <img
+                      :src="this.previewImage + 'epicerie.png'"
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                  <div class="shops_type_grid_infos_text">
+                    <strong>Poissonnerie</strong>
+                    <span>Voir la sélection</span>
+                  </div>
                 </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Poissonnerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </div>
+              </router-link>
             </div>
-            </router-link>
-            <router-link to="/commerces" @click="this.categories(5)">
-              <div class="shops_type_grid_buttom_card_three">
-              <div class="shops_type_grid_infos">
-                <div class="shops_type_grid_infos_image">
-                  <img
-                    :src="this.previewImage + 'epicerie.png'"
-                    alt=""
-                    srcset=""
-                  />
+            <div class="shops_type_grid_buttom_card_three">
+              <router-link to="/commerces" @click="this.categories(5)">
+                <div class="shops_type_grid_infos">
+                  <div class="shops_type_grid_infos_image">
+                    <img
+                      :src="this.previewImage + 'epicerie.png'"
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                  <div class="shops_type_grid_infos_text">
+                    <strong>Fromagerie</strong>
+                    <span>Voir la sélection</span>
+                  </div>
                 </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </div>
+              </router-link>
             </div>
-            </router-link>
           </div>
         </div>
       </div>
@@ -136,7 +136,52 @@
         </div>
 
         <div class="see_recipes-flex">
-          <div class="see_recipes_wrapper">
+          <div
+            v-for="recipe in this.homeRecipes"
+            :key="recipe.id"
+            class="see_recipes_wrapper"
+          >
+            <div class="see_recipes_card">
+              <div class="see_recipes_card_bg">
+                <div class="see_recipes_card_img">
+                  <i
+                    class="fa-solid fa-utensils p-3"
+                    style="color: #ff8528"
+                  ></i>
+                </div>
+              </div>
+              <div class="see_recipes_card_infos">
+                <div class="see_recipes_card_infos_title">
+                  <h4>{{ recipe.recipe_title }}</h4>
+                </div>
+                <div class="see_recipes_card_infos_wrapper">
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>{{ recipe.preparation_time }} minn</span>
+                  </div>
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>{{ recipe.difficulty }}</span>
+                  </div>
+                  <div class="see_recipes_card_infos_time">
+                    <i
+                      class="fa-solid fa-hourglass-start"
+                      style="color: #ff8528"
+                    ></i>
+                    <span>{{ recipe.num_persons }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="see_recipes_wrapper">
             <div class="see_recipes_card">
               <div class="see_recipes_card_bg">
                 <div class="see_recipes_card_img">
@@ -255,9 +300,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
+
       <div class="cta_recipes">
         <div class="cta_recipes_wrapper">
           <div class="cta_recipes_title">
@@ -282,6 +328,76 @@
           </div>
         </div>
       </div>
+
+      <div class="howitswork">
+        <div class="howitswork-box">
+          <div class="howitswork-box-title">
+            <h3>Comment fonctionne Local Quest</h3>
+          </div>
+          <div class="howitswork-step">
+            <div class="howitswork-step-item">
+              <span>1</span>
+              <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore</h4>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore, optio nesciunt, possimus repellat natus sequi
+                architecto velit ullam maiores a quae consequatur voluptatum
+                culpa quisquam incidunt ea sapiente, facilis maxime!
+              </p>
+            </div>
+            <div class="howitswork-step-item">
+              <span>2</span>
+              <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore</h4>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore, optio nesciunt, possimus repellat natus sequi
+                architecto velit ullam maiores a quae consequatur voluptatum
+                culpa quisquam incidunt ea sapiente, facilis maxime!
+              </p>
+            </div>
+            <div class="howitswork-step-item">
+              <span>3</span>
+              <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore</h4>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore, optio nesciunt, possimus repellat natus sequi
+                architecto velit ullam maiores a quae consequatur voluptatum
+                culpa quisquam incidunt ea sapiente, facilis maxime!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta_recipes">
+        <div class="cta_recipes_wrapper">
+          <div class="cta_recipes_title">
+            <h2>Réalisez vos meilleurs recette locales !</h2>
+          </div>
+          <div class="cta_recipes_text">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit, luctus
+              nisi malesuada taciti turpis habitant hendrerit, auctor augue
+              nulla non dui dapibus. Ante montes ullamcorper aptent malesuada
+              dui nisi nunc, vehicula accumsan conubia pulvinar habitant
+              sollicitudin auctor, a fringilla dignissim at mattis parturient.
+            </p>
+          </div>
+          <div class="cta_recipes_btn">
+            <div class="search_bar_btn">
+              <button type="submit">
+                Ajouter a la list
+                <i class="fa-solid fa-greater-than" style="color: #ffffff"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
     </section>
     <div class="" v-else>
       <router-view v-bind:key="$route.fullPath"></router-view>
@@ -292,11 +408,13 @@
 <script>
 import HeaderNav from "./components/template/HeaderNav.vue";
 import { useShopStore } from "./stores/shopStore";
-import { mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
+import axios from "axios";
 export default {
   data() {
     return {
       previewImage: "http://[::1]:5173/public/images/",
+      homeRecipes: [],
     };
   },
   components: {
@@ -310,15 +428,24 @@ export default {
       });
     },
   },
+  created() {
+    axios
+      .get("http://127.0.0.1:8000/api/getRecipesHome")
+      .then((res) => {
+        this.homeRecipes = res.data.Recette;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };
 </script>
 <style>
 html {
   scroll-behavior: smooth;
 }
-a{
+a {
   text-decoration: none !important;
-
 }
 .shops_type {
   margin: 5rem 5%;
@@ -492,5 +619,46 @@ a{
 }
 .see_recipes_wrapper {
   margin: 1.5rem 0;
+}
+
+.howitswork{
+  width: 80vw;
+  margin: 4rem auto;
+  display: flex;
+
+}
+
+.howitswork-box{
+  display: flex;
+  flex-direction: column;
+}
+.howitswork-box-title{
+  text-align: center;
+  font-size: 2rem;
+  padding-bottom: 2rem;
+}
+.howitswork-step{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.howitswork-step-item{
+  width: 30%;
+  min-width: 400px;
+}
+
+.howitswork-step-item > span{
+  font-size: 5rem;
+  font-weight: 800;
+  color: grey;
+}
+.howitswork-step-item > h4{
+  width: 90%;
+  font-weight: 700;
+
+}
+.howitswork-step-item > p{
+  width: 90%;
 }
 </style>

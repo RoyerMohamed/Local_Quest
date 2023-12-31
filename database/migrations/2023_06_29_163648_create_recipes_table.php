@@ -17,8 +17,8 @@ return new class extends Migration
             $table->enum('difficulty',['facile','moyen','difficile']);
             $table->Integer('num_persons');
             $table->string('ingredients');
-            $table->time('cooking_time');
-            $table->time('preparation_time');
+            $table->integer('cooking_time');
+            $table->integer('preparation_time');
             $table->boolean('recipe_status');
     
             // user FK

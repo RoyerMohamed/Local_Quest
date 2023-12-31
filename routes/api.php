@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->group( function () {
 
 Route::apiResource('/products',  App\Http\Controllers\API\V1\ProductController::class);
 Route::apiResource('/recipes',  App\Http\Controllers\API\V1\RecipeController::class);
+Route::get('/getRecipesHome', [App\Http\Controllers\API\V1\RecipeController::class , 'getRecipesHome']);
 Route::apiResource('/opening_hours',  App\Http\Controllers\API\V1\OpeningHourController::class);
 Route::apiResource('/shops', App\Http\Controllers\API\V1\ShopController::class);
 Route::get('/sortShops', [App\Http\Controllers\API\V1\ShopController::class , 'sortShops']);

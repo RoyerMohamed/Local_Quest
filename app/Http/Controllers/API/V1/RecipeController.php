@@ -12,7 +12,7 @@ class RecipeController extends Controller
 
     public function __construct()
     {
-        $this->middleware("auth:sanctum")->except("index"); 
+        $this->middleware("auth:sanctum")->except(["index","getRecipesHome"]); 
     }
     /**
      * Display a listing of the resource.
@@ -120,8 +120,10 @@ class RecipeController extends Controller
         return response()->json(['message' => 'La recette a été modifiée ', 'Recette' => $recipe], 200);
     }
 
-
-
+    public function getRecipesHome(){
+        $recipesHome = Recipe::latest()->take(3)->get(); 
+        return response()->json(['message' => 'Recettes trouvées', 'Recette' => $recipesHome], 200);
+    }
 
 
     public function getLasteAddedRecipes(Request $request){
