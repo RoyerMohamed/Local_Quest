@@ -396,8 +396,6 @@
           </div>
         </div>
       </div>
-
-      
     </section>
     <div class="" v-else>
       <router-view v-bind:key="$route.fullPath"></router-view>
