@@ -37,6 +37,7 @@ const config = defineConfig({
       database: 'local_quest',
     },
   },
+ 
 
   component: {
     devServer: {
@@ -46,6 +47,7 @@ const config = defineConfig({
         configFile: new URL('vite.config.js', import.meta.url).pathname,
       },
     },
+    
   },
 });
 

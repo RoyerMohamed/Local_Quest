@@ -28,7 +28,7 @@
 
 
         </div>
-        <div v-for="reviews in this.reviews" class="comment">
+        <div v-for="reviews in this.reviews" :key="reviews.id" class="comment">
             <div class="user-banner">
                 <div class="user">
                     <div class="avatar">

@@ -85,7 +85,7 @@
   </div>
 </template>
   
-<script>
+<script type="module">
 import axios from "axios";
 import { mapActions } from "pinia";
 import { useShopStore } from "../../stores/shopStore";

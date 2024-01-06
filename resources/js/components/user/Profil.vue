@@ -38,7 +38,7 @@
             <input ref="fileInput" type="file" name="image" />
           </div>
           <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <input type="submit" class="btn btn-success" value="Modifier">
           </div>
         </form>
       </div>
@@ -234,10 +234,10 @@ export default {
         const params = {};
         this.changeEmail ? (params.email = this.email) : "";
         this.changeUser_name ? (params.user_name = this.user_name) : "";
-
         axios
-          .put(`http://127.0.0.1:8000/api/users/${this.id}`, params)
-          .then((res) => {
+        .put(`http://127.0.0.1:8000/api/users/${this.id}`, params)
+        .then((res) => {
+            console.log('test');
             this.setUser(res.data.user);
             this.validationResponse = res.data.message;
             this.validationErrors = "";

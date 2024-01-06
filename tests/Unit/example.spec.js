@@ -1,12 +1,16 @@
-import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import Login  from '../../resources/js/components/auth/login.vue'
+import { shallowMount, RouterLinkStub } from '@vue/test-utils'
+const wrapper = shallowMount(Login,{
+  global: {
+    stubs: {
+        'router-link': RouterLinkStub, // on inclut routerlinkStub pour éviter une erreur sur router-link
+    }
+}
+})
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
-  })
+describe('Vérifications sur le composant Shop.vue', () => {
+  it('titre de la page affiché', () => {
+    const title = wrapper.get('h1')
+    expect(title.text()).toBe('Inscription')
+})
 })
