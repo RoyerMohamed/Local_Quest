@@ -25,10 +25,10 @@ describe('display Local Quest Home Page + sign up page', () => {
 
         cy.contains(' connexion ').click()
 
-        cy.get('input[name=user_name]').type("testUser", { force: true })
+        cy.get('input[name=local_user_name]').type("testUser", { force: true })
         .should("have.value", "testUser")
 
-        cy.get('input[name=password]').type("Seemeecome971@", { force: true })
+        cy.get('input[name=login_password]').type("Seemeecome971@", { force: true })
         .should("have.value", "Seemeecome971@")
 
         cy.get('input[type=submit]').click()

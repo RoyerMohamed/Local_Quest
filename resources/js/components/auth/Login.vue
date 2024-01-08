@@ -17,7 +17,7 @@
           <div class="mb-3">
             <input
               type="text"
-              name="user_name"
+              name="local_user_name"
               v-model="user.user_name"
               placeholder="user_name"
             />
@@ -25,7 +25,7 @@
           <div class="mb-3">
             <input
             type="password"
-            name="password"
+            name="login_password"
             v-model="user.password"
             placeholder="Password"
           />
@@ -184,7 +184,6 @@ export default {
 
         register.style.display = 'block'
         login.style.display = 'none'
-
       }else{
         login.style.display = 'block'
         register.style.display = 'none'
@@ -193,10 +192,8 @@ export default {
 
         inscription.classList.remove('active_link')
         inscription.classList.add('non_active_link')
-
-
       }
-      console.log(login);
+ 
     }
   },
 };

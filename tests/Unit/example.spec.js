@@ -1,5 +1,5 @@
 import Login  from '../../resources/js/components/auth/login.vue'
-import { shallowMount, RouterLinkStub } from '@vue/test-utils'
+import {createLocalVue, shallowMount, RouterLinkStub } from '@vue/test-utils'
 const wrapper = shallowMount(Login,{
   global: {
     stubs: {
@@ -8,9 +8,14 @@ const wrapper = shallowMount(Login,{
 }
 })
 
-describe('Vérifications sur le composant Shop.vue', () => {
+const localVue = createLocalVue();
+
+describe('Vérifications sur le composant Login.vue', () => {
   it('titre de la page affiché', () => {
-    const title = wrapper.get('h1')
-    expect(title.text()).toBe('Inscription')
-})
-})
+    const wrapper = shallowMount(Login, { localVue });
+    const title = wrapper.find('h1');
+    expect(title.text()).toBe('Inscription');
+  });
+});
+
+
