@@ -120,7 +120,7 @@ export default {
             })
             .then((res) => {
               if (res.data.user.role.role_name === "admin") {
-                console.log(res.data.user.role.role_name);
+              
                 this.setIsAdmin(true);
               } else {
                 this.setIsAdmin(false);

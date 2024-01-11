@@ -131,7 +131,7 @@
               <div class="input-group">
                
                 <input
-                  type="text"
+                  type="url"
                   class="form-control"
                   id="basic-url"
                   aria-describedby="basic-addon3 basic-addon4"

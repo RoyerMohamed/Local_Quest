@@ -40,6 +40,9 @@ const config = defineConfig({
  
 
   component: {
+    setupNodeEvents(on, config) {
+      on('task', { queryDb: query => queryTestDb(query, config) });
+    },
     devServer: {
       framework: 'vue',
       bundler: 'vite', // Use Vite as the bundler

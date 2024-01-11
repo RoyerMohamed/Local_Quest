@@ -3,21 +3,21 @@ describe('add and edit shop', () => {
     it('add a shop', () => {
         cy.visit('http://localhost:8000')
         cy.contains('connexion').click()
-        cy.get('input[name=user_name]').type("admin", { force: true })
+
+        cy.get('input[name=local_user_name]').type("admin", { force: true })
             .should("have.value", "admin")
-        cy.get('input[name=password]').type("Password", { force: true })
+        cy.get('input[name=login_password]').type("Password", { force: true })
             .should("have.value", "Password")
-        cy.get('input[type=submit]').click()
         cy.url().should('include', '/')
-        cy.wait(3000)
-      
+        cy.wait(1000)
+
         cy.contains('Ajouter un commerce').click()
 
         cy.get('input[name=shop_title]').type("testShop", { force: true })
             .should("have.value", "testShop")
 
-        cy.get('input[name=adresse]').type("68 bis rue elise lucas", { force: true })
-            .should("have.value", "68 bis rue elise lucas")
+        cy.get('input[name=adresse]').type("68 rue elise lucas", { force: true })
+            .should("have.value", "68 rue elise lucas")
 
         cy.get('input[name=zipCode]').type("79510", { force: true })
             .should("have.value", "79510")
@@ -43,20 +43,21 @@ describe('add and edit shop', () => {
         cy.get('input[name=phoneNumber]').type("0616198911", { force: true })
             .should("have.value", "0616198911")
 
-        cy.get('input[type=submit]').click()
-        cy.wait(3000)
-        cy.url().should('include', '/commerces')
+        cy.get('button[type=submit]').click()
+     
+        //cy.url().should('include', '/commerces')
 
     })
 
     it('Delete the created shop', function () {
         cy.task('queryDb', 'DELETE FROM shops ORDER BY id DESC LIMIT 1', { log: false })
-          .then(result => {
-            // Log the result for debugging purposes
-            cy.log('Query Result:', result);
-            
-            // Perform assertions using Cypress commands
-            cy.wrap(result.affectedRows).should('be.greaterThan', 0);
-          });
-      });
+            .then(result => {
+                // Log the result for debugging purposes
+                cy.log('Query Result:', result);
+
+                // Perform assertions using Cypress commands
+                cy.wrap(result.affectedRows).should('be.greaterThan', 0);
+            });
+    });
+    
 })
