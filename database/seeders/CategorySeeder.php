@@ -14,61 +14,71 @@ class CategorySeeder extends Seeder
     public function run(): void 
     {
         Category::create([
-            'category_name' => "Épiceries",
+            'category_name' => "Épicerie",
             'category_icon' => "<i class=\"fa-solid fa-shop\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
-            'category_name' => "Boulangeries",
+            'category_name' => "Fruits & Légumes",
+            'category_icon' => "<i class=\"fa-solid fa-carrot\"></i>",
+            'category_color' => "#ffffff"
+        ]);
+
+
+        Category::create([
+            'category_name' => "Boulangerie",
             'category_icon' => "<i class=\"fa-solid fa-bread-slice\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
-            'category_name' => "Boucheries & Charcuteries",
-            'category_icon' => "<i class=\"fa-solid fa-drumstick-bite\"></i>",
+            'category_name' => "Pâtisserie",
+            'category_icon' => "<i class=\"fa-solid fa-cookie\"></i>",
+            'category_color' => "#ffffff"
+          ]);
+
+        Category::create([
+            'category_name' => "Boucherie & Charcuterie",
+            'category_icon' => "<i class=\"fa-solid fa-cow\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
-            'category_name' => "Marchés de producteurs locaux",
-            'category_icon' => "<i class=\"fa-solid fa-carrot\"></i>",
-            'category_color' => "#ffffff"
-        ]);
-
-        Category::create([
-            'category_name' => "Fromageries",
-            'category_icon' => "<i class=\"fa-solid fa-cheese\"></i>",
-            'category_color' => "#ffffff"
-        ]);
-
-        Category::create([
-            'category_name' => "Poissonneries",
+            'category_name' => "Poissonnerie",
             'category_icon' => "<i class=\"fa-solid fa-fish\"></i>",
             'category_color' => "#ffffff"
         ]);
 
         Category::create([
-            'category_name' => "Vendeurs de fruits et légumes",
-            'category_icon' => "<i class=\"fa-solid fa-seedling\"></i>",
+            'category_name' => "Fromagerie",
+            'category_icon' => "<i class=\"fa-solid fa-cheese\"></i>",
             'category_color' => "#ffffff"
         ]);
 
+        Category::create([
+            'category_name' => "Caviste",
+            'category_icon' => "<i class=\"fa-solid fa-wine-bottle\"></i>",
+            'category_color' => "#ffffff"
+        ]);
+
+        Category::create([
+            'category_name' => "Marchés de producteurs",
+            'category_icon' => "<i class=\"fa-solid fa-store\"></i>",
+            'category_color' => "#ffffff"
+        ]);
+
+       
         Category::create([
             'category_name' => "Fermes",
             'category_icon' => "<i class=\"fa-solid fa-tractor\"></i>",
             'category_color' => "#ffffff"
         ]);
         
-        Category::create([
-            'category_name' => "Pâtisseries",
-            'category_icon' => "<i class=\"fa-solid fa-cake-candles\"></i>",
-            'category_color' => "#ffffff"
-          ]);
+        
         Category::create([
             'category_name' => "Produits locaux",
-            'category_icon' => "<i class=\"fa-solid fa-leaf\"></i>",
+            'category_icon' => "<i class=\"fa-solid fa-jar\"></i>",
             'category_color' => "#ffffff"
           ]);
     }
