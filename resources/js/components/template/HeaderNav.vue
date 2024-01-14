@@ -1,5 +1,4 @@
 <template>
-  
   <header v-if="this.$route.name == 'Home'">
     <!-- header navigations -->
     <nav>
@@ -17,11 +16,9 @@
                   <router-link to="/">Accueil</router-link>
                 </li>
                 <li>
-                  <router-link @click="this.setAllShop" to="/commerces"
-                    >Commerçants</router-link
-                  >
+                  <router-link @click="this.setAllShop" to="/commerces">Commerçants</router-link>
                 </li>
-                
+
               </div>
               <div class="menu_visitor_links_right">
                 <li>
@@ -35,37 +32,28 @@
                   <router-link to="/">Accueil</router-link>
                 </li>
                 <li>
-                  <router-link @click="this.setAllShop" to="/commerces"
-                    >Commerçants</router-link
-                  >
+                  <router-link @click="this.setAllShop" to="/commerces">Commerçants</router-link>
                 </li>
-               
+
               </div>
               <div class="menu_visitor_links_right">
                 <li id="btn_add_shop">
-                  <router-link @click="this.setAllShop" to="/ajoutCommerce"
-                    >Proposer un commerçant <i class="fa-solid fa-plus"></i
-                  ></router-link>
+                  <router-link @click="this.setAllShop" to="/ajoutCommerce">Proposer un commerçant <i
+                      class="fa-solid fa-plus"></i></router-link>
                 </li>
                 <li id="profil_btn" @click="showLinks">
                   <i class="fa-solid fa-user" style="color: #ffffff"></i>
                 </li>
                 <div id="toggle_menu">
                   <li>
-                    <router-link to="/profil" @click="setUserShop"
-                      >Profil</router-link
-                    >
+                    <router-link to="/profil" @click="setUserShop">Profil</router-link>
                   </li>
                   <li v-if="this.is_admin" @click="getAllAdminShop">
                     <router-link to="/admin">Admin</router-link>
                   </li>
                   <li>
-                    <a @click="logOut" id="log_out"
-                      ><i
-                        class="fa-solid fa-right-from-bracket"
-                        style="color: #ffffff"
-                      ></i
-                    ></a>
+                    <a @click="logOut" id="log_out"><i class="fa-solid fa-right-from-bracket"
+                        style="color: #ffffff"></i></a>
                   </li>
                 </div>
               </div>
@@ -77,42 +65,77 @@
     <!-- SEARCH SHOP -->
     <div class="hero-search">
       <div class="hero-search-icons">
-        <div class="hero-search-icons-item">
-          <i class="fa-solid fa-shop"></i>
-          <p>Épicerie</p>
+        <a href="">
+          <div class="hero-search-icons-item">
+            <i class="fa-solid fa-shop"></i>
+            <p>Épicerie</p>
+          </div>
+        </a>
+        <a>
+          <div class="hero-search-icons-item">
+            <i class="fa-solid fa-carrot"></i>
+            <p>Fruits & Légumes</p>
+          </div>
+        </a>
+        <a href="">
+          <div class="hero-search-icons-item ">
+            <i class="fa-solid fa-bread-slice"></i>
+            <p>Boulangerie</p>
+          </div>
+        </a>
+        
+        <a href="">
+          <div class="hero-search-icons-item ">
+            <i class="fa-solid fa-cookie"></i>
+            <p>Pâtisserie</p>
+          </div>
+        </a>
+        <a href="">
+          <div class="hero-search-icons-item">
+          <i class="fa-solid fa-cow"></i>
+          <p>Boucherie</p>
         </div>
-        <div class="hero-search-icons-item ">
-          <i class="fa-solid fa-bread-slice"></i>
-          <p>Boulangerie</p>
-        </div>
-        <div class="hero-search-icons-item">
-          <i class="fa-solid fa-carrot"></i>
-          <p>Fruits & Légumes</p>
-        </div>
-        <div class="hero-search-icons-item">
-          <i class="fa-solid fa-drumstick-bite"></i>
-          <p>Boucherie & Charcuterie</p>
-        </div>
-        <div class="hero-search-icons-item">
-          <i class="fa-solid fa-fish"></i>
-          <p>Poissonnerie</p>
-        </div>
-        <div class="hero-search-icons-item">
-          <i class="fa-solid fa-cheese"></i>
-          <p>Fromagerie</p>
-        </div>
+        </a>
+        <a href="">
+          <div class="hero-search-icons-item">
+            <i class="fa-solid fa-fish"></i>
+            <p>Poissonnerie</p>
+          </div>
+        </a>
+        <a href="">
+          <div class="hero-search-icons-item">
+            <i class="fa-solid fa-cheese"></i>
+            <p>Fromagerie</p>
+          </div>
+        </a>
         <div class="hero-search-icons-item">
           <i class="fa-solid fa-wine-bottle"></i>
           <p>Caviste</p>
         </div>
-        <div class="hero-search-icons-item">
-          <i class="fa-solid fa-store"></i>
-          <p>Marché de producteurs</p>
-        </div>
+        <a href="">
+          <div class="hero-search-icons-item">
+            <i class="fa-solid fa-tractor"></i>
+            <p>Fermes</p>
+          </div>
+        </a>
+        <a href="">
+          <div class="hero-search-icons-item">
+            <i class="fa-solid fa-jar"></i>
+            <p>Produits locaux</p>
+          </div>
+        </a>
+        <a href="">
+          <div class="hero-search-icons-item">
+            <i class="fa-solid fa-store"></i>
+            <p>Marché de producteurs </p>
+          </div>
+        </a>
+
       </div>
       <form class="input-group " @submit.prevent="handleForm">
-        <select class="form-select" v-model="selectCategory" id="inputGroupSelect04" aria-label="Example select with button addon">
-          <option  value="" disabled selected>Sélectionnez une catégorie de commerçant</option>
+        <select class="form-select" v-model="selectCategory" id="inputGroupSelect04"
+          aria-label="Example select with button addon">
+          <option value="" disabled selected>Sélectionnez une catégorie de commerçant</option>
           <option v-for="category in this.categories" :key="category.id" :value="category.id">
             {{ category.category_name }}
           </option>
@@ -142,9 +165,7 @@
                   <router-link to="/">Accueil</router-link>
                 </li>
                 <li>
-                  <router-link @click="this.setAllShop" to="/commerces"
-                    >Commerçants</router-link
-                  >
+                  <router-link @click="this.setAllShop" to="/commerces">Commerçants</router-link>
                 </li>
               </div>
               <div class="menu_visitor_links_right nav2">
@@ -159,36 +180,27 @@
                   <router-link to="/">Accueil</router-link>
                 </li>
                 <li>
-                  <router-link @click="this.setAllShop" to="/commerces"
-                    >Commerçants</router-link
-                  >
+                  <router-link @click="this.setAllShop" to="/commerces">Commerçants</router-link>
                 </li>
               </div>
               <div class="menu_visitor_links_right nav2">
                 <li id="btn_add_shop">
-                  <router-link @click="this.setAllShop" to="/ajoutCommerce"
-                    >Ajouter un commerçant <i class="fa-solid fa-plus"></i
-                  ></router-link>
+                  <router-link @click="this.setAllShop" to="/ajoutCommerce">Ajouter un commerçant <i
+                      class="fa-solid fa-plus"></i></router-link>
                 </li>
                 <li id="profil_btn" @click="showLinks">
                   <i class="fa-solid fa-user" style="color: black"></i>
                 </li>
                 <div id="toggle_menu">
                   <li>
-                    <router-link to="/profil" @click="setUserShop" style="color: black"
-                      >Profil</router-link
-                    >
+                    <router-link to="/profil" @click="setUserShop" style="color: black">Profil</router-link>
                   </li>
                   <li v-if="this.is_admin" @click="getAllAdminShop">
                     <router-link to="/admin" style="color: black">Admin</router-link>
                   </li>
                   <li>
-                    <a @click="logOut" id="log_out"
-                      ><i
-                        class="fa-solid fa-right-from-bracket"
-                        style="color: black"
-                      ></i
-                    ></a>
+                    <a @click="logOut" id="log_out"><i class="fa-solid fa-right-from-bracket"
+                        style="color: black"></i></a>
                   </li>
                 </div>
               </div>
@@ -198,7 +210,6 @@
       </div>
     </nav>
   </header>
-
 </template>
 
 <script>
@@ -290,6 +301,7 @@ export default {
 
 <style  scoped>
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap");
+
 header {
   background-image: url(../../../../public/images/hero.png);
   background-repeat: no-repeat;
@@ -297,6 +309,7 @@ header {
   background-size: cover;
   height: 90vh;
 }
+
 @keyframes show {
   0% {
     opacity: 0;
@@ -306,17 +319,21 @@ header {
     opacity: 1;
   }
 }
+
 a:hover {
   color: #ff8528;
 }
+
 a {
   color: white;
 }
+
 .menu_wrapper {
   display: flex;
   margin: 0 5%;
   padding-top: 1rem;
 }
+
 #toggle_menu {
   position: absolute;
   right: 0;
@@ -331,23 +348,28 @@ a {
   animation-duration: 500ms;
   z-index: 1;
 }
+
 .menu_logo {
   flex-basis: 20%;
   display: flex;
   align-items: center;
 }
-.menu_logo > img {
+
+.menu_logo>img {
   width: 100%;
 }
+
 .menu_links {
   flex-basis: 100%;
 }
-.menu_links > ul {
+
+.menu_links>ul {
   margin: 0;
   height: 100%;
   display: flex;
   align-items: center;
 }
+
 .menu_visitor_links,
 .menu_user_links {
   display: flex;
@@ -356,17 +378,20 @@ a {
   height: 65px;
   align-items: center;
 }
+
 .menu_visitor_links_left {
   display: flex;
   justify-content: space-around;
   flex-basis: 30%;
 }
+
 .menu_visitor_links_right {
   display: flex;
   gap: 2rem;
   align-items: center;
   position: relative;
 }
+
 #btn_add_shop {
   transition: all 250ms;
   height: 4rem;
@@ -382,31 +407,38 @@ a {
   letter-spacing: 1.248px;
   text-transform: uppercase;
 }
-#btn_add_shop > a{
+
+#btn_add_shop>a {
   color: #ff8528;
   font-weight: 600;
 }
+
 #btn_add_shop:hover {
   border: 1px solid #ff8528;
   background-color: #ff8528;
 }
-#btn_add_shop:hover > a{
+
+#btn_add_shop:hover>a {
   color: white;
 }
+
 #btn_profil {
   border-radius: 50%;
   border: 2px solid white;
   padding: 0.75rem;
   font-size: 1rem;
 }
-#btn_profil > a:hover {
+
+#btn_profil>a:hover {
   color: white !important;
 }
+
 #log_out {
   font-size: 1.5rem;
 }
+
 .menu_visitor_links_left,
-.menu_visitor_links_right > li {
+.menu_visitor_links_right>li {
   color: white;
   font-family: "Raleway", sans-serif;
   font-size: 18px;
@@ -414,7 +446,8 @@ a {
   display: flex;
   align-items: center;
 }
-.nav2 > li > a {
+
+.nav2>li>a {
   color: black;
   font-family: "Raleway", sans-serif;
   font-size: 18px;
@@ -422,6 +455,7 @@ a {
   display: flex;
   align-items: center;
 }
+
 /* search */
 .hero-search {
   padding-top: 16rem;
@@ -433,7 +467,7 @@ a {
 }
 
 .hero-search-icons {
-  width: 70%;
+  width: 80%;
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -448,7 +482,7 @@ a {
 }
 
 .hero-search-icons-item i {
-  font-size: 32px;
+  font-size: 30px;
 }
 
 .hero-search-icons-item p {
@@ -457,7 +491,7 @@ a {
 }
 
 .hero-search .input-group {
-  width: 55%;
+  width: 70%;
 }
 
 .master-btn {
@@ -477,7 +511,7 @@ a {
   text-transform: uppercase;
 }
 
-.master-btn:hover{
+.master-btn:hover {
   border: 1px solid #ff8528;
   background-color: transparent;
   color: #ff8528;

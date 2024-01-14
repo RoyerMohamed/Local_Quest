@@ -1,9 +1,10 @@
 <template>
   <HeaderNav />
   <main>
-    <section v-if="$route.path == '/'">      
+    <section v-if="$route.path == '/'">
+
       <!-- Catégories commerçants  -->
-      <div class="commerçants mt-5 mb-5">
+      <!-- <div class="commerçants mt-5 mb-5">
         <div class="commerçants-title">
           <h3>Les commerçants à l'honneur</h3>
           <p>Avec Local Quest, changez vos habitudes de consommation en douceur tout en soutenant l’économie locale !
@@ -15,161 +16,199 @@
               <router-link to="/commerces" @click="this.categories(1)">
                 <div class="shops_type_grid_infos_image">
                   <i class="fa-solid fa-cow"></i>
-                  </div>
-                <div class="shops_type_grid_infos_text">
-                    <strong>Fromagerie</strong>
-                    <span>Voir la sélection</span>
-                  </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                  </div>
-                <div class="shops_type_grid_infos_text">
-                    <strong>Fromagerie</strong>
-                    <span>Voir la sélection</span>
-                  </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                  </div>
-                <div class="shops_type_grid_infos_text">
-                    <strong>Fromagerie</strong>
-                    <span>Voir la sélection</span>
-                  </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                  </div>
-                <div class="shops_type_grid_infos_text">
-                    <strong>Fromagerie</strong>
-                    <span>Voir la sélection</span>
-                  </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                  </div>
-                <div class="shops_type_grid_infos_text">
-                    <strong>Fromagerie</strong>
-                    <span>Voir la sélection</span>
-                  </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                  </div>
-                <div class="shops_type_grid_infos_text">
-                    <strong>Fromagerie</strong>
-                    <span>Voir la sélection</span>
-                  </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                  </div>
-                <div class="shops_type_grid_infos_text">
-                    <strong>Fromagerie</strong>
-                    <span>Voir la sélection</span>
-                  </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                  </div>
-                <div class="shops_type_grid_infos_text">
-                    <strong>Fromagerie</strong>
-                    <span>Voir la sélection</span>
-                  </div>
-              </router-link>
-            </div>
-
-            
-          </div>
-        </div>
-      </div>
-
-
-      <div class="cta_recipes">
-        <div class="cta_recipes_wrapper">
-          <div class="cta_recipes_title">
-            <h2>Réalisez vos meilleurs recette locales !</h2>
-          </div>
-          <div class="cta_recipes_text">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipiscing elit, luctus
-              nisi malesuada taciti turpis habitant hendrerit, auctor augue
-              nulla non dui dapibus. Ante montes ullamcorper aptent malesuada
-              dui nisi nunc, vehicula accumsan conubia pulvinar habitant
-              sollicitudin auctor, a fringilla dignissim at mattis parturient.
-            </p>
-          </div>
-          <div class="cta_recipes_btn">
-            <div class="search_bar_btn">
-              <button type="submit">
-                Ajouter a la list
-                <i class="fa-solid fa-greater-than" style="color: #ffffff"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="see_recipes mt-5 mb-5">
-        <div class="see_recipes_title">
-          <h2>Les recettes locales proposées</h2>
-        </div>
-
-        <div class="see_recipes-flex">
-          <div v-for="recipe in this.homeRecipes" :key="recipe.id" class="see_recipes_wrapper">
-            <div class="see_recipes_card">
-              <div class="see_recipes_card_bg">
-                <div class="see_recipes_card_img">
-                  <i class="fa-solid fa-utensils p-3" style="color: #ff8528"></i>
                 </div>
-              </div>
-              <div class="see_recipes_card_infos">
-                <div class="see_recipes_card_infos_title">
-                  <h4>{{ recipe.recipe_title }}</h4>
+                <div class="shops_type_grid_infos_text">
+                  <strong>Fromagerie</strong>
+                  <span>Voir la sélection</span>
                 </div>
-                <div class="see_recipes_card_infos_wrapper">
-                  <div class="see_recipes_card_infos_time">
-                    <i class="fa-solid fa-hourglass-start" style="color: #ff8528"></i>
-                    <span>{{ recipe.preparation_time }} minn</span>
-                  </div>
-                  <div class="see_recipes_card_infos_time">
-                    <i class="fa-solid fa-hourglass-start" style="color: #ff8528"></i>
-                    <span>{{ recipe.difficulty }}</span>
-                  </div>
-                  <div class="see_recipes_card_infos_time">
-                    <i class="fa-solid fa-hourglass-start" style="color: #ff8528"></i>
-                    <span>{{ recipe.num_persons }}</span>
+              </router-link>
+            </div>
+            <div class="commerçants-box-content-item">
+              <router-link to="/commerces" @click="this.categories(1)">
+                <div class="shops_type_grid_infos_image">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
+                <div class="shops_type_grid_infos_text">
+                  <strong>Fromagerie</strong>
+                  <span>Voir la sélection</span>
+                </div>
+              </router-link>
+            </div>
+            <div class="commerçants-box-content-item">
+              <router-link to="/commerces" @click="this.categories(1)">
+                <div class="shops_type_grid_infos_image">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
+                <div class="shops_type_grid_infos_text">
+                  <strong>Fromagerie</strong>
+                  <span>Voir la sélection</span>
+                </div>
+              </router-link>
+            </div>
+            <div class="commerçants-box-content-item">
+              <router-link to="/commerces" @click="this.categories(1)">
+                <div class="shops_type_grid_infos_image">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
+                <div class="shops_type_grid_infos_text">
+                  <strong>Fromagerie</strong>
+                  <span>Voir la sélection</span>
+                </div>
+              </router-link>
+            </div>
+            <div class="commerçants-box-content-item">
+              <router-link to="/commerces" @click="this.categories(1)">
+                <div class="shops_type_grid_infos_image">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
+                <div class="shops_type_grid_infos_text">
+                  <strong>Fromagerie</strong>
+                  <span>Voir la sélection</span>
+                </div>
+              </router-link>
+            </div>
+            <div class="commerçants-box-content-item">
+              <router-link to="/commerces" @click="this.categories(1)">
+                <div class="shops_type_grid_infos_image">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
+                <div class="shops_type_grid_infos_text">
+                  <strong>Fromagerie</strong>
+                  <span>Voir la sélection</span>
+                </div>
+              </router-link>
+            </div>
+            <div class="commerçants-box-content-item">
+              <router-link to="/commerces" @click="this.categories(1)">
+                <div class="shops_type_grid_infos_image">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
+                <div class="shops_type_grid_infos_text">
+                  <strong>Fromagerie</strong>
+                  <span>Voir la sélection</span>
+                </div>
+              </router-link>
+            </div>
+            <div class="commerçants-box-content-item">
+              <router-link to="/commerces" @click="this.categories(1)">
+                <div class="shops_type_grid_infos_image">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
+                <div class="shops_type_grid_infos_text">
+                  <strong>Fromagerie</strong>
+                  <span>Voir la sélection</span>
+                </div>
+              </router-link>
+            </div>
+
+
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Commerçants à lh'onner  -->
+
+      <div class="commerçants">
+        <div class="commerçants-title">
+          <h3>Les commerçants à l'honneur</h3>
+          <p>Avec Local Quest, changez vos habitudes de consommation en douceur tout en soutenant l’économie locale !
+          </p>
+        </div>
+        <div class="commerçants-box">
+          <div class="commerçants-box-content">
+            <a href="" class="commerçants-box-content-item">
+              <div>
+                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-shop"></i></div>
+                <div class="commerçants-box-content-item-img">
+                  <img src="/images/epicerie-1.png" alt="">
+                </div>
+                <div class="commerçants-box-content-item-info">
+                  <h4>La ferme en colis</h4>
+                  <p>12 Rue de la Reine des Prés, 79460 Magné</p>
+                  <div class="commerçants-box-content-item-info-rate">
+                    <span>5</span>
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
+
+            <a href="" class="commerçants-box-content-item">
+              <div>
+                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-cow"></i></div>
+                <div class="commerçants-box-content-item-img">
+                  <img src="/images/boucherie-1.png" alt="">
+                </div>
+                <div class="commerçants-box-content-item-info">
+                  <h4>Loic Chouc Bessines</h4>
+                  <p>Zone de la Mude, 79000 Bessines</p>
+                  <div class="commerçants-box-content-item-info-rate">
+                    <span>4</span>
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-regular fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="" class="commerçants-box-content-item">
+              <div>
+                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-cheese"></i></div>
+                <div class="commerçants-box-content-item-img">
+                  <img src="/images/fromaegrie-1.png" alt="">
+                </div>
+                <div class="commerçants-box-content-item-info">
+                  <h4>L'opéra des fromages</h4>
+                  <p>2 Bd Louis Blanc, 85000 La Roche-sur-Yon</p>
+                  <div class="commerçants-box-content-item-info-rate">
+                    <span>5</span>
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="" class="commerçants-box-content-item">
+              <div>
+                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-cow"></i></div>
+                <div class="commerçants-box-content-item-img">
+                  <img src="/images/vin-1.png" alt="">
+                </div>
+                <div class="commerçants-box-content-item-info">
+                  <h4>Le Pied de Vigne</h4>
+                  <p>109 Av. Gambetta, 17100 Saintes</p>
+                  <div class="commerçants-box-content-item-info-rate">
+                    <span>5</span>
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
-
-
-      <!-- CTA Banner -->
+      <!-- Banner CTA  -->
       <div class="cta_recipes">
         <div class="cta_recipes_wrapper">
           <div class="cta_recipes_title">
@@ -260,119 +299,6 @@
                 Ajouter a la list
                 <i class="fa-solid fa-greater-than" style="color: #ffffff"></i>
               </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Actus locales -->
-      <div class="actus mt-5 mb-5">
-        <div class="actus-title">
-          <h3>L’actualité de Local Quest</h3>
-          <p>Avec Local Quest, changez vos habitudes de consommation en douceur tout en soutenant l’économie locale !
-          </p>
-        </div>
-        <div class="actus-box">
-          <div class="actus-box-content">
-            <div class="actus-box-content-item">
-              <div class="actus-box-content-item-category">
-                <span>Blog category</span>
-              </div>
-              <div class="actus-box-content-item-img">
-                <img src="/images/actus-1.png" alt="">
-              </div>
-              <div class="actus-box-content-item-info">
-                <h4>L'analyse des conditions de vie des vâches en Deux sèvres</h4>
-                <div class="actus-box-content-item-info-preparation">
-                  <div class="actus-box-content-item-info-preparation-cook">
-                    <div>
-                      <i class="fa-regular fa-calendar"></i>
-                    </div>
-                    <span>16/08/2022</span>
-                  </div>
-                  <div class="actus-box-content-item-info-preparation-cook">
-                    <div>
-                      <i class="fa-regular fa-message"></i>
-                    </div>
-                    <span>32</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="actus-box-content-item">
-              <div class="actus-box-content-item-category">
-                <span>Blog category</span>
-              </div>
-              <div class="actus-box-content-item-img">
-                <img src="/images/actus-2.png" alt="">
-              </div>
-              <div class="actus-box-content-item-info">
-                <h4>L'analyse des conditions de vie des vâches en Deux sèvres</h4>
-                <div class="actus-box-content-item-info-preparation">
-                  <div class="actus-box-content-item-info-preparation-cook">
-                    <div>
-                      <i class="fa-regular fa-calendar"></i>
-                    </div>
-                    <span>16/08/2022</span>
-                  </div>
-                  <div class="actus-box-content-item-info-preparation-cook">
-                    <div>
-                      <i class="fa-regular fa-message"></i>
-                    </div>
-                    <span>32</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="actus-box-content-item">
-              <div class="actus-box-content-item-category">
-                <span>Blog category</span>
-              </div>
-              <div class="actus-box-content-item-img">
-                <img src="/images/actus-3.png" alt="">
-              </div>
-              <div class="actus-box-content-item-info">
-                <h4>L'analyse des conditions de vie des vâches en Deux sèvres</h4>
-                <div class="actus-box-content-item-info-preparation">
-                  <div class="actus-box-content-item-info-preparation-cook">
-                    <div>
-                      <i class="fa-regular fa-calendar"></i>
-                    </div>
-                    <span>16/08/2022</span>
-                  </div>
-                  <div class="actus-box-content-item-info-preparation-cook">
-                    <div>
-                      <i class="fa-regular fa-message"></i>
-                    </div>
-                    <span>32</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="actus-box-content-item">
-              <div class="actus-box-content-item-category">
-                <span>Blog category</span>
-              </div>
-              <div class="actus-box-content-item-img">
-                <img src="/images/actus-4.png" alt="">
-              </div>
-              <div class="actus-box-content-item-info">
-                <h4>L'analyse des conditions de vie des vâches en Deux sèvres</h4>
-                <div class="actus-box-content-item-info-preparation">
-                  <div class="actus-box-content-item-info-preparation-cook">
-                    <div>
-                      <i class="fa-regular fa-calendar"></i>
-                    </div>
-                    <span>16/08/2022</span>
-                  </div>
-                  <div class="actus-box-content-item-info-preparation-cook">
-                    <div>
-                      <i class="fa-regular fa-message"></i>
-                    </div>
-                    <span>32</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -497,12 +423,12 @@
             améliorant votre alimentation</p>
         </div>
         <div class="download-banner-content-btn">
-          <div class="apple">
+          <!-- <div class="apple">
             <a href=""><img src="/images/download-on-the-app-store-icon-logo_FR.png" alt=""></a>
           </div>
           <div class="android">
             <a href=""><img src="/images/Google_Play_Store_badge_FR.svg" alt=""></a>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -582,7 +508,7 @@ a {
 
 
 /* categorie jasmina */
-
+/* 
 .commerçants {
   display: flex;
   flex-direction: column;
@@ -624,14 +550,16 @@ a {
   min-width: 300px;
   max-width: 500px;
 }
-.commerçants-box-content-item > a {
+
+.commerçants-box-content-item>a {
   display: flex;
   gap: 1rem;
   align-items: center;
   text-align: left;
   margin: 1rem 0 0 1rem;
 }
-.commerçants-box-content-item > a > .shops_type_grid_infos_image{
+
+.commerçants-box-content-item>a>.shops_type_grid_infos_image {
   background-color: #ff8528;
   display: flex;
   align-items: center;
@@ -640,10 +568,144 @@ a {
   height: 40px;
   border-radius: 50px;
 }
-.commerçants-box-content-item > a > .shops_type_grid_infos_image > i{
+
+.commerçants-box-content-item>a>.shops_type_grid_infos_image>i {
   font-size: 1rem;
   color: white;
+} */
+
+/*Commerçant à l'honneur*/
+.commerçants {
+  width: 90%;
+  margin: 5rem auto;  
+  padding-bottom: 2rem;
 }
+
+.commerçants-title {
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+.commerçants-box {
+  display: flex;
+}
+
+.commerçants-box-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.commerçants-box-content-item {
+  max-width: 400px;
+  min-width: 80px;
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: #3A3A3A;
+
+}
+
+.commerçants-box-content-item-img {
+  width: 100%;
+}
+
+.commerçants-box-content-item-img img {
+  height: 250px;
+}
+
+.commerçants-box-content-item-icon {
+  background-color: #ff8528;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.commerçants-box-content-item-icon i {
+  font-size: 1rem;
+  color: #FFF;
+}
+
+.commerçants-box-content-item-category {
+  background-color: #ff8528;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 10%;
+  border-radius: 50px;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.commerçants-box-content-item-category span {
+  color: #FFF;
+}
+
+.commerçants-box-content-item-img {
+  width: 100%;
+}
+
+.commerçants-box-content-item-img img {
+  width: 100%;
+}
+
+.commerçants-box-content-item-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-right: 1px solid var(--Light-grey, #D5D5D5);
+  border-bottom: 1px solid var(--Light-grey, #D5D5D5);
+  border-left: 1px solid var(--Light-grey, #D5D5D5);
+  background: #FFF;
+}
+
+.commerçants-box-content-item-info-preparation {
+  display: flex;
+  gap: 2rem;
+}
+
+.commerçants-box-content-item-info-preparation-cook {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.commerçants-box-content-item-info-preparation-cook i {
+  color: #ff8528;
+}
+
+.commerçants-box-content-item-info-preparation-cook span {
+  color: #93989B;
+}
+
+.commerçants-box-content-item-info-rate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ff8528;
+}
+
+.commerçants-box-content-item-info-rate span {
+  border: 1px solid #ff8528;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+}
+
+
 
 .cta_recipes {
   background-image: url("../../public/images/bg-section-img.png");
