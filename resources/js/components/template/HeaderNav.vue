@@ -1,4 +1,5 @@
 <template>
+  
   <header v-if="this.$route.name == 'Home'">
     <!-- header navigations -->
     <nav>
@@ -20,28 +21,9 @@
                     >commerces</router-link
                   >
                 </li>
-                <li>
-                  <router-link @click="this.setAllRecipe" to="/recipes"
-                    >Recettes</router-link
-                  >
-                </li>
-              </div>
-              
-              <div class="menu_visitor_links_right ">
                 
-                <li id="btn_add_shop">
-                  <router-link
-                    @click="this.setAllShop"
-                    to="/ajoutCommerce"
-                    
-                    >Ajouter un commerce <i class="fa-solid fa-plus"></i
-                  ></router-link>
-                </li>
-                <li>
-                  <router-link to="/profil" id="btn_profil" @click="setUserShop"
-                    ><i class="fa-solid fa-user" style="color: white"></i
-                  ></router-link>
-                </li>
+              </div>
+              <div class="menu_visitor_links_right">
                 <li>
                   <router-link to="/login"> connexion </router-link>
                 </li>
@@ -57,27 +39,23 @@
                     >commerces</router-link
                   >
                 </li>
-                <li>
-                  <router-link @click="this.setAllRecipe" to="/recipes"
-                    >Recettes</router-link
-                  >
-                </li>
+               
               </div>
               <div class="menu_visitor_links_right">
                 <li id="btn_add_shop">
-                  <router-link
-                    @click="this.setAllShop"
-                    to="/ajoutCommerce"
-                    
+                  <router-link @click="this.setAllShop" to="/ajoutCommerce"
                     >Ajouter un commerce <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
-                <li id="profil_btn">
-                  <router-link to="/profil" id="btn_profil" @click="setUserShop"
-                    ><i class="fa-solid fa-user" style="color: #ffffff"></i
-                  ></router-link>
+                <li id="profil_btn" @click="showLinks">
+                  <i class="fa-solid fa-user" style="color: #ffffff"></i>
                 </li>
                 <div id="toggle_menu">
+                  <li>
+                    <router-link to="/profil" @click="setUserShop"
+                      >Profil</router-link
+                    >
+                  </li>
                   <li v-if="this.is_admin" @click="getAllAdminShop">
                     <router-link to="/admin">Admin</router-link>
                   </li>
@@ -101,7 +79,10 @@
       <div class="search_categories">
         <div class="search_category">
           <div class="search_category_image">
-            <i style="color : white; font-size: 2rem" class="fa-solid fa-shop"></i>
+            <i
+              style="color: white; font-size: 2rem"
+              class="fa-solid fa-shop"
+            ></i>
           </div>
           <div class="search_category_name">
             <span>Épicerie</span>
@@ -110,7 +91,10 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <i style="color : white; font-size: 2rem" class="fa-solid fa-seedling"></i>
+            <i
+              style="color: white; font-size: 2rem"
+              class="fa-solid fa-seedling"
+            ></i>
           </div>
           <div class="search_category_name">
             <span>Fruits & légumes</span>
@@ -119,7 +103,10 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <i style="color : white; font-size: 2rem" class="fa-solid fa-drumstick-bite"></i>
+            <i
+              style="color: white; font-size: 2rem"
+              class="fa-solid fa-drumstick-bite"
+            ></i>
           </div>
           <div class="search_category_name">
             <span>Boucherie</span>
@@ -128,7 +115,10 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <i style="color : white; font-size: 2rem" class="fa-solid fa-fish"></i>
+            <i
+              style="color: white; font-size: 2rem"
+              class="fa-solid fa-fish"
+            ></i>
           </div>
           <div class="search_category_name">
             <span>Poissonerie</span>
@@ -137,7 +127,10 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <i style="color : white; font-size: 2rem" class="fa-solid fa-cheese"></i>
+            <i
+              style="color: white; font-size: 2rem"
+              class="fa-solid fa-cheese"
+            ></i>
           </div>
           <div class="search_category_name">
             <span>Fromagerie</span>
@@ -146,7 +139,10 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <i style="color : white; font-size: 2rem" class="fa-solid fa-wine-glass"></i>
+            <i
+              style="color: white; font-size: 2rem"
+              class="fa-solid fa-wine-glass"
+            ></i>
           </div>
           <div class="search_category_name">
             <span>Vin</span>
@@ -155,7 +151,10 @@
 
         <div class="search_category">
           <div class="search_category_image">
-            <i style="color : white; font-size: 2rem" class="fa-solid fa-carrot"></i>
+            <i
+              style="color: white; font-size: 2rem"
+              class="fa-solid fa-carrot"
+            ></i>
           </div>
           <div class="search_category_name">
             <span>Marché producteurs</span>
@@ -192,6 +191,7 @@
       </div>
     </div>
   </header>
+
   <header v-else style="height: 10vh; background-image: none">
     <!-- header navigations -->
     <nav>
@@ -219,25 +219,10 @@
                   >
                 </li>
               </div>
-              
               <div class="menu_visitor_links_right nav2">
                 <li>
                   <router-link to="/login"> connexion </router-link>
                 </li>
-                <li id="btn_add_shop">
-                  <router-link
-                    @click="this.setAllShop"
-                    to="/ajoutCommerce"
-                    
-                    >Ajouter un commerce <i class="fa-solid fa-plus"></i
-                  ></router-link>
-                </li>
-                <li>
-                  <router-link to="/profil" id="btn_profil" @click="setUserShop"
-                    ><i class="fa-solid fa-user" style="color: black"></i
-                  ></router-link>
-                </li>
-                
               </div>
             </div>
             <div v-else class="menu_user_links">
@@ -258,29 +243,31 @@
               </div>
               <div class="menu_visitor_links_right nav2">
                 <li id="btn_add_shop">
-                  <router-link
-                    @click="this.setAllShop"
-                    to="/ajoutCommerce"
-                    
+                  <router-link @click="this.setAllShop" to="/ajoutCommerce"
                     >Ajouter un commerce <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
-                <li>
-                  <router-link to="/profil" id="btn_profil" @click="setUserShop"
-                    ><i class="fa-solid fa-user" style="color: black"></i
-                  ></router-link>
+                <li id="profil_btn" @click="showLinks">
+                  <i class="fa-solid fa-user" style="color: black"></i>
                 </li>
-                <li v-if="this.is_admin" @click="getAllAdminShop">
-                  <router-link to="/admin">Admin</router-link>
-                </li>
-                <li>
-                  <a @click="logOut" id="log_out"
-                    ><i
-                      class="fa-solid fa-right-from-bracket"
-                      style="color: black"
-                    ></i
-                  ></a>
-                </li>
+                <div id="toggle_menu">
+                  <li>
+                    <router-link to="/profil" @click="setUserShop" style="color: black"
+                      >Profil</router-link
+                    >
+                  </li>
+                  <li v-if="this.is_admin" @click="getAllAdminShop">
+                    <router-link to="/admin" style="color: black">Admin</router-link>
+                  </li>
+                  <li>
+                    <a @click="logOut" id="log_out"
+                      ><i
+                        class="fa-solid fa-right-from-bracket"
+                        style="color: black"
+                      ></i
+                    ></a>
+                  </li>
+                </div>
               </div>
             </div>
           </ul>
@@ -312,7 +299,7 @@ export default {
   },
   methods: {
     ...mapActions(useUserStore, ["setLocationAnswered", "setLocation"]),
-    ...mapActions(useShopStore, ["getShopByUserId" , "filterShops", 'setShop' ]),
+    ...mapActions(useShopStore, ["getShopByUserId", "filterShops", "setShop"]),
     logOut() {
       const userStore = useUserStore();
       const shopStore = useShopStore();
@@ -354,15 +341,26 @@ export default {
         });
     },
     handleForm() {
-      this.filterShops({category_id :this.selectCategory })
-      this.$router.push("/commerces")
+      this.filterShops({ category_id: this.selectCategory });
+      this.$router.push("/commerces");
+    },
+    showLinks() {
+      let toggle_menu = document.getElementById("toggle_menu");
+
+      if (toggle_menu.style.display == "flex") {
+        console.log(toggle_menu.style.display == "flex");
+        toggle_menu.style.display = "none";
+      } else {
+        console.log("no");
+        toggle_menu.style.display = "flex";
+      }
     },
   },
   created() {
     if (this.$route.name != "Home") {
       this.headerStyle = "height:10vh";
     }
-    this.setShop()
+    this.setShop();
   },
 };
 </script>
@@ -376,7 +374,7 @@ header {
   background-size: cover;
   height: 90vh;
 }
-@keyframes show { 
+@keyframes show {
   0% {
     opacity: 0;
   }
@@ -388,7 +386,7 @@ header {
 a:hover {
   color: #ff8528;
 }
-a{
+a {
   color: white;
 }
 .menu_wrapper {
@@ -404,20 +402,16 @@ a{
   width: 35%;
   flex-direction: column;
   align-items: flex-end;
-  gap: .5rem;
-  padding: .5rem 1rem;
+  gap: 0.5rem;
   display: none;
   animation-name: show;
   animation-duration: 500ms;
+  z-index: 1;
 }
 .menu_logo {
   flex-basis: 20%;
   display: flex;
   align-items: center;
-}
-#profil_btn:hover+#toggle_menu{
-  display: flex;
- 
 }
 .menu_logo > img {
   width: 100%;
@@ -441,7 +435,7 @@ a{
 }
 .menu_visitor_links_left {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-basis: 30%;
 }
 .menu_visitor_links_right {
@@ -468,14 +462,14 @@ a{
   font-size: 1rem;
 }
 #btn_profil > a:hover {
-color: white !important;
+  color: white !important;
 }
 #log_out {
   font-size: 1.5rem;
 }
 .menu_visitor_links_left,
 .menu_visitor_links_right > li {
-  color: white ;
+  color: white;
   font-family: "Raleway", sans-serif;
   font-size: 18px;
   text-transform: capitalize;

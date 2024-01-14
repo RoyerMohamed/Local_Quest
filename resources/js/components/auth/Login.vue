@@ -29,6 +29,16 @@
             v-model="user.password"
             placeholder="Password"
           />
+
+          </div>
+          <div class="mb-3">
+            <input
+            type="password"
+            name="password_confimation"
+            v-model="user.password_confimation"
+            placeholder="Confirmation de mot de passe"
+          />
+
           </div>
         
           <div class="btns">
@@ -99,6 +109,7 @@ export default {
       user: {
         user_name: "",
         password: "",
+        password_confimation: "",
       },
       formData: new FormData(),
       validationErrors: "",
@@ -113,6 +124,8 @@ export default {
       axios
         .get("sanctum/csrf-cookie")
         .then(() => {
+
+
           axios
             .post("http://127.0.0.1:8000/api/login", {
               user_name: this.user.user_name,

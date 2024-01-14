@@ -62,7 +62,7 @@ class ShopController extends Controller
                 "latitude" => 'required',
                 "department_id" => 'required',
                 "category_id" => 'required',
-                'image' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
+                'image.*' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
             ]
         );
         if ($validator->fails()) {
@@ -101,6 +101,7 @@ class ShopController extends Controller
         }
         $shopImage = "";
         if ($request->hasFile('image')){
+            //dd($request->image);
             $shopImage = UploadImage($request->image, Auth::user()->id ,$shop->id );
         }else{
             Image::create([

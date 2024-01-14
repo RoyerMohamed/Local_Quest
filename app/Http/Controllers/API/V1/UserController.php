@@ -15,8 +15,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-
-        $this->middleware('auth:sanctum')->except(['store', 'index']);
+        $this->middleware('auth:sanctum')->except(['store']);
     }
 
     /**
@@ -60,6 +59,7 @@ class UserController extends Controller
         ]);
 
         if ($request->has('image')) {
+            dd($request->image);
             $user->update([
                 "profil_picture" => $request->hasFile('image') ? UploadImage($request->image, $user->id) : 0
             ]);
@@ -98,7 +98,6 @@ class UserController extends Controller
 
 
         if ($validator->fails()) {
-
             return response()->json([['errors' => $validator->errors()]], 422);
         }
 
@@ -107,7 +106,6 @@ class UserController extends Controller
         $user->update($request->all());
         return response()->json(['message' => 'L\'utilisateur a été modifier', 'user' => $user], 200);
     }
-
 
     public function updateImage(Request $request, User $user)
     {
@@ -119,22 +117,21 @@ class UserController extends Controller
             ]
         );
 
-
         if ($validator->fails()) {
-
             return response()->json([['errors' => $validator->errors()]], 422);
         }
 
-        $userImage = UploadImage($request->image, Auth::user()->id);
-        $user = User::find(Auth::user()->id);
-        $user->update([
-            "profil_picture" => $userImage
-        ]);
+        if ($request->hasFile('image')) {
+            $userImage = UploadImage($request->image, Auth::user()->id);
+            $user = User::find(Auth::user()->id);
+            $user->update([
+                "profil_picture" => $userImage
+            ]);
+            return response()->json(['message' => 'L\'utilisateur a été modifier', 'userImage' => $userImage], 200);
+        }
 
-        return response()->json(['message' => 'L\'utilisateur a été modifier', 'userImage' => $userImage], 200);
+        return response()->json(['errors' => "il y a un soucis avec votre images"], 200);
     }
-
-
 
     public function updatepassword(Request $request, User $user)
     {

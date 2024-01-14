@@ -200,11 +200,11 @@ export default {
   },
   methods: {
     ...mapActions(useShopStore, ["addShop"]),
-
+   
     async handleForm() {
       this.formData.append("image", this.$refs.image.files[0]);
-      console.log(this.products_id);
-      console.log(this.formData.get("image"));
+  
+      console.log(this.$refs.image.files);
 
       await axios
         .get(
@@ -236,7 +236,7 @@ export default {
               phone_number: this.phone_number,
               longitude: this.longitude,
               latitude: this.latitude,
-              image: this.$refs.image.files[0],
+              image: this.$refs.image.files,
               products_id: this.products_id,
             },
             {

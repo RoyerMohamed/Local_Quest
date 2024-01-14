@@ -736,7 +736,7 @@ a {
 }
 
 .commerçants-box-content-item {
-  background: url(../../public/images/epicerie-1.png);
+  background: url('../../public/images/epicerie-1.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

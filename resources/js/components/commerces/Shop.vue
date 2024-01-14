@@ -1,6 +1,7 @@
 <template>
   <div v-if="this.shop" class="shop-card">
     <div class="shop-card-img">
+      
       <img
         :src="
           this.shop.images[0].image_name === 'default_shop.jpg'

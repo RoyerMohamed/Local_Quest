@@ -8,7 +8,7 @@
     v-if="this.validationResponse"
   />
   <div class="profil">
-    <h1>Profil</h1>
+    <h1 class="text-center pt-3 pb-3">Profil</h1>
     <div class="profil_wrapper">
       <div class="profil_infos">
         <form @submit.prevent="userUpdate" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
             />
           </div>
           <div class="profil_edit-import-img">
-            <img v-bind:src="this.previewImage + this.image" alt="" srcset="" />
+            <img v-bind:src="this.previewImageStorage + this.image" alt="" srcset="" />
             <input ref="fileInput" type="file" name="image" />
           </div>
           <div class="d-flex justify-content-end">

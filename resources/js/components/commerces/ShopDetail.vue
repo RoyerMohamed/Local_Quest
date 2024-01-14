@@ -1,17 +1,31 @@
 <template>
     <div id="shop">
         <div class="shop_hero">
-            <img :src="this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
-            <img :src="this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
-            <img :src="this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
-            <img :src="this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
+            <!-- <img :src=" this.setCurrentShop.images[0].image_name === 'default_shop.jpg'
+            ? this.previewImagePublic + this.setCurrentShop.images[0].image_name
+            : this.previewImageStorage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
+            
+            <img :src=" this.setCurrentShop.images[0].image_name === 'default_shop.jpg'
+            ? this.previewImagePublic + this.setCurrentShop.images[0].image_name
+            : this.previewImageStorage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
+            
+            <img :src=" this.setCurrentShop.images[0].image_name === 'default_shop.jpg'
+            ? this.previewImagePublic + this.setCurrentShop.images[0].image_name
+            : this.previewImageStorage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
+            
+            <img :src=" this.setCurrentShop.images[0].image_name === 'default_shop.jpg'
+            ? this.previewImagePublic + this.setCurrentShop.images[0].image_name
+            : this.previewImageStorage + this.setCurrentShop.images[0].image_name" alt="" srcset="">  -->
+
+            <img :src=" this.previewImagePublic + this.setCurrentShop.images[0].image_name" alt="" srcset="">  
         </div>
         <div class="after-hero ">
-            <div class="container pt-3">
+            <div class="after-hero-wrapper pt-3">
                 <Breadcrumb class="" />
                 <h3 class="after-hero-title">{{ this.setCurrentShop.shop_title }}</h3>
                 <span>{{ this.setCurrentShop.adresse }} {{ this.setCurrentShop.department.department_name }}, {{
-                    this.setCurrentShop.zip_code }}</span>
+                    this.setCurrentShop.zip_code }}
+                </span>
                 <div class="after-hero-stars">
                     <div v-for="star in 5" :key="star">
                         <i v-if="star > Math.round(this.setCurrentShop.rating)" class="fa-regular fa-star"></i>
@@ -25,19 +39,14 @@
                             product.product_name }}</li>
                     </ul>
                 </div>
-
             </div>
         </div>
         <div class="shop-wrapper">
-            <div class="shop-desc">
+            <div class="shop-desc ">
                 <div class="shop-desc-container">
-
                     <div class="">
                         <p> {{ this.setCurrentShop.description }}</p>
                     </div>
-
-
-
                 </div>
                 <div class="shop-info">
                     <div class="shop-info-map">
@@ -86,7 +95,6 @@
             </div>
 
         </div>
-
     </div>
 </template>
 <script>
@@ -100,6 +108,7 @@ export default {
     data() {
         return {
             previewImage: "http://[::1]:5173/public/images/",
+            previewImageStorage: "http://[::1]:5173/public/storage/",
             shop: ''
         }
     }, components: {
@@ -127,14 +136,17 @@ export default {
 .shop_hero {
     display: flex;
     height: 30vh;
-
 }
 
 .after-hero {
     border-bottom: 1px solid gray;
     // background: #FAFAFA;
+   
 }
-
+.after-hero-wrapper{
+    width: 80%;
+    margin: 0 auto;
+}
 .after-hero-title {
     font-size: 2rem;
     font-weight: bold;
@@ -154,10 +166,10 @@ export default {
 
 .shop-desc {
     display: flex;
-    width: 80vw;
     margin: 0 auto;
     gap: 2rem;
-
+    justify-content: space-between;
+    width:calc(85% - 2rem);
 }
 
 .shop_hero>img {
@@ -235,6 +247,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    min-width: 65%;
 }
 
 .shop-review {
@@ -247,6 +260,7 @@ export default {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+    padding: 0;
 
 }
 
