@@ -1,13 +1,11 @@
 <template>
   <div v-if="this.shop" class="shop-card">
     <div class="shop-card-img">
-      
-      <img
-        :src="
-          this.shop.images[0].image_name === 'default_shop.jpg'
-            ? this.previewImagePublic + this.shop.images[0].image_name
-            : this.previewImageStorage + this.shop.images[0].image_name
-        "
+    <img v-if="this.shop.images.length === 1 && this.shop.images[0].image_name !== 'default_shop.jpg'" :src=" this.previewImageStorage + this.shop.images[0].image_name" alt="">
+
+
+      <img v-else
+        :src=" this.previewImagePublic + 'default_shop.jpg'"
         class=""
         alt=""
       />
@@ -53,12 +51,12 @@ export default {
 
 <style lang="scss" scoped>
 .shop-card {
-  width: 49%;
-  
+  width:45%;
 }
 .shop-card-img > img{
   border-radius: 5px;
-
+width: clamp(300px , 100% , 500px);
+height: 400px;
 }
 .shop-card-stars {
   display: flex;

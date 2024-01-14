@@ -1,24 +1,23 @@
 <template>
     <div id="shop">
-        <div class="shop_hero">
-            <!-- <img :src=" this.setCurrentShop.images[0].image_name === 'default_shop.jpg'
-            ? this.previewImagePublic + this.setCurrentShop.images[0].image_name
-            : this.previewImageStorage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
-            
-            <img :src=" this.setCurrentShop.images[0].image_name === 'default_shop.jpg'
-            ? this.previewImagePublic + this.setCurrentShop.images[0].image_name
-            : this.previewImageStorage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
-            
-            <img :src=" this.setCurrentShop.images[0].image_name === 'default_shop.jpg'
-            ? this.previewImagePublic + this.setCurrentShop.images[0].image_name
-            : this.previewImageStorage + this.setCurrentShop.images[0].image_name" alt="" srcset="">
-            
-            <img :src=" this.setCurrentShop.images[0].image_name === 'default_shop.jpg'
-            ? this.previewImagePublic + this.setCurrentShop.images[0].image_name
-            : this.previewImageStorage + this.setCurrentShop.images[0].image_name" alt="" srcset="">  -->
 
-            <img :src=" this.previewImagePublic + this.setCurrentShop.images[0].image_name" alt="" srcset="">  
+        <div v-if="this.setCurrentShop.images.length > 1" class="shop_hero">
+            <img v-for="image in this.setCurrentShop.images" :key="image.id" :src="this.previewImageStorage + image.image_name" alt="">
         </div>
+
+        <div v-if="this.setCurrentShop.images.length == 1 && this.setCurrentShop.images[0].image_name !== 'default_shop.jpg' " class="shop_hero">
+            <img v-for="image in this.setCurrentShop.images" :key="image.id" :src="this.previewImageStorage + image.image_name" alt="">
+            <img :src=" this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset=""> 
+            <img :src=" this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset=""> 
+            <img :src=" this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset=""> 
+        </div>
+
+        <div v-else class="shop_hero">
+            <img :src=" this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset=""> 
+            <img :src=" this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset=""> 
+            <img :src=" this.previewImage + this.setCurrentShop.images[0].image_name" alt="" srcset=""> 
+        </div>
+
         <div class="after-hero ">
             <div class="after-hero-wrapper pt-3">
                 <Breadcrumb class="" />

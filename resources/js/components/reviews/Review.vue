@@ -5,17 +5,7 @@
                 <h2>Comments</h2>
                 <div class="tag">{{ this.reviews.length }}</div>
             </div>
-            <div class="group-radio">
-                <span class="button-radio">
-                    <input id="latest" name="latest" type="radio" checked>
-                    <label for="latest">Latest</label>
-                </span>
-                <div class="divider"></div>
-                <span class="button-radio">
-                    <input id="popular" name="latest" type="radio">
-                    <label for="popular">Popular</label>
-                </span>
-            </div>
+         
         </div>
         <div class="writing">
             <form @submit.prevent="sendMessage">
@@ -122,7 +112,9 @@ export default {
 
 .block-header .title {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    gap: 1rem;
+
 }
 
 .block-header .title .tag {
@@ -137,7 +129,7 @@ export default {
     letter-spacing: 0.04em;
     text-transform: uppercase;
     font-weight: 500;
-    font-size: 10px;
+    font-size: 1rem;
     line-height: 16px;
     border: 1px solid #e8e8e8;
     border-radius: 96px;
