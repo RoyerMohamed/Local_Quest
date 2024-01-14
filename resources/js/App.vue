@@ -106,7 +106,7 @@
         </div>
       </div> -->
 
-      <!-- Commerçants à lh'onner  -->
+      <!-- Commerçants à l'honner  -->
 
       <div class="commerçants">
         <div class="commerçants-title">
@@ -185,7 +185,7 @@
             </a>
             <a href="" class="commerçants-box-content-item">
               <div>
-                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-cow"></i></div>
+                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-wine-bottle"></i></div>
                 <div class="commerçants-box-content-item-img">
                   <img src="/images/vin-1.png" alt="">
                 </div>
@@ -209,12 +209,13 @@
         </div>
       </div>
       <!-- Banner CTA  -->
-      <div class="cta_recipes">
-        <div class="cta_recipes_wrapper">
-          <div class="cta_recipes_title">
-            <h2>Réalisez vos meilleurs recette locales !</h2>
+      <!-- CTA Banner -->
+      <div class="cta_banner">
+        <div class="cta_banner_wrapper">
+          <div class="cta_banner_title">
+            <h2>Améliorez votre consommation au quotidien</h2>
           </div>
-          <div class="cta_recipes_text">
+          <div class="cta_banner_text">
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit, luctus
               nisi malesuada taciti turpis habitant hendrerit, auctor augue
@@ -223,16 +224,15 @@
               sollicitudin auctor, a fringilla dignissim at mattis parturient.
             </p>
           </div>
-          <div class="cta_recipes_btn">
-            <div class="search_bar_btn">
-              <button type="submit">
-                Ajouter a la list
-                <i class="fa-solid fa-greater-than" style="color: #ffffff"></i>
-              </button>
-            </div>
+          <div class="cta_banner_btn">
+              <div  class="master-btn">
+                Voir les commerçants locaux 
+                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff"></i>
+              </div>
           </div>
         </div>
       </div>
+
 
       <!--Comment fonctionne l'app-->
       <div class="howitswork ">
@@ -279,12 +279,12 @@
       </div>
 
       <!-- CTA Banner -->
-      <div class="cta_recipes">
-        <div class="cta_recipes_wrapper">
-          <div class="cta_recipes_title">
-            <h2>Réalisez vos meilleurs recette locales !</h2>
+      <div class="cta_banner">
+        <div class="cta_banner_wrapper">
+          <div class="cta_banner_title">
+            <h2>Enregistrez votre commerce pour atteindre vos clients</h2>
           </div>
-          <div class="cta_recipes_text">
+          <div class="cta_banner_text">
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit, luctus
               nisi malesuada taciti turpis habitant hendrerit, auctor augue
@@ -293,24 +293,22 @@
               sollicitudin auctor, a fringilla dignissim at mattis parturient.
             </p>
           </div>
-          <div class="cta_recipes_btn">
-            <div class="search_bar_btn">
-              <button type="submit">
-                Ajouter a la list
-                <i class="fa-solid fa-greater-than" style="color: #ffffff"></i>
-              </button>
-            </div>
+          <div class="cta_banner_btn">
+              <div  class="master-btn">
+                Créer mon compte commerçant 
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
           </div>
         </div>
       </div>
 
       <!-- Avis clients -->
-      <div class="avisclients">
+      <div class="avisclient">
         <div class="avisclient-title">
           <h3>Ce que pense les utilisateurs de Local Quest</h3>
           <p>Déja plus de 8 milles utilisateurs</p>
         </div>
-        <div class="avisclients-box">
+        <div class="avisclient-box">
           <div class="avisclient-box-content">
             <div class="avisclient-box-content-item">
               <div class="avisclient-box-content-item-avatar">
@@ -486,6 +484,22 @@ a {
 }
 
 
+.master-btn {
+  transition: all 250ms;
+  height: 4rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ff8528;
+  background-color: #ff8528;
+  color: white;
+  text-decoration: none;
+  font-size: .85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.248px;
+  text-transform: uppercase;
+}
 
 .shops_type_grid_infos_image>img {
   background-color: #ff8528;
@@ -505,74 +519,6 @@ a {
   padding: 1.5rem 1.5rem;
 }
 
-
-
-/* categorie jasmina */
-/* 
-.commerçants {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 80%;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-  text-align: center;
-}
-
-.commerçants-title {
-  width: 50%;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-  text-align: center;
-}
-
-.commerçants-box {
-  display: flex;
-  width: 100%;
-
-}
-
-.commerçants-box-content {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.commerçants-box-content-item {
-  background: url('../../public/images/epicerie-1.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 40vh;
-  width: 23%;
-  min-width: 300px;
-  max-width: 500px;
-}
-
-.commerçants-box-content-item>a {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  text-align: left;
-  margin: 1rem 0 0 1rem;
-}
-
-.commerçants-box-content-item>a>.shops_type_grid_infos_image {
-  background-color: #ff8528;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-}
-
-.commerçants-box-content-item>a>.shops_type_grid_infos_image>i {
-  font-size: 1rem;
-  color: white;
-} */
 
 /*Commerçant à l'honneur*/
 .commerçants {
@@ -705,22 +651,21 @@ a {
   border-radius: 50px;
 }
 
-
-
-.cta_recipes {
-  background-image: url("../../public/images/bg-section-img.png");
+/*CTA BANNER*/
+.cta_banner {
+  background-image: url("../../public/images/marché-local 1.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  height: 50vh;
+  height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.cta_recipes_wrapper {
-  width: 50%;
+.cta_banner_wrapper {
+  width: 70%;
   color: white;
   text-align: center;
   display: flex;
@@ -729,85 +674,16 @@ a {
   gap: 1rem;
 }
 
-.cta_recipes_title>h2 {
+.cta_banner_title>h2 {
   font-size: 40px;
   font-weight: 600;
 }
 
-.search_bar_btn {
+.cta_banner_btn > .master-btn{
   display: flex;
+  align-items: center;
+  justify-items: center;
   gap: 1rem;
-}
-
-.search_bar_btn>button {
-  background: #ff8528;
-  padding: 1rem;
-  border-radius: 5px;
-  color: white;
-  font-family: "Raleway", sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 20px;
-  min-width: 150px;
-  justify-content: center;
-}
-
-.see_recipes {
-  width: 80vw;
-  margin: 0 auto;
-}
-
-.see_recipes_title {
-  text-align: center;
-  font-size: 2rem;
-}
-
-.see_recipes_card_bg {
-  background-image: url(../../public/images/recette-burger.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 240px;
-  min-width: 340px;
-  display: flex;
-}
-
-/* .see_recipes_card {
-} */
-.see_recipes_card_infos {
-  border-right: 1px solid #efefef;
-  border-left: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
-  padding: 1.5rem;
-}
-
-.see_recipes_card_infos_wrapper {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 1.5rem;
-}
-
-.see_recipes_card_infos_title>h4 {
-  font-size: 1.5rem;
-}
-
-.see_recipes_card_infos_time {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.see_recipes-flex {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.see_recipes_wrapper {
-  margin: 1.5rem 0;
 }
 
 /* COMMENT ÇA MARCHE */
@@ -857,148 +733,12 @@ a {
   width: 90%;
 }
 
-/* ---- ACTUS LOCALES ---- */
-
-.actus {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-  text-align: center;
-
-}
-
-.actus-title {
-  width: 50%;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-  text-align: center;
-
-}
-
-.actus-box {
-  display: flex;
-}
-
-.actus-box-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.actus-box-content-item {
-  max-width: 400px;
-  min-width: 80px;
-  width: 23%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.actus-box-content-item-img {
-  width: 100%;
-}
-
-.actus-box-content-item-img img {
-  height: 250px;
-}
-
-.actus-box-content-item-icon {
-  background-color: #ff8528;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-}
-
-.actus-box-content-item-icon i {
-  font-size: 1rem;
-  color: white;
-}
-
-.actus-box-content-item-category {
-  background-color: #ff8528;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30%;
-  height: 10%;
-  border-radius: 50px;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-}
-
-.actus-box-content-item-category span {
-  color: white;
-}
-
-.actus-box-content-item-img {
-  width: 100%;
-}
-
-.actus-box-content-item-img img {
-  width: 100%;
-}
-
-.actus-box-content-item-info {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: 1.5rem;
-  border-right: 1px solid var(--Light-grey, #D5D5D5);
-  border-bottom: 1px solid var(--Light-grey, #D5D5D5);
-  border-left: 1px solid var(--Light-grey, #D5D5D5);
-  background: #FFF;
-}
-
-.actus-box-content-item-info-preparation {
-  display: flex;
-  gap: 2rem;
-}
-
-.actus-box-content-item-info-preparation-cook {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.actus-box-content-item-info-preparation-cook i {
-  color: #ff8528;
-}
-
-.actus-box-content-item-info-preparation-cook span {
-  color: #93989B;
-}
-
-.actus-box-content-item-info-rate {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #ff8528;
-}
-
-.actus-box-content-item-info-rate span {
-  border: 1px solid #ff8528;
-  display: flex;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
-}
-
-
 /* ---- AVIS CLIENTS ---- */
 
 .avisclient {
+  margin: 4rem auto;
   display: flex;
+  flex-direction: column;
 
 }
 
@@ -1010,37 +750,39 @@ a {
 }
 
 .avisclient-box-content {
-  width: 70%;
+  width: 80%;
   margin: 5rem auto;
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 3rem;
 }
 
-.avisclient-box-item {
+.avisclient-box-content-item {
   display: flex;
-  width: 50%;
-}
-
-.avisclient-box-item-avatar {
   width: 70%;
-  display: flex;
+  gap: 1rem;
 }
 
-.avisclient-box-item-avatar img {
+.avisclient-box-content-item-avatar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.avisclient-box-content-item-avatar > img {
   width: 140px;
   height: 120px;
   border-radius: 200px;
 }
 
-.avisclient-box-item-avatar-icon {
+.avisclient-box-content-item-avatar-icon {
   width: 50%;
   margin-left: -2rem;
   display: flex;
   align-items: center;
 }
 
-.avisclient-box-item-avatar-icon i {
+.avisclient-box-content-item-avatar-icon >i {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1054,7 +796,7 @@ a {
   border: 2px solid white;
 }
 
-.avisclient-box-item-info>span {
+.avisclient-box-content-item-info>span {
   color: #ff8528;
 }
 
