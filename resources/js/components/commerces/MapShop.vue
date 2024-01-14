@@ -70,7 +70,7 @@ export default {
           this.shops.forEach((shop) => {
             let fontAwesomeIcon = L.divIcon({
             // on crée un icône correspondant à celui choisi pour la catégorie
-            html: `<span style="text-shadow: 2px 2px 4px #fff; color: ${shop.category.category_color}">${shop.category.category_name}</span>`,
+            html: `<span style="text-shadow: 2px 2px 4px #fff; color: ${shop.category.category_color}; border: 1px solid red; padding: 1rem;">${shop.category.category_name}</span>`,
             iconSize: [40, 40],
           });
 
