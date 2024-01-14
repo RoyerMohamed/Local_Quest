@@ -71,7 +71,7 @@
             <p>Épicerie</p>
           </div>
         </a>
-        <a>
+        <a href="">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-carrot"></i>
             <p>Fruits & Légumes</p>
