@@ -14,29 +14,29 @@
             <div v-if="!this.token" class="menu_visitor_links">
               <div class="menu_visitor_links_left">
                 <li>
-                  <router-link to="/">Acceuil</router-link>
+                  <router-link to="/">Accueil</router-link>
                 </li>
                 <li>
                   <router-link @click="this.setAllShop" to="/commerces"
-                    >commerces</router-link
+                    >Commerçants</router-link
                   >
                 </li>
                 
               </div>
               <div class="menu_visitor_links_right">
                 <li>
-                  <router-link to="/login"> connexion </router-link>
+                  <router-link to="/login"> Connexion </router-link>
                 </li>
               </div>
             </div>
             <div v-else class="menu_user_links">
               <div class="menu_visitor_links_left">
                 <li>
-                  <router-link to="/">Acceuil</router-link>
+                  <router-link to="/">Accueil</router-link>
                 </li>
                 <li>
                   <router-link @click="this.setAllShop" to="/commerces"
-                    >commerces</router-link
+                    >Commerçants</router-link
                   >
                 </li>
                
@@ -44,7 +44,7 @@
               <div class="menu_visitor_links_right">
                 <li id="btn_add_shop">
                   <router-link @click="this.setAllShop" to="/ajoutCommerce"
-                    >Ajouter un commerce <i class="fa-solid fa-plus"></i
+                    >Proposer un commerçant <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
                 <li id="profil_btn" @click="showLinks">
@@ -74,121 +74,54 @@
         </div>
       </div>
     </nav>
-    <!-- serch Shop -->
-    <div class="search">
-      <div class="search_categories">
-        <div class="search_category">
-          <div class="search_category_image">
-            <i
-              style="color: white; font-size: 2rem"
-              class="fa-solid fa-shop"
-            ></i>
-          </div>
-          <div class="search_category_name">
-            <span>Épicerie</span>
-          </div>
+    <!-- SEARCH SHOP -->
+    <div class="hero-search">
+      <div class="hero-search-icons">
+        <div class="hero-search-icons-item">
+          <i class="fa-solid fa-shop"></i>
+          <p>Épicerie</p>
         </div>
-
-        <div class="search_category">
-          <div class="search_category_image">
-            <i
-              style="color: white; font-size: 2rem"
-              class="fa-solid fa-seedling"
-            ></i>
-          </div>
-          <div class="search_category_name">
-            <span>Fruits & légumes</span>
-          </div>
+        <div class="hero-search-icons-item ">
+          <i class="fa-solid fa-bread-slice"></i>
+          <p>Boulangerie</p>
         </div>
-
-        <div class="search_category">
-          <div class="search_category_image">
-            <i
-              style="color: white; font-size: 2rem"
-              class="fa-solid fa-drumstick-bite"
-            ></i>
-          </div>
-          <div class="search_category_name">
-            <span>Boucherie</span>
-          </div>
+        <div class="hero-search-icons-item">
+          <i class="fa-solid fa-carrot"></i>
+          <p>Fruits & Légumes</p>
         </div>
-
-        <div class="search_category">
-          <div class="search_category_image">
-            <i
-              style="color: white; font-size: 2rem"
-              class="fa-solid fa-fish"
-            ></i>
-          </div>
-          <div class="search_category_name">
-            <span>Poissonerie</span>
-          </div>
+        <div class="hero-search-icons-item">
+          <i class="fa-solid fa-drumstick-bite"></i>
+          <p>Boucherie & Charcuterie</p>
         </div>
-
-        <div class="search_category">
-          <div class="search_category_image">
-            <i
-              style="color: white; font-size: 2rem"
-              class="fa-solid fa-cheese"
-            ></i>
-          </div>
-          <div class="search_category_name">
-            <span>Fromagerie</span>
-          </div>
+        <div class="hero-search-icons-item">
+          <i class="fa-solid fa-fish"></i>
+          <p>Poissonnerie</p>
         </div>
-
-        <div class="search_category">
-          <div class="search_category_image">
-            <i
-              style="color: white; font-size: 2rem"
-              class="fa-solid fa-wine-glass"
-            ></i>
-          </div>
-          <div class="search_category_name">
-            <span>Vin</span>
-          </div>
+        <div class="hero-search-icons-item">
+          <i class="fa-solid fa-cheese"></i>
+          <p>Fromagerie</p>
         </div>
-
-        <div class="search_category">
-          <div class="search_category_image">
-            <i
-              style="color: white; font-size: 2rem"
-              class="fa-solid fa-carrot"
-            ></i>
-          </div>
-          <div class="search_category_name">
-            <span>Marché producteurs</span>
-          </div>
+        <div class="hero-search-icons-item">
+          <i class="fa-solid fa-wine-bottle"></i>
+          <p>Caviste</p>
+        </div>
+        <div class="hero-search-icons-item">
+          <i class="fa-solid fa-store"></i>
+          <p>Marché de producteurs</p>
         </div>
       </div>
-      <div class="search_bar">
-        <form @submit.prevent="handleForm">
-          <div class="serach_bar_container">
-            <label for="">Recherche par categories</label>
-            <select name="categories" v-model="selectCategory" id="">
-              <option
-                v-for="category in this.categories"
-                :key="category.id"
-                :value="category.id"
-              >
-                {{ category.category_name }}
-              </option>
-            </select>
-            <span
-              ><i
-                class="fa-solid fa-magnifying-glass"
-                style="color: #374957"
-              ></i
-            ></span>
-          </div>
-          <div class="search_bar_btn">
-            <button type="submit">
-              Trouver un commerçant
-              <i class="fa-solid fa-greater-than" style="color: #ffffff"></i>
-            </button>
-          </div>
-        </form>
-      </div>
+      <form class="input-group " @submit.prevent="handleForm">
+        <select class="form-select" v-model="selectCategory" id="inputGroupSelect04" aria-label="Example select with button addon">
+          <option  value="" disabled selected>Sélectionnez une catégorie de commerçant</option>
+          <option v-for="category in this.categories" :key="category.id" :value="category.id">
+            {{ category.category_name }}
+          </option>
+        </select>
+
+        <button type="submit" class="master-btn d-flex align-items-center">
+          Trouver un commerçant
+        </button>
+      </form>
     </div>
   </header>
 
@@ -206,45 +139,35 @@
             <div v-if="!this.token" class="menu_visitor_links">
               <div class="menu_visitor_links_left nav2">
                 <li>
-                  <router-link to="/">Acceuil</router-link>
+                  <router-link to="/">Accueil</router-link>
                 </li>
                 <li>
                   <router-link @click="this.setAllShop" to="/commerces"
-                    >commerces</router-link
-                  >
-                </li>
-                <li>
-                  <router-link @click="this.setAllRecipe" to="/recipes"
-                    >Recettes</router-link
+                    >Commerçants</router-link
                   >
                 </li>
               </div>
               <div class="menu_visitor_links_right nav2">
                 <li>
-                  <router-link to="/login"> connexion </router-link>
+                  <router-link to="/login"> Connexion </router-link>
                 </li>
               </div>
             </div>
             <div v-else class="menu_user_links">
               <div class="menu_visitor_links_left nav2">
                 <li>
-                  <router-link to="/">Acceuil</router-link>
+                  <router-link to="/">Accueil</router-link>
                 </li>
                 <li>
                   <router-link @click="this.setAllShop" to="/commerces"
-                    >commerces</router-link
-                  >
-                </li>
-                <li>
-                  <router-link @click="this.setAllRecipe" to="/recipes"
-                    >Recettes</router-link
+                    >Commerçants</router-link
                   >
                 </li>
               </div>
               <div class="menu_visitor_links_right nav2">
                 <li id="btn_add_shop">
                   <router-link @click="this.setAllShop" to="/ajoutCommerce"
-                    >Ajouter un commerce <i class="fa-solid fa-plus"></i
+                    >Ajouter un commerçant <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
                 <li id="profil_btn" @click="showLinks">
@@ -445,15 +368,30 @@ a {
   position: relative;
 }
 #btn_add_shop {
-  border: 2px solid white;
+  transition: all 250ms;
+  height: 4rem;
   padding: 1rem;
-  border-radius: 5px;
-  display: flex;
-  gap: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ff8528;
+  background-color: #ff85280f;
+  text-decoration: none;
+  font-size: .85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.248px;
+  text-transform: uppercase;
 }
-
+#btn_add_shop > a{
+  color: #ff8528;
+  font-weight: 600;
+}
 #btn_add_shop:hover {
+  border: 1px solid #ff8528;
   background-color: #ff8528;
+}
+#btn_add_shop:hover > a{
+  color: white;
 }
 #btn_profil {
   border-radius: 50%;
@@ -485,83 +423,66 @@ a {
   align-items: center;
 }
 /* search */
-.search {
+.hero-search {
+  padding-top: 16rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.hero-search-icons {
+  width: 70%;
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  gap: 25%;
-  height: 75%;
-  margin: 5rem auto;
+  gap: 2rem;
+  color: white;
 }
-.search_category {
+
+.hero-search-icons-item {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
-.search_categories {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 60%;
+
+.hero-search-icons-item i {
+  font-size: 32px;
 }
-.search_bar {
-  width: 70%;
-}
-.search_bar > form {
-  width: 100%;
-}
-.serach_bar_container {
-  display: flex;
-  width: 100%;
-  background-color: white;
-  border-radius: 5px;
-  flex-wrap: wrap;
-  padding: 0 1rem;
-}
-.serach_bar_container > label {
-  width: 15%;
-  display: flex;
-  align-items: center;
-}
-.serach_bar_container > select {
-  width: 80%;
-  height: 60px;
-}
-.serach_bar_container > span {
-  font-size: 2rem;
-  width: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.search_category_image {
-  display: flex;
-  justify-content: center;
-}
-.search_category_image > img {
-  width: 100%;
-  max-width: 56px;
-}
-.search_category_name {
+
+.hero-search-icons-item p {
+  /* @include text-style('subtitle1'); */
   color: white;
-  text-align: center;
 }
-.search_bar_btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
+
+.hero-search .input-group {
+  width: 55%;
 }
-.search_bar_btn > button {
-  background: #ff8528;
+
+.master-btn {
+  transition: all 250ms;
+  height: 4rem;
   padding: 1rem;
-  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid #ff8528;
+  background-color: #ff8528;
   color: white;
-  font-family: "Raleway", sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 20px;
+  text-decoration: none;
+  font-size: .85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.248px;
+  text-transform: uppercase;
 }
+
+.master-btn:hover{
+  border: 1px solid #ff8528;
+  background-color: transparent;
+  color: #ff8528;
+}
+
+
 /* type of shops  */
 </style>
