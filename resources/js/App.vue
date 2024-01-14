@@ -515,7 +515,7 @@
 
 <script>
 import HeaderNav from "./components/template/HeaderNav.vue";
-import Footer from "./components/template/footer.vue";
+import Footer from "./components/template/Footer.vue";
 import { useShopStore } from "./stores/shopStore";
 import { mapActions, mapState } from "pinia";
 import axios from "axios";

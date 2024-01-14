@@ -202,9 +202,7 @@ export default {
     ...mapActions(useShopStore, ["addShop"]),
    
     async handleForm() {
-      this.formData.append("image", this.$refs.image.files[0]);
-  
-      console.log(this.$refs.image.files);
+      
 
       await axios
         .get(

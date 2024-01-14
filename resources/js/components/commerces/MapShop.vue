@@ -45,7 +45,7 @@ export default {
             
               let fontAwesomeIcon = L.divIcon({
                 // on crée un icône correspondant à celui choisi pour la catégorie
-                html: `<<img src="${this.previewImage + shop.category.category_icon}"/>>`,
+                //html: `${shop.category.category_icon}`,
                 html: `<span>${shop.category.category_icon}</span>`,
                 iconSize: [60, 60],
                 className: 'dummy',
@@ -70,7 +70,7 @@ export default {
           this.shops.forEach((shop) => {
             let fontAwesomeIcon = L.divIcon({
             // on crée un icône correspondant à celui choisi pour la catégorie
-            html: `<span style="text-shadow: 2px 2px 4px #fff; color: ${shop.category.category_color}"><img src='${this.previewImage +shop.category.category_icon }' alt="${shop.category.category_name}"/></span>`,
+            html: `<span style="text-shadow: 2px 2px 4px #fff; color: ${shop.category.category_color}">${shop.category.category_name}"</span>`,
             iconSize: [40, 40],
           });
 

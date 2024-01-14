@@ -2,6 +2,7 @@
 
 use App\Models\Image;
 use App\Models\User;
+use Hamcrest\Arrays\IsArray;
 
 /** 
  *  UploadImage Helpers
@@ -11,23 +12,22 @@ use App\Models\User;
 
 function UploadImage($image, $user_id, $shop_id = null, $recipe_id = null, $is_profil = null)
 {
-
     
     if(count($image) > 1 ){
         $images_list = $image;
         $image_names = [];
-        foreach($images_list as $images_single ){
-            $imageName = time() . '.' . $images_single->extension();
+        foreach($images_list as $key =>  $images_single ){
+            $imageName = time() . $key . '.' . $images_single->extension();
             $images_single->storeAs('public', $imageName);
             $user = User::find($user_id);
         
-            $oldImage =  Image::where("user_id", "=", $user_id)->get();
-            if (count($oldImage) > 0) {
-                foreach ($oldImage as $value) {
-                    $image_temp = Image::find($value->id);
-                    $image_temp->delete();
-                }
-            }
+            // $oldImage =  Image::where("user_id", "=", $user_id)->get();
+            // if (count($oldImage) > 0) {
+            //     foreach ($oldImage as $value) {
+            //         $image_temp = Image::find($value->id);
+            //         $image_temp->delete();
+            //     }
+            // }
 
             Image::create([
                 "image_name" => $imageName,
@@ -39,12 +39,21 @@ function UploadImage($image, $user_id, $shop_id = null, $recipe_id = null, $is_p
             ]);
             array_push($image_names , $imageName); 
         }
-        dd($image_names);
+      //  dd($image_names);
         return $image_names ; 
-    }else{
-        
-        $imageName = time() . '.' . $image->extension();
-        $image->storeAs('public', $imageName);
+     }
+    else{
+
+        if(is_array($image)){
+            $imageName =  time() . '.' . $image[0]->extension();
+            $image[0]->storeAs('public', $imageName);
+            
+        }else{
+            $imageName =  time() . '.' . $image->extension();
+            $image->storeAs('public', $imageName);
+
+        }
+        // dd( is_array($imageName));
         $user = User::find($user_id);
     
         $oldImage =  Image::where("user_id", "=", $user_id)->get();
