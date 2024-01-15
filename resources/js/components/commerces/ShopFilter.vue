@@ -103,7 +103,7 @@ export default {
   methods: {
     ...mapActions(useShopStore, [
       "filterShops",
-      "setShop",
+      "setShops",
       "sortShopByProduct",
     ]),
 
@@ -124,7 +124,9 @@ export default {
       }
     },
     resetFilter() {
-      this.setShop();
+      axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+          this.setShops(res.data.commercant)
+        }).catch((err) => console.log(err))
     },
 
     selectedProductsHandler(product_name) {

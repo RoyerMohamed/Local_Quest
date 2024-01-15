@@ -1,4 +1,5 @@
 <template>
+  <!-- add slider simple hugo  -->
   <div id="shop">
     <div v-if="this.setCurrentShop.images.length > 1" class="shop_hero">
       <img

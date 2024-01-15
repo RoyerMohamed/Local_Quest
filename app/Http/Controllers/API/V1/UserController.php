@@ -123,6 +123,7 @@ class UserController extends Controller
 
         if ($request->hasFile('image')) {
             $userImage = UploadImage($request->image, Auth::user()->id);
+          
             $user = User::find(Auth::user()->id);
             $user->update([
                 "profil_picture" => $userImage

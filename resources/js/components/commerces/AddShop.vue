@@ -18,7 +18,7 @@
           </p>
         </div>
       </div>
-      <div class="addShop_wrapper">
+      <div class="addShop_wrapper mb-5">
         <form @submit.prevent="handleForm" enctype="multipart/form-data">
           <div class="addShop_shopName">
             <label for="">Identité</label>
@@ -88,7 +88,7 @@
           <div class="addShop_product">
             <!-- a voir  -->
             <label for="product"> Products </label>
-            <div class="filter_product">
+            <div class="filter_product ">
               <div v-for="product in products" :key="product">
                 <input
                   type="checkbox"
@@ -202,8 +202,6 @@ export default {
     ...mapActions(useShopStore, ["addShop"]),
    
     async handleForm() {
-      
-
       await axios
         .get(
           `https://nominatim.openstreetmap.org/search?street=${this.adresse}&city=${this.ville}&country=france&postalcode=${this.zipCode}&format=json`
@@ -215,6 +213,7 @@ export default {
           this.latitude = res.data[0].boundingbox[0];
         })
         .catch((err) => {
+          console.log(err.response);
           this.validationErrors = err.response.data[0].errors;
         });
 
@@ -247,7 +246,10 @@ export default {
             this.validationResponse = res.data.message;
             this.$router.push("/commerces");
           })
-          .catch((err) => (this.validationErrors = err));
+          .catch((err) => {
+            console.log(err);
+            this.validationErrors = err
+          });
 
         // this.addShop({
         //   shop_title: this.shop_title,
@@ -292,7 +294,7 @@ label {
   font-size: 1rem;
 }
 .addShop_wrapper {
-  width: 40vw;
+  width:clamp(400px , 55% , 800px);
   background-color: #edeae1;
   padding: 2rem;
   border-radius: 15px;
@@ -340,7 +342,7 @@ label {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-basis: 25%;
+  min-width: 200px;
 }
 .filter_product {
   display: flex;

@@ -7,7 +7,7 @@
     :message="this.validationResponse"
     v-if="this.validationResponse"
   />
-  <div class="profil">
+  <div class="profil pb-5">
     <h1 class="text-center pt-3 pb-3">Profil</h1>
     <div class="profil_wrapper">
       <div class="profil_infos">
@@ -34,7 +34,7 @@
             />
           </div>
           <div class="profil_edit-import-img">
-            <img v-bind:src="this.previewImageStorage + this.image" alt="" srcset="" />
+            <img v-bind:src=" this.image === 'default_shop.jpg' ? this.previewImagePublic + this.image : this.previewImageStorage + this.image " alt="" srcset="" />
             <input ref="fileInput" type="file" name="image" />
           </div>
           <div class="d-flex justify-content-end">
@@ -88,7 +88,11 @@
       </div>
       <div class="">
         <h2>liste de commerce ajouté</h2>
-        <div
+
+        <router-link to="/AddedShop">
+          mes commerces
+        </router-link>
+        <!-- <div
           class="favoris_valide"
           v-if="Array.isArray(this.userShop) && this.userShop.length > 0"
         >
@@ -158,7 +162,7 @@
         </div>
         <div class="favoris_valide" v-else>
           <h3>vous avez pas encore ajouter de commerce</h3>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -217,7 +221,7 @@ export default {
   },
   methods: {
     ...mapActions(useUserStore, ["setUser", "setUserImage"]),
-    ...mapActions(useShopStore, ["setShop"]),
+    ...mapActions(useShopStore, ["setShops"]),
     deleteShop(id) {
       const shopStore = useShopStore();
       axios
@@ -237,11 +241,10 @@ export default {
         axios
         .put(`http://127.0.0.1:8000/api/users/${this.id}`, params)
         .then((res) => {
-            console.log('test');
             this.setUser(res.data.user);
             this.validationResponse = res.data.message;
             this.validationErrors = "";
-            //console.log( res.data.message);
+            console.log( res.data.message);
             //this.$router.push('/')
           })
           .catch((err) => {
@@ -262,10 +265,13 @@ export default {
           )
           .then((res) => {
             this.setUserImage(res.data.userImage);
+            this.validationResponse = res.data.message;
+            this.validationErrors = "";
           })
           .catch((err) => {
             // this.validationResponse = ""
             console.log(err);
+            this.validationResponse ='';
             this.validationErrors = err.response.data[0].errors;
           });
       }
@@ -296,7 +302,7 @@ export default {
 
 <style lang="scss" scoped>
 .profil_wrapper {
-  width: 35%;
+  width:clamp(400px , 55% , 800px);
   background-color: #edeae1;
   margin: 0 auto;
   padding: 2rem;

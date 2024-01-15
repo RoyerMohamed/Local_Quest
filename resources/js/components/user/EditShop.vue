@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="addShop_wrapper">
+    <ValidationErrors :errors="this.validationErrors"
+      v-if="this.validationErrors"/>
+    <ValidationResponse     :message="this.validationResponse"
+      v-if="this.validationResponse"/>
+    <!-- <div class="addShop_wrapper">
       <form @submit.prevent="shopUpdate(this.shop.id)" enctype="multipart/form-data">
         <div class="addShop_shopName">
           <label for="">Identité</label>
@@ -79,7 +83,7 @@
             </select>
         </div>
         <div class="addShop_product">
-          <!-- a voir  -->
+        
           <label for="product"> Products </label>
           <div class="filter_product">
               <div v-for="product in this.products" :key="product">
@@ -122,17 +126,172 @@
           Numero de Telephone
           <input type="number" v-model="this.shop.phone_number" />
         </label>
-        <!-- latitude,longitude-->
+        
         <div class="btn_validation">
           <button type="submit">modifier mon commerce</button>
         </div>
       </form>
+    </div> -->
+    <div class="addShop">
+      <div class="addShop_title">
+        <div><h1>modifier le commerce</h1></div>
+       
+      </div>
+      <div class="addShop_wrapper mb-5">
+        <form  @submit.prevent="shopUpdate(this.shop.id)" enctype="multipart/form-data">
+          <div class="addShop_shopName">
+            <label for="">Identité</label>
+            <input
+              type="text"
+              name="shop_title"
+              id=""
+              placeholder="Entrez l’identité du commerce"
+              v-model="this.shop.shop_title"
+            />
+          </div>
+
+          <div class="addShop_adresse">
+            <div class="addShop_adresse_label">
+              <label for="adresse">Adresse</label>
+            </div>
+            <div class="addShop_adresse_inputs">
+              <input
+                type="text"
+                name="adresse"
+                id=""
+                v-model="this.shop.adresse"
+                placeholder="Adresse"
+              />
+              <input
+                type="number"
+                name="zipCode"
+                id=""
+                max="99999"
+                v-model="this.shop.zip_code"
+                placeholder="Code postale"
+              />
+              <input
+                type="text"
+                name="city"
+                id=""
+                v-model="this.shop.city"
+                placeholder="Ville"
+              />
+            </div>
+          </div>
+          <div class="addShop_department">
+            <label for="">Départment</label>
+            <select name="department" v-model="selectDepartment">
+              <optgroup label="departement du commmerce">
+              <option selected="selected">
+                {{ this.shop.department.department_name }}
+              </option>
+            </optgroup>
+            <optgroup label="changer le departement du commmerce">
+              <option
+                :value="department.id"
+                v-for="department in this.departments"
+                :key="department.id"
+              >
+                {{ department.department_name }}
+              </option>
+            </optgroup>
+            </select>
+          </div>
+          <div class="addShop_category">
+            <label for="category">Type de commerce</label>
+
+            <select name="categories" v-model="selectCategory">
+              <option
+                :value="categorie.id"
+                v-for="categorie in this.categories"
+                :key="categorie.id"
+              >
+                {{ categorie.category_name }}
+              </option>
+            </select>
+          </div>
+          <div class="addShop_product">
+            <!-- a voir  -->
+            <label for="product"> Products </label>
+            <div class="filter_product ">
+              <div v-for="product in products" :key="product">
+                <input
+                  type="checkbox"
+                  name="product"
+                  id="checkbox"
+                  :value="product.id"
+                  v-model="products_id"
+                />
+                <label for="scales">{{ product.product_name }}</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="addShop_description">
+          <label for="description">Description : </label>
+          <textarea
+            name="description"
+            id=""
+            v-model="this.shop.description
+"
+          ></textarea>
+        </div>
+          <div class="addShop_image">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputGroupFile01"
+                >images</label
+              >
+              <input
+                type="file"
+                ref="image"
+                name="image"
+                class="form-control"
+                id="inputGroupFile01"
+                multiple
+              />
+            </div>
+
+            <!-- <label for="image">images </label>
+            <input type="file" ref="image" name="image" /> -->
+          </div>
+          <div class="addShop_website">
+            <div class="mb-3">
+              <label for="basic-url" class="form-label">site internet</label>
+              <div class="input-group">
+               
+                <input
+                  type="url"
+                  class="form-control"
+                  id="basic-url"
+                  aria-describedby="basic-addon3 basic-addon4"
+                  name="webSite"
+                  v-model="this.shop.website"
+                  placeholder="https://example.com"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="addShop_number">
+            <label for="" class="mb-2">
+              Numero de Telephone
+            </label>
+            <input type="number" name="phoneNumber" v-model="this.shop.phone_number" />
+          </div>
+          <!-- latitude,longitude-->
+          <div class="btn_validation">
+            <button type="submit">Modifier</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import ValidationErrors from "../utils/ValidationErrors.vue";
+import ValidationResponse from "../utils/ValidationResponse.vue";
 export default {
   name: "EditShop",
   data() {
@@ -144,14 +303,20 @@ export default {
       departments: [],
       categories : [], 
       products : [],
-      products_id : []
+      products_id : [],
+      validationErrors: "",
+      validationResponse: "",
     };
   },
+  components: { ValidationErrors, ValidationResponse },
   created() {
     axios
       .get(`http://127.0.0.1:8000/api/shops/${this.shop_id}`)
       .then((res) => {
         this.shop = res.data.shop;
+
+        // cree une function pour actualiser le shop
+        
       })
       .catch((err) => {
         console.log(err);
@@ -176,8 +341,8 @@ export default {
     shopUpdate(id) {
       axios.put(`http://127.0.0.1:8000/api/shops/${id}`,{shop_title: this.shop.shop_title,
               adresse: this.shop.adresse,
-              category_id: this.selectCategory,
-              department_id: this.selectDepartment,
+              category_id: this.selectCategory.length === 0 ? null :this.selectCategory,
+              department_id:  this.selectDepartment.length === 0 ? null : this.selectDepartment,
               city: this.shop.city,
               description: this.shop.description,
               zip_code: this.shop.zip_code,
@@ -186,16 +351,17 @@ export default {
               longitude: this.shop.longitude,
               latitude: this.shop.latitude,
               image: this.$refs.image.files[0],
-              products_id: this.products_id}).then((res) => {
-          console.log(res);
+              products_id: this.products_id.length === 0 ? null : this.products_id
+            }).then((res) => {
+          this.validationResponse = res.data.message
         }).catch((err) => console.log(err))
 
 
 
-      console.log({shop_title: this.shop.shop_title,
+      console.log( {shop_title: this.shop.shop_title,
               adresse: this.shop.adresse,
-              category_id: this.selectCategory,
-              department_id: this.selectDepartment,
+              category_id: this.selectCategory.length === 0 ? null :this.selectCategory,
+              department_id:  this.selectDepartment.length === 0 ? null : this.selectDepartment,
               city: this.shop.city,
               description: this.shop.description,
               zip_code: this.shop.zip_code,
@@ -204,7 +370,8 @@ export default {
               longitude: this.shop.longitude,
               latitude: this.shop.latitude,
               image: this.$refs.image.files[0],
-              products_id: this.products_id});
+              products_id: this.products_id.length === 0 ? null : this.products_id
+            });
     },
   },
 };

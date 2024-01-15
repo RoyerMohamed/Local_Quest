@@ -51,6 +51,11 @@ const routes = [
         path: '/editShop/:id',
         component : () => import('../components/user/EditShop.vue')
     },
+    {
+        name: 'AddedShop',
+        path: '/AddedShop',
+        component : () => import('../components/user/AddedShop.vue')
+    },
 ];
 
 const router = createRouter({

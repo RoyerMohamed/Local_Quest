@@ -115,12 +115,13 @@
         </div>
       </div>
       <!-- Banner CTA  -->
-      <div class="cta_recipes">
-        <div class="cta_recipes_wrapper">
-          <div class="cta_recipes_title">
-            <h2>Réalisez vos meilleurs recette locales !</h2>
+      <!-- CTA Banner -->
+      <div class="cta_banner">
+        <div class="cta_banner_wrapper">
+          <div class="cta_banner_title">
+            <h2>Améliorez votre consommation au quotidien</h2>
           </div>
-          <div class="cta_recipes_text">
+          <div class="cta_banner_text">
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit, luctus
               nisi malesuada taciti turpis habitant hendrerit, auctor augue
@@ -129,16 +130,15 @@
               sollicitudin auctor, a fringilla dignissim at mattis parturient.
             </p>
           </div>
-          <div class="cta_recipes_btn">
-            <div class="search_bar_btn">
-              <button type="submit">
-                Ajouter a la list
-                <i class="fa-solid fa-greater-than" style="color: #ffffff"></i>
-              </button>
-            </div>
+          <div class="cta_banner_btn">
+              <div  class="master-btn">
+                Voir les commerçants locaux 
+                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff"></i>
+              </div>
           </div>
         </div>
       </div>
+
 
       <!--Comment fonctionne l'app-->
       <div class="howitswork">
@@ -191,12 +191,12 @@
       </div>
 
       <!-- CTA Banner -->
-      <div class="cta_recipes">
-        <div class="cta_recipes_wrapper">
-          <div class="cta_recipes_title">
-            <h2>Réalisez vos meilleurs recette locales !</h2>
+      <div class="cta_banner">
+        <div class="cta_banner_wrapper">
+          <div class="cta_banner_title">
+            <h2>Enregistrez votre commerce pour atteindre vos clients</h2>
           </div>
-          <div class="cta_recipes_text">
+          <div class="cta_banner_text">
             <p>
               Lorem ipsum dolor sit amet consectetur adipiscing elit, luctus
               nisi malesuada taciti turpis habitant hendrerit, auctor augue
@@ -205,24 +205,22 @@
               sollicitudin auctor, a fringilla dignissim at mattis parturient.
             </p>
           </div>
-          <div class="cta_recipes_btn">
-            <div class="search_bar_btn">
-              <button type="submit">
-                Ajouter a la list
-                <i class="fa-solid fa-greater-than" style="color: #ffffff"></i>
-              </button>
-            </div>
+          <div class="cta_banner_btn">
+              <div  class="master-btn">
+                Créer mon compte commerçant 
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
           </div>
         </div>
       </div>
 
       <!-- Avis clients -->
-      <div class="avisclients">
+      <div class="avisclient">
         <div class="avisclient-title">
           <h3>Ce que pense les utilisateurs de Local Quest</h3>
           <p>Déja plus de 8 milles utilisateurs</p>
         </div>
-        <div class="avisclients-box">
+        <div class="avisclient-box">
           <div class="avisclient-box-content">
             <div class="avisclient-box-content-item">
               <div class="avisclient-box-content-item-avatar">
@@ -388,7 +386,12 @@ export default {
     Footer,
   },
   methods: {
-    ...mapActions(useShopStore, ["setShop", "filterShops"]),
+    ...mapState(useShopStore, [ 'shops',
+    'departments',
+    'categories',
+    'OpeningHours', 
+    'products'  ]),
+    ...mapActions(useShopStore, [ "setProducts","setOpeningHours","setCategories","setShops","setDepartments", "filterShops"]),
     categories(type) {
       this.filterShops({
         category_id: type,
@@ -396,6 +399,31 @@ export default {
     },
   },
   created() {
+    axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+          this.setShops(res.data.commercant)
+        }).catch((err) => console.log(err))
+
+       
+        axios.get('http://127.0.0.1:8000/api/department').then((res) => {
+          this.setDepartments(res.data.Departement)
+        }).catch((err) => console.log(err))
+      
+        
+        axios.get('http://127.0.0.1:8000/api/categories').then((res) => {
+          this.setCategories = res.data.Categories
+        }).catch((err) => console.log(err))
+      
+        
+        axios.get('http://127.0.0.1:8000/api/opening_hours').then((res) => {
+          this.setOpeningHours = res.data.horaire
+        }).catch((err) => console.log(err))
+      
+        
+        axios.get('http://127.0.0.1:8000/api/products').then((res) => {
+          this.setProducts = res.data.Produits
+        }).catch((err) => console.log(err))
+      
+
     axios
       .get("http://127.0.0.1:8000/api/getRecipesHome")
       .then((res) => {
@@ -430,7 +458,9 @@ a {
   text-decoration: none !important;
 }
 
-.shops_type_grid_infos_image > img {
+
+
+.shops_type_grid_infos_image>img {
   background-color: #ff8528;
   border-radius: 50%;
   max-width: 32px;
@@ -447,9 +477,7 @@ a {
   gap: 10px;
   padding: 1.5rem 1.5rem;
 }
-.avisclient-box-content-item{
-  width: clamp(150px , 30% , 400px);
-}
+
 
 
 /*Commerçant à l'honneur*/
@@ -468,6 +496,7 @@ a {
 
 .commerçants-box {
   display: flex;
+  justify-content: center;
 }
 
 .commerçants-box-content {
@@ -580,20 +609,21 @@ a {
   border-radius: 50px;
 }
 
-.cta_recipes {
-  background-image: url("../../public/images/bg-section-img.png");
+/*CTA BANNER*/
+.cta_banner {
+  background-image: url("../../public//images/marché-local_1.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  height: 50vh;
+  height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.cta_recipes_wrapper {
-  width: 50%;
+.cta_banner_wrapper {
+  width: 70%;
   color: white;
   text-align: center;
   display: flex;
@@ -602,13 +632,15 @@ a {
   gap: 1rem;
 }
 
-.cta_recipes_title > h2 {
+.cta_recipes_title>h2 {
   font-size: 40px;
   font-weight: 600;
 }
 
-.search_bar_btn {
+.cta_banner_btn > .master-btn{
   display: flex;
+  align-items: center;
+  justify-items: center;
   gap: 1rem;
 }
 
@@ -866,7 +898,9 @@ a {
 /* ---- AVIS CLIENTS ---- */
 
 .avisclient {
+  margin: 4rem auto;
   display: flex;
+  flex-direction: column;
 }
 
 .avisclient-title {
@@ -877,7 +911,7 @@ a {
 }
 
 .avisclient-box-content {
-  width: 70%;
+  width: 80%;
   margin: 5rem auto;
   display: flex;
   justify-content: center;
@@ -885,30 +919,48 @@ a {
   flex-wrap: wrap;
 }
 
-.avisclient-box-item {
+.avisclient-box-content-item {
   display: flex;
-  width: 50%;
+  width: clamp(500px , 30% , 800px);
+  gap: 1rem;
+}
+.master-btn {
+    transition: all 250ms;
+    height: 4rem;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ff8528;
+    background-color: #ff8528;
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.248px;
+    text-transform: uppercase;
 }
 
-.avisclient-box-item-avatar {
-  width: 70%;
+.avisclient-box-content-item-avatar {
+  width: 100%;
   display: flex;
+  flex-direction: row;
 }
 
-.avisclient-box-item-avatar img {
+.avisclient-box-content-item-avatar > img {
   width: 140px;
   height: 120px;
   border-radius: 200px;
 }
 
-.avisclient-box-item-avatar-icon {
+.avisclient-box-content-item-avatar-icon {
   width: 50%;
   margin-left: -2rem;
   display: flex;
   align-items: center;
 }
 
-.avisclient-box-item-avatar-icon i {
+.avisclient-box-content-item-avatar-icon >i {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -922,7 +974,7 @@ a {
   border: 2px solid white;
 }
 
-.avisclient-box-item-info > span {
+.avisclient-box-content-item-info > span {
   color: #ff8528;
 }
 

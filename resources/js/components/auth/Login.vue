@@ -29,18 +29,7 @@
             v-model="user.password"
             placeholder="Password"
           />
-
           </div>
-          <div class="mb-3">
-            <input
-            type="password"
-            name="password_confimation"
-            v-model="user.password_confimation"
-            placeholder="Confirmation de mot de passe"
-          />
-
-          </div>
-        
           <div class="btns">
             <button type="Submit" class="btn_signUp">Se connecter</button>
           </div>
@@ -78,12 +67,25 @@
           </div>
           <div class="mb-3">
             <input
+            type="password"
+            name="password_confimation"
+            v-model="user.password_confimation"
+            placeholder="Confirmation de mot de passe"
+          />
+
+          </div>
+          <div class="mb-3">
+            <input
               type="file"
               id="image"
               ref="image"
               class="form-control"
               name="image"
             />
+          </div>
+
+          <div class="err_message p-3">
+            <span style="color: red">{{ this.user.err }}</span>
           </div>
 
           <div class="btns">
@@ -110,6 +112,7 @@ export default {
         user_name: "",
         password: "",
         password_confimation: "",
+        err: ''
       },
       formData: new FormData(),
       validationErrors: "",
@@ -118,7 +121,7 @@ export default {
 
   methods: {
     ...mapActions(useUserStore, ["setUser", "setIsAdmin"]),
-    ...mapActions(useShopStore, ["setShop"]),
+    ...mapActions(useShopStore, ["setShops"]),
 
     async handleLogin() {
       axios
@@ -158,30 +161,34 @@ export default {
       this.formData.append("image", this.$refs.image.files[0]);
       this.formData.append("password", this.password);
       // console.log({user_name :this.user_name ,email: this.email ,image : this.$refs.image.files[0] , password :this.password},);
-      axios
-        .post(
-          "http://127.0.0.1:8000/api/users",
-          {
-            user_name: this.user_name,
-            email: this.email,
-            image: this.$refs.image.files[0],
-            password: this.password,
-          },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
+      if (this.user.password === this.user.password_confimation){
+        axios
+          .post(
+            "http://127.0.0.1:8000/api/users",
+            {
+              user_name: this.user_name,
+              email: this.email,
+              image: this.$refs.image.files[0],
+              password: this.password,
             },
-          }
-        )
-        .then((res) => {
-          this.validationErrors = "";
-          this.$router.push("/");
-          console.log("res", res);
-        })
-        .catch((err) => {
-          console.log("err", err);
-          this.validationErrors = err.response.data[0].errors;
-        });
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((res) => {
+            this.validationErrors = "";
+            this.$router.push("/");
+            console.log("res", res);
+          })
+          .catch((err) => {
+            console.log("err", err);
+            this.validationErrors = err.response.data[0].errors;
+          });
+      }else{
+        this.user.err = "Votre mot de passe ne coresspond pas a la confirmation"
+      }
     },
     toggleBtns(data){
       const register = document.getElementById("register")

@@ -44,6 +44,7 @@ Route::put('/update-password/{user}',  [App\Http\Controllers\API\V1\UserControll
 Route::post('/login' , [App\Http\Controllers\API\V1\LoginController::class , 'loginUser'])->name('login');
 
 Route::middleware(['checkRole'])->group(function () {
+    Route::put('/editShopStatus/{id}', [App\Http\Controllers\API\V1\ShopController::class , 'editShopStatus']);
     Route::get('/admin',[App\Http\Controllers\API\V1\AdminController::class , 'getAllData']);
 });
 

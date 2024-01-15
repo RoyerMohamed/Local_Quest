@@ -24,14 +24,14 @@ class ShopController extends Controller
 
     /**
      * Display a listing of the resource.
-     */
+     */     
     public function index()
     {
         if (Shop::count() === 0) {
             return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => Shop::latest()->get()], 200);
+        return response()->json(['message' => 'Commerçants trouvé', 'commercant' => Shop::latest()->get()], 200);
     }
 
     public function getShopByCategorie(){
@@ -90,7 +90,7 @@ class ShopController extends Controller
             ]
         );
 
-        if(count($request->products_id) > 0){
+        if( is_array($request->products_id) && count($request->products_id) > 0){
             
             foreach($request->products_id as $product_id){
                 DB::table("shops_products")->insert([
@@ -113,7 +113,7 @@ class ShopController extends Controller
                 "is_profil" =>null
             ]);
         }
-        return response()->json(['message' => 'Le commerçants a été ajouté ', 'Commerçants' => $shop ,$shopImage ], 200);
+        return response()->json(['message' => 'Le commerçants a été ajouté ', 'commercant' => $shop ,$shopImage ], 200);
     }
 
     /**
@@ -155,7 +155,22 @@ class ShopController extends Controller
         }
 
         $user = auth()->user();
-
+        //dd(isset($request->department_id));
+        if(isset($request->department_id) ){
+            $shop->update(
+                [
+                    "department_id" => $request->department_id,
+                ]
+            );
+        }
+        if(isset($request->category_id) ){
+            $shop->update(
+                [
+                    "category_id" => $request->category_id,
+                ]
+            );
+        }
+       
         $shop->update(
             [
                 "shop_title" => $request->shop_title,
@@ -168,13 +183,14 @@ class ShopController extends Controller
                 "longitude" => $request->longitude,
                 "latitude" => $request->latitude,
                 "shop_status" => $user->role->role_name === "admin" ? 1 : 0,
-                "department_id" => $request->department_id,
-                "category_id" => $request->category_id,
             ]
         );
 
-        $shop->products()->detach();
-        $shop->products()->attach($request->products_id);
+        if(is_array($request->products_id)){
+            $shop->products()->detach();
+            $shop->products()->attach($request->products_id);
+        }
+
 
         return response()->json(['message' => 'Le commerçant a été modifié ', 'Commerçant' => $shop], 200);
     }
@@ -182,7 +198,7 @@ class ShopController extends Controller
     public function sortShops()
     {
         $sorted_shops = QueryBuilder::for(Shop::class)->allowedFilters(["department_id", "category_id", "shop_title", "products"])->get();
-        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $sorted_shops], 200);
+        return response()->json(['message' => 'Commerçants trouvé', 'commercant' => $sorted_shops], 200);
     }
 
     public function getShopByUserId(){
@@ -193,7 +209,25 @@ class ShopController extends Controller
             return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Commerçants trouvé', 'Commerçants' => $userShops], 200);
+        return response()->json(['message' => 'Commerçants trouvé', 'commercant' => $userShops], 200);
+    }
+
+    public function  editShopStatus( Request $request , $id){
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                "shop_status" => 'required|boolean',
+            ]
+        );
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        $shop = Shop::find($id); 
+        $shop->update([
+            "shop_status" => $request->shop_status,
+        ]); 
+        return response()->json(['message' => 'Le commerçant a été modifié ', 'commercant' => $shop], 200); 
     }
     /**
      * Remove the specified resource from storage.

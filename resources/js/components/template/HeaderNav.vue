@@ -149,7 +149,7 @@
             <p>Épicerie</p>
           </div>
         </a>
-        <a>
+        <a href="">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-carrot"></i>
             <p>Fruits & Légumes</p>
@@ -406,7 +406,7 @@ export default {
   },
   methods: {
     ...mapActions(useUserStore, ["setLocationAnswered", "setLocation"]),
-    ...mapActions(useShopStore, ["getShopByUserId", "filterShops", "setShop"]),
+    ...mapActions(useShopStore, ["getShopByUserId", "filterShops", "setShops"]),
     logOut() {
       const userStore = useUserStore();
       const shopStore = useShopStore();
@@ -416,14 +416,12 @@ export default {
       this.$router.push("/");
     },
     setAllShop() {
-      const shopStore = useShopStore();
 
-      if (shopStore.shops.length === 0) {
-        shopStore.setShop();
-      } else {
-        shopStore.$reset();
-        shopStore.setShop();
-      }
+        axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+          ;
+          this.setShops(res.data.commercant)
+        }).catch((err) => console.log(err))
+       
     },
     setAllRecipe() {
       const useRecipe = useRecipeStore();
@@ -481,7 +479,9 @@ export default {
     if (this.$route.name != "Home") {
       this.headerStyle = "height:10vh";
     }
-    this.setShop();
+    axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+          this.setShops(res.data.commercant)
+        }).catch((err) => console.log(err))
   },
 };
 </script>
@@ -550,6 +550,7 @@ header {
   box-shadow: 1px 3px 4px 1px rgba(143, 143, 143, 0.418);
   -webkit-box-shadow: 1px 3px 4px 1px rgba(143, 143, 143, 0.477);
   -moz-box-shadow: 1px 3px 4px 1px rgba(143, 143, 143, 1);
+  z-index: 1000;
 }
 .menu_wrapper_mobile {
   display: none;

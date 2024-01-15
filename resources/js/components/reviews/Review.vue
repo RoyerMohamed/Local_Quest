@@ -56,7 +56,7 @@ export default {
         ...mapState(useUserStore, ['id']),
         ...mapState(useShopStore, ['shops']),
     }, methods: {
-        ...mapActions(useShopStore, ['setShop']),
+        ...mapActions(useShopStore, ['setShops']),
         commentData(date) {
             const commentaireDate = new Date(date);
             const dateActuelle = new Date();
@@ -86,7 +86,10 @@ export default {
                 console.log(this.shops.length);
                 const useShop = useShopStore();
                 useShop.$reset()
-                this.setShop()
+                axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+          this.setShops(res.data.commercant)
+        }).catch((err) => console.log(err))
+                
             }).catch((err) => console.log(err))
         }
     }
