@@ -128,25 +128,7 @@
               <a href="http://"> https:// {{ this.setCurrentShop.website }}</a>
             </div>
           </div>
-          <div class="shop-info-hours">
-            <h4>heurs d'ouverture</h4>
-            <div
-              v-for="opening_hours in this.setCurrentShop.opening_hours"
-              :key="opening_hours.id"
-            >
-              <span>{{ opening_hours.day }}</span>
-              <ul>
-                <li>
-                  {{ opening_hours.morning_opening_hour }} -
-                  {{ opening_hours.morning_closing_hour }}
-                </li>
-                <li>
-                  {{ opening_hours.afternoon_opening_hour }} -
-                  {{ opening_hours.afternoon_closing_hour }}
-                </li>
-              </ul>
-            </div>
-          </div>
+          
         </div>
       </div>
 
@@ -321,6 +303,13 @@ export default {
   flex-direction: column;
   gap: 2rem;
   min-width: 65%;
+  // -webkit-line-clamp: 3;
+}
+.shop-desc-container > div> p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
 }
 
 .shop-review {

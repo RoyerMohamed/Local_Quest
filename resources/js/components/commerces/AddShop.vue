@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "pinia";
+import { mapState, mapActions , mapWritableState } from "pinia";
 import { useShopStore } from "../../stores/shopStore";
 import { useUserStore } from "../../stores/userStore";
 import ValidationErrors from "../utils/ValidationErrors.vue";
@@ -197,23 +197,21 @@ export default {
       "OpeningHours",
     ]),
     ...mapState(useUserStore, ["id"]),
+    ...mapWritableState(useShopStore , ["shops"]),
   },
   methods: {
-    ...mapActions(useShopStore, ["addShop"]),
-   
+    ...mapActions(useShopStore, ["categories"]),
     async handleForm() {
       await axios
         .get(
           `https://nominatim.openstreetmap.org/search?street=${this.adresse}&city=${this.ville}&country=france&postalcode=${this.zipCode}&format=json`
         )
         .then((res) => {
-          console.log(res.data[0].boundingbox);
           this.validationErrors = "";
           this.longitude = res.data[0].boundingbox[2];
           this.latitude = res.data[0].boundingbox[0];
         })
         .catch((err) => {
-          console.log(err.response);
           this.validationErrors = err.response.data[0].errors;
         });
 
@@ -243,11 +241,15 @@ export default {
             }
           )
           .then((res) => {
-            this.validationResponse = res.data.message;
-            this.$router.push("/commerces");
+            console.log(this.shops);
+            this.shops.push(res.data.commercant)
+            // this.setShops(this.shops)
+             this.validationResponse = res.data.message;
+             this.$router.push("/commerces");
           })
           .catch((err) => {
             console.log(err);
+            
             this.validationErrors = err
           });
 

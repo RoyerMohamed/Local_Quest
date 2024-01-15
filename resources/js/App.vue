@@ -410,17 +410,17 @@ export default {
       
         
         axios.get('http://127.0.0.1:8000/api/categories').then((res) => {
-          this.setCategories = res.data.Categories
+          this.setCategories(res.data.Categories)
         }).catch((err) => console.log(err))
       
         
         axios.get('http://127.0.0.1:8000/api/opening_hours').then((res) => {
-          this.setOpeningHours = res.data.horaire
+          this.setOpeningHours(res.data.horaire)
         }).catch((err) => console.log(err))
       
         
         axios.get('http://127.0.0.1:8000/api/products').then((res) => {
-          this.setProducts = res.data.Produits
+          this.setProducts( res.data.Produits)
         }).catch((err) => console.log(err))
       
 

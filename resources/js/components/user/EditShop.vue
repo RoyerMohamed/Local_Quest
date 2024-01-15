@@ -1,9 +1,13 @@
 <template>
   <div>
-    <ValidationErrors :errors="this.validationErrors"
-      v-if="this.validationErrors"/>
-    <ValidationResponse     :message="this.validationResponse"
-      v-if="this.validationResponse"/>
+    <ValidationErrors
+      :errors="this.validationErrors"
+      v-if="this.validationErrors"
+    />
+    <ValidationResponse
+      :message="this.validationResponse"
+      v-if="this.validationResponse"
+    />
     <!-- <div class="addShop_wrapper">
       <form @submit.prevent="shopUpdate(this.shop.id)" enctype="multipart/form-data">
         <div class="addShop_shopName">
@@ -135,10 +139,12 @@
     <div class="addShop">
       <div class="addShop_title">
         <div><h1>modifier le commerce</h1></div>
-       
       </div>
       <div class="addShop_wrapper mb-5">
-        <form  @submit.prevent="shopUpdate(this.shop.id)" enctype="multipart/form-data">
+        <form
+          @submit.prevent="shopUpdate(this.shop.id)"
+          enctype="multipart/form-data"
+        >
           <div class="addShop_shopName">
             <label for="">Identité</label>
             <input
@@ -183,19 +189,19 @@
             <label for="">Départment</label>
             <select name="department" v-model="selectDepartment">
               <optgroup label="departement du commmerce">
-              <option selected="selected">
-                {{ this.shop.department.department_name }}
-              </option>
-            </optgroup>
-            <optgroup label="changer le departement du commmerce">
-              <option
-                :value="department.id"
-                v-for="department in this.departments"
-                :key="department.id"
-              >
-                {{ department.department_name }}
-              </option>
-            </optgroup>
+                <option selected="selected">
+                  {{ this.shop.department.department_name }}
+                </option>
+              </optgroup>
+              <optgroup label="changer le departement du commmerce">
+                <option
+                  :value="department.id"
+                  v-for="department in this.departments"
+                  :key="department.id"
+                >
+                  {{ department.department_name }}
+                </option>
+              </optgroup>
             </select>
           </div>
           <div class="addShop_category">
@@ -214,7 +220,7 @@
           <div class="addShop_product">
             <!-- a voir  -->
             <label for="product"> Products </label>
-            <div class="filter_product ">
+            <div class="filter_product">
               <div v-for="product in products" :key="product">
                 <input
                   type="checkbox"
@@ -229,14 +235,13 @@
           </div>
 
           <div class="addShop_description">
-          <label for="description">Description : </label>
-          <textarea
-            name="description"
-            id=""
-            v-model="this.shop.description
-"
-          ></textarea>
-        </div>
+            <label for="description">Description : </label>
+            <textarea
+              name="description"
+              id=""
+              v-model="this.shop.description"
+            ></textarea>
+          </div>
           <div class="addShop_image">
             <div class="input-group mb-3">
               <label class="input-group-text" for="inputGroupFile01"
@@ -259,7 +264,6 @@
             <div class="mb-3">
               <label for="basic-url" class="form-label">site internet</label>
               <div class="input-group">
-               
                 <input
                   type="url"
                   class="form-control"
@@ -273,10 +277,12 @@
             </div>
           </div>
           <div class="addShop_number">
-            <label for="" class="mb-2">
-              Numero de Telephone
-            </label>
-            <input type="number" name="phoneNumber" v-model="this.shop.phone_number" />
+            <label for="" class="mb-2"> Numero de Telephone </label>
+            <input
+              type="number"
+              name="phoneNumber"
+              v-model="this.shop.phone_number"
+            />
           </div>
           <!-- latitude,longitude-->
           <div class="btn_validation">
@@ -290,6 +296,8 @@
 
 <script>
 import axios from "axios";
+import { mapActions , mapState } from "pinia";
+import { useShopStore } from "../../stores/shopStore";
 import ValidationErrors from "../utils/ValidationErrors.vue";
 import ValidationResponse from "../utils/ValidationResponse.vue";
 export default {
@@ -299,24 +307,24 @@ export default {
       shop_id: this.$route.params.id,
       shop: [],
       selectDepartment: [],
-      selectCategory : [],
+      selectCategory: [],
       departments: [],
-      categories : [], 
-      products : [],
-      products_id : [],
+      categories: [],
+      products: [],
+      products_id: [],
       validationErrors: "",
       validationResponse: "",
     };
   },
   components: { ValidationErrors, ValidationResponse },
   created() {
+ 
     axios
       .get(`http://127.0.0.1:8000/api/shops/${this.shop_id}`)
       .then((res) => {
         this.shop = res.data.shop;
 
         // cree une function pour actualiser le shop
-        
       })
       .catch((err) => {
         console.log(err);
@@ -329,49 +337,45 @@ export default {
       })
 
       .catch((err) => console.log(err));
-      axios.get('http://127.0.0.1:8000/api/categories').then((res) => {
-          this.categories = res.data.Categories
-        }).catch((err) => console.log(err))
+    axios
+      .get("http://127.0.0.1:8000/api/categories")
+      .then((res) => {
+        this.categories = res.data.Categories;
+      })
+      .catch((err) => console.log(err));
 
-        axios.get('http://127.0.0.1:8000/api/products').then((res) => {
-          this.products = res.data.Produits
-        }).catch((err) => console.log(err))
+    axios
+      .get("http://127.0.0.1:8000/api/products")
+      .then((res) => {
+        this.products = res.data.Produits;
+      })
+      .catch((err) => console.log(err));
   },
   methods: {
     shopUpdate(id) {
-      axios.put(`http://127.0.0.1:8000/api/shops/${id}`,{shop_title: this.shop.shop_title,
-              adresse: this.shop.adresse,
-              category_id: this.selectCategory.length === 0 ? null :this.selectCategory,
-              department_id:  this.selectDepartment.length === 0 ? null : this.selectDepartment,
-              city: this.shop.city,
-              description: this.shop.description,
-              zip_code: this.shop.zip_code,
-              website: this.shop.website,
-              phone_number: this.shop.phone_number,
-              longitude: this.shop.longitude,
-              latitude: this.shop.latitude,
-              image: this.$refs.image.files[0],
-              products_id: this.products_id.length === 0 ? null : this.products_id
-            }).then((res) => {
-          this.validationResponse = res.data.message
-        }).catch((err) => console.log(err))
-
-
-
-      console.log( {shop_title: this.shop.shop_title,
-              adresse: this.shop.adresse,
-              category_id: this.selectCategory.length === 0 ? null :this.selectCategory,
-              department_id:  this.selectDepartment.length === 0 ? null : this.selectDepartment,
-              city: this.shop.city,
-              description: this.shop.description,
-              zip_code: this.shop.zip_code,
-              website: this.shop.website,
-              phone_number: this.shop.phone_number,
-              longitude: this.shop.longitude,
-              latitude: this.shop.latitude,
-              image: this.$refs.image.files[0],
-              products_id: this.products_id.length === 0 ? null : this.products_id
-            });
+      axios
+        .put(`http://127.0.0.1:8000/api/shops/${id}`, {
+          shop_title: this.shop.shop_title,
+          adresse: this.shop.adresse,
+          category_id:
+            this.selectCategory.length === 0 ? null : this.selectCategory,
+          department_id:
+            this.selectDepartment.length === 0 ? null : this.selectDepartment,
+          city: this.shop.city,
+          description: this.shop.description,
+          zip_code: this.shop.zip_code,
+          website: this.shop.website,
+          phone_number: this.shop.phone_number,
+          longitude: this.shop.longitude,
+          latitude: this.shop.latitude,
+          image: this.$refs.image.files[0],
+          products_id: this.products_id.length === 0 ? null : this.products_id,
+        })
+        .then((res) => {
+          console.log(res);
+          this.validationResponse = res.data.message;
+        })
+        .catch((err) => console.log(err));
     },
   },
 };
