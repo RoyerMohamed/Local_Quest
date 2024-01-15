@@ -2,125 +2,25 @@
   <HeaderNav />
   <main>
     <section v-if="$route.path == '/'">
-
-      <!-- Catégories commerçants  -->
-      <!-- <div class="commerçants mt-5 mb-5">
-        <div class="commerçants-title">
-          <h3>Les commerçants à l'honneur</h3>
-          <p>Avec Local Quest, changez vos habitudes de consommation en douceur tout en soutenant l’économie locale !
-          </p>
-        </div>
-        <div class="commerçants-box">
-          <div class="commerçants-box-content">
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </router-link>
-            </div>
-            <div class="commerçants-box-content-item">
-              <router-link to="/commerces" @click="this.categories(1)">
-                <div class="shops_type_grid_infos_image">
-                  <i class="fa-solid fa-cow"></i>
-                </div>
-                <div class="shops_type_grid_infos_text">
-                  <strong>Fromagerie</strong>
-                  <span>Voir la sélection</span>
-                </div>
-              </router-link>
-            </div>
-
-
-          </div>
-        </div>
-      </div> -->
-
       <!-- Commerçants à lh'onner  -->
 
       <div class="commerçants">
         <div class="commerçants-title">
           <h3>Les commerçants à l'honneur</h3>
-          <p>Avec Local Quest, changez vos habitudes de consommation en douceur tout en soutenant l’économie locale !
+          <p>
+            Avec Local Quest, changez vos habitudes de consommation en douceur
+            tout en soutenant l’économie locale !
           </p>
         </div>
         <div class="commerçants-box">
           <div class="commerçants-box-content">
             <a href="" class="commerçants-box-content-item">
               <div>
-                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-shop"></i></div>
+                <div class="commerçants-box-content-item-icon">
+                  <i class="fa-solid fa-shop"></i>
+                </div>
                 <div class="commerçants-box-content-item-img">
-                  <img src="/images/epicerie-1.png" alt="">
+                  <img src="/images/epicerie-1.png" alt="" />
                 </div>
                 <div class="commerçants-box-content-item-info">
                   <h4>La ferme en colis</h4>
@@ -141,9 +41,11 @@
 
             <a href="" class="commerçants-box-content-item">
               <div>
-                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-cow"></i></div>
+                <div class="commerçants-box-content-item-icon">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
                 <div class="commerçants-box-content-item-img">
-                  <img src="/images/boucherie-1.png" alt="">
+                  <img src="/images/boucherie-1.png" alt="" />
                 </div>
                 <div class="commerçants-box-content-item-info">
                   <h4>Loic Chouc Bessines</h4>
@@ -163,9 +65,11 @@
             </a>
             <a href="" class="commerçants-box-content-item">
               <div>
-                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-cheese"></i></div>
+                <div class="commerçants-box-content-item-icon">
+                  <i class="fa-solid fa-cheese"></i>
+                </div>
                 <div class="commerçants-box-content-item-img">
-                  <img src="/images/fromaegrie-1.png" alt="">
+                  <img src="/images/fromaegrie-1.png" alt="" />
                 </div>
                 <div class="commerçants-box-content-item-info">
                   <h4>L'opéra des fromages</h4>
@@ -185,9 +89,11 @@
             </a>
             <a href="" class="commerçants-box-content-item">
               <div>
-                <div class="commerçants-box-content-item-icon"><i class="fa-solid fa-cow"></i></div>
+                <div class="commerçants-box-content-item-icon">
+                  <i class="fa-solid fa-cow"></i>
+                </div>
                 <div class="commerçants-box-content-item-img">
-                  <img src="/images/vin-1.png" alt="">
+                  <img src="/images/vin-1.png" alt="" />
                 </div>
                 <div class="commerçants-box-content-item-info">
                   <h4>Le Pied de Vigne</h4>
@@ -235,7 +141,7 @@
       </div>
 
       <!--Comment fonctionne l'app-->
-      <div class="howitswork ">
+      <div class="howitswork">
         <div class="howitswork-box">
           <div class="howitswork-box-title">
             <h3>Comment fonctionne Local Quest</h3>
@@ -243,8 +149,10 @@
           <div class="howitswork-step">
             <div class="howitswork-step-item">
               <span>1</span>
-              <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Inventore</h4>
+              <h4>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore
+              </h4>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Inventore, optio nesciunt, possimus repellat natus sequi
@@ -254,8 +162,10 @@
             </div>
             <div class="howitswork-step-item">
               <span>2</span>
-              <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Inventore</h4>
+              <h4>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore
+              </h4>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Inventore, optio nesciunt, possimus repellat natus sequi
@@ -265,8 +175,10 @@
             </div>
             <div class="howitswork-step-item">
               <span>3</span>
-              <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Inventore</h4>
+              <h4>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Inventore
+              </h4>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Inventore, optio nesciunt, possimus repellat natus sequi
@@ -314,7 +226,7 @@
           <div class="avisclient-box-content">
             <div class="avisclient-box-content-item">
               <div class="avisclient-box-content-item-avatar">
-                <img src="/images/avatar.png" alt="">
+                <img src="/images/avatar.png" alt="" />
                 <div class="avisclient-box-content-item-avatar-icon">
                   <i class="fa-solid fa-quote-right"></i>
                 </div>
@@ -322,13 +234,16 @@
               <div class="avisclient-box-content-item-info">
                 <span>Work</span>
                 <h3>Pseudo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipiscing elit netus at nibh velit sociis a
-                  venenatis. Consequat mattis venenatis tortor mollis imperdiet ligula tempus eni.</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipiscing elit netus
+                  at nibh velit sociis a venenatis. Consequat mattis venenatis
+                  tortor mollis imperdiet ligula tempus eni.
+                </p>
               </div>
             </div>
             <div class="avisclient-box-content-item">
               <div class="avisclient-box-content-item-avatar">
-                <img src="/images/avatar.png" alt="">
+                <img src="/images/avatar.png" alt="" />
                 <div class="avisclient-box-content-item-avatar-icon">
                   <i class="fa-solid fa-quote-right"></i>
                 </div>
@@ -336,13 +251,16 @@
               <div class="avisclient-box-content-item-info">
                 <span>Work</span>
                 <h3>Pseudo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipiscing elit netus at nibh velit sociis a
-                  venenatis. Consequat mattis venenatis tortor mollis imperdiet ligula tempus eni.</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipiscing elit netus
+                  at nibh velit sociis a venenatis. Consequat mattis venenatis
+                  tortor mollis imperdiet ligula tempus eni.
+                </p>
               </div>
             </div>
             <div class="avisclient-box-content-item">
               <div class="avisclient-box-content-item-avatar">
-                <img src="/images/avatar.png" alt="">
+                <img src="/images/avatar.png" alt="" />
                 <div class="avisclient-box-content-item-avatar-icon">
                   <i class="fa-solid fa-quote-right"></i>
                 </div>
@@ -350,55 +268,66 @@
               <div class="avisclient-box-content-item-info">
                 <span>Work</span>
                 <h3>Pseudo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipiscing elit netus at nibh velit sociis a
-                  venenatis. Consequat mattis venenatis tortor mollis imperdiet ligula tempus eni.</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipiscing elit netus
+                  at nibh velit sociis a venenatis. Consequat mattis venenatis
+                  tortor mollis imperdiet ligula tempus eni.
+                </p>
+              </div>
+            </div>
+            <div class="avisclient-box-content-item">
+              <div class="avisclient-box-content-item-avatar">
+                <img src="/images/avatar.png" alt="" />
+                <div class="avisclient-box-content-item-avatar-icon">
+                  <i class="fa-solid fa-quote-right"></i>
+                </div>
+              </div>
+              <div class="avisclient-box-content-item-info">
+                <span>Work</span>
+                <h3>Pseudo</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipiscing elit netus
+                  at nibh velit sociis a venenatis. Consequat mattis venenatis
+                  tortor mollis imperdiet ligula tempus eni.
+                </p>
+              </div>
+            </div>
+            <div class="avisclient-box-content-item">
+              <div class="avisclient-box-content-item-avatar">
+                <img src="/images/avatar.png" alt="" />
+                <div class="avisclient-box-content-item-avatar-icon">
+                  <i class="fa-solid fa-quote-right"></i>
+                </div>
+              </div>
+              <div class="avisclient-box-content-item-info">
+                <span>Work</span>
+                <h3>Pseudo</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipiscing elit netus
+                  at nibh velit sociis a venenatis. Consequat mattis venenatis
+                  tortor mollis imperdiet ligula tempus eni.
+                </p>
+              </div>
+            </div>
+            <div class="avisclient-box-content-item">
+              <div class="avisclient-box-content-item-avatar">
+                <img src="/images/avatar.png" alt="" />
+                <div class="avisclient-box-content-item-avatar-icon">
+                  <i class="fa-solid fa-quote-right"></i>
+                </div>
+              </div>
+              <div class="avisclient-box-content-item-info">
+                <span>Work</span>
+                <h3>Pseudo</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipiscing elit netus
+                  at nibh velit sociis a venenatis. Consequat mattis venenatis
+                  tortor mollis imperdiet ligula tempus eni.
+                </p>
               </div>
             </div>
           </div>
-          <div class="avisclient-box-content">
-            <div class="avisclient-box-content-item">
-              <div class="avisclient-box-content-item-avatar">
-                <img src="/images/avatar.png" alt="">
-                <div class="avisclient-box-content-item-avatar-icon">
-                  <i class="fa-solid fa-quote-right"></i>
-                </div>
-              </div>
-              <div class="avisclient-box-content-item-info">
-                <span>Work</span>
-                <h3>Pseudo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipiscing elit netus at nibh velit sociis a
-                  venenatis. Consequat mattis venenatis tortor mollis imperdiet ligula tempus eni.</p>
-              </div>
-            </div>
-            <div class="avisclient-box-content-item">
-              <div class="avisclient-box-content-item-avatar">
-                <img src="/images/avatar.png" alt="">
-                <div class="avisclient-box-content-item-avatar-icon">
-                  <i class="fa-solid fa-quote-right"></i>
-                </div>
-              </div>
-              <div class="avisclient-box-content-item-info">
-                <span>Work</span>
-                <h3>Pseudo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipiscing elit netus at nibh velit sociis a
-                  venenatis. Consequat mattis venenatis tortor mollis imperdiet ligula tempus eni.</p>
-              </div>
-            </div>
-            <div class="avisclient-box-content-item">
-              <div class="avisclient-box-content-item-avatar">
-                <img src="/images/avatar.png" alt="">
-                <div class="avisclient-box-content-item-avatar-icon">
-                  <i class="fa-solid fa-quote-right"></i>
-                </div>
-              </div>
-              <div class="avisclient-box-content-item-info">
-                <span>Work</span>
-                <h3>Pseudo</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipiscing elit netus at nibh velit sociis a
-                  venenatis. Consequat mattis venenatis tortor mollis imperdiet ligula tempus eni.</p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
 
@@ -419,8 +348,10 @@
       <div class="download-banner-content">
         <div class="download-banner-content-title">
           <h3>Téléchargez l'application !</h3>
-          <p>Téléchargez Local Quest et devenez contributeur de l’économie locale de votre ville tout en
-            améliorant votre alimentation</p>
+          <p>
+            Téléchargez Local Quest et devenez contributeur de l’économie locale
+            de votre ville tout en améliorant votre alimentation
+          </p>
         </div>
         <div class="download-banner-content-btn">
           <!-- <div class="apple">
@@ -477,6 +408,20 @@ export default {
 };
 </script>
 <style>
+@media (max-width: 1000px) {
+  .cta_recipes_wrapper{
+   width: 100% !important;
+  }
+  .avisclient-box-content {
+  width: 90% !important;
+}
+.avisclient-box-content-item-avatar > img{
+  margin: 0 auto;
+}
+.avisclient-box-content-item {
+  text-align: center;
+}
+}
 html {
   scroll-behavior: smooth;
 }
@@ -485,9 +430,7 @@ a {
   text-decoration: none !important;
 }
 
-
-
-.shops_type_grid_infos_image>img {
+.shops_type_grid_infos_image > img {
   background-color: #ff8528;
   border-radius: 50%;
   max-width: 32px;
@@ -504,80 +447,15 @@ a {
   gap: 10px;
   padding: 1.5rem 1.5rem;
 }
-
-
-
-/* categorie jasmina */
-/* 
-.commerçants {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 80%;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-  text-align: center;
+.avisclient-box-content-item{
+  width: clamp(150px , 30% , 400px);
 }
 
-.commerçants-title {
-  width: 50%;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-  text-align: center;
-}
-
-.commerçants-box {
-  display: flex;
-  width: 100%;
-
-}
-
-.commerçants-box-content {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.commerçants-box-content-item {
-  background: url('../../public/images/epicerie-1.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 40vh;
-  width: 23%;
-  min-width: 300px;
-  max-width: 500px;
-}
-
-.commerçants-box-content-item>a {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  text-align: left;
-  margin: 1rem 0 0 1rem;
-}
-
-.commerçants-box-content-item>a>.shops_type_grid_infos_image {
-  background-color: #ff8528;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-}
-
-.commerçants-box-content-item>a>.shops_type_grid_infos_image>i {
-  font-size: 1rem;
-  color: white;
-} */
 
 /*Commerçant à l'honneur*/
 .commerçants {
   width: 90%;
-  margin: 5rem auto;  
+  margin: 5rem auto;
   padding-bottom: 2rem;
 }
 
@@ -600,14 +478,11 @@ a {
 }
 
 .commerçants-box-content-item {
-  max-width: 400px;
-  min-width: 80px;
-  width: 23%;
+  width: clamp(300px, 23%, 400px);
   display: flex;
   flex-direction: column;
   position: relative;
-  color: #3A3A3A;
-
+  color: #3a3a3a;
 }
 
 .commerçants-box-content-item-img {
@@ -633,7 +508,7 @@ a {
 
 .commerçants-box-content-item-icon i {
   font-size: 1rem;
-  color: #FFF;
+  color: #fff;
 }
 
 .commerçants-box-content-item-category {
@@ -650,7 +525,7 @@ a {
 }
 
 .commerçants-box-content-item-category span {
-  color: #FFF;
+  color: #fff;
 }
 
 .commerçants-box-content-item-img {
@@ -665,10 +540,10 @@ a {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  border-right: 1px solid var(--Light-grey, #D5D5D5);
-  border-bottom: 1px solid var(--Light-grey, #D5D5D5);
-  border-left: 1px solid var(--Light-grey, #D5D5D5);
-  background: #FFF;
+  border-right: 1px solid var(--Light-grey, #d5d5d5);
+  border-bottom: 1px solid var(--Light-grey, #d5d5d5);
+  border-left: 1px solid var(--Light-grey, #d5d5d5);
+  background: #fff;
 }
 
 .commerçants-box-content-item-info-preparation {
@@ -686,7 +561,7 @@ a {
 }
 
 .commerçants-box-content-item-info-preparation-cook span {
-  color: #93989B;
+  color: #93989b;
 }
 
 .commerçants-box-content-item-info-rate {
@@ -704,8 +579,6 @@ a {
   height: 30px;
   border-radius: 50px;
 }
-
-
 
 .cta_recipes {
   background-image: url("../../public/images/bg-section-img.png");
@@ -729,7 +602,7 @@ a {
   gap: 1rem;
 }
 
-.cta_recipes_title>h2 {
+.cta_recipes_title > h2 {
   font-size: 40px;
   font-weight: 600;
 }
@@ -739,7 +612,7 @@ a {
   gap: 1rem;
 }
 
-.search_bar_btn>button {
+.search_bar_btn > button {
   background: #ff8528;
   padding: 1rem;
   border-radius: 5px;
@@ -789,7 +662,7 @@ a {
   padding: 1.5rem;
 }
 
-.see_recipes_card_infos_title>h4 {
+.see_recipes_card_infos_title > h4 {
   font-size: 1.5rem;
 }
 
@@ -815,7 +688,6 @@ a {
   width: 80vw;
   margin: 4rem auto;
   display: flex;
-
 }
 
 .howitswork-box {
@@ -841,19 +713,18 @@ a {
   min-width: 400px;
 }
 
-.howitswork-step-item>span {
+.howitswork-step-item > span {
   font-size: 5rem;
   font-weight: 800;
   color: grey;
 }
 
-.howitswork-step-item>h4 {
+.howitswork-step-item > h4 {
   width: 90%;
   font-weight: 700;
-
 }
 
-.howitswork-step-item>p {
+.howitswork-step-item > p {
   width: 90%;
 }
 
@@ -867,7 +738,6 @@ a {
   margin: 0 auto;
   padding-bottom: 2rem;
   text-align: center;
-
 }
 
 .actus-title {
@@ -875,7 +745,6 @@ a {
   margin: 0 auto;
   padding-bottom: 2rem;
   text-align: center;
-
 }
 
 .actus-box {
@@ -954,10 +823,10 @@ a {
   flex-direction: column;
   text-align: left;
   padding: 1.5rem;
-  border-right: 1px solid var(--Light-grey, #D5D5D5);
-  border-bottom: 1px solid var(--Light-grey, #D5D5D5);
-  border-left: 1px solid var(--Light-grey, #D5D5D5);
-  background: #FFF;
+  border-right: 1px solid var(--Light-grey, #d5d5d5);
+  border-bottom: 1px solid var(--Light-grey, #d5d5d5);
+  border-left: 1px solid var(--Light-grey, #d5d5d5);
+  background: #fff;
 }
 
 .actus-box-content-item-info-preparation {
@@ -975,7 +844,7 @@ a {
 }
 
 .actus-box-content-item-info-preparation-cook span {
-  color: #93989B;
+  color: #93989b;
 }
 
 .actus-box-content-item-info-rate {
@@ -994,12 +863,10 @@ a {
   border-radius: 50px;
 }
 
-
 /* ---- AVIS CLIENTS ---- */
 
 .avisclient {
   display: flex;
-
 }
 
 .avisclient-title {
@@ -1013,8 +880,9 @@ a {
   width: 70%;
   margin: 5rem auto;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .avisclient-box-item {
@@ -1054,7 +922,7 @@ a {
   border: 2px solid white;
 }
 
-.avisclient-box-item-info>span {
+.avisclient-box-item-info > span {
   color: #ff8528;
 }
 

@@ -1,11 +1,18 @@
 <template>
   <div v-if="this.shop" class="shop-card">
     <div class="shop-card-img">
-    <img v-if="this.shop.images.length === 1 && this.shop.images[0].image_name !== 'default_shop.jpg'" :src=" this.previewImageStorage + this.shop.images[0].image_name" alt="">
+      <img
+        v-if="
+          this.shop.images.length === 1 &&
+          this.shop.images[0].image_name !== 'default_shop.jpg'
+        "
+        :src="this.previewImageStorage + this.shop.images[0].image_name"
+        alt=""
+      />
 
-
-      <img v-else
-        :src=" this.previewImagePublic + 'default_shop.jpg'"
+      <img
+        v-else
+        :src="this.previewImagePublic + 'default_shop.jpg'"
         class=""
         alt=""
       />
@@ -50,13 +57,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.shop-card {
-  width:45%;
+@media (max-width: 768px) {
+  .shop-card {
+    width: clamp(300px, 100%, 600px) !important;
+  }
+  .shop-card-img > img {
+    width: clamp(300px, 100%, 600px)!important;
+  }
 }
-.shop-card-img > img{
+.shop-card {
+  width: clamp(250px, 45%, 600px);
+}
+.shop-card-img > img {
   border-radius: 5px;
-width: clamp(300px , 100% , 500px);
-height: 400px;
+  width: clamp(300px, 100%, 500px);
+  height: 400px;
 }
 .shop-card-stars {
   display: flex;
@@ -75,13 +90,13 @@ height: 400px;
   font-size: 2rem;
   color: black;
 }
-.shop-card-wrapper > h5 > a{
+.shop-card-wrapper > h5 > a {
   color: black;
 }
-.shop-card-wrapper > h5 > a:hover{
+.shop-card-wrapper > h5 > a:hover {
   color: #ff8528;
 }
-.shop-card-stars-num{
+.shop-card-stars-num {
   border: 2px solid #ff8528;
   height: 30px;
   width: 30px;

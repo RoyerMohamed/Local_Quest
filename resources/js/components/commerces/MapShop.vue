@@ -1,7 +1,5 @@
 <template>
-  <div class="toto">
-    <div id="map"></div>
-  </div>
+  <div id="map"></div>
 </template>
   
   <script>
@@ -11,10 +9,10 @@ import { useShopStore } from "../../stores/shopStore";
 
 export default {
   name: "MapShop",
-  data(){
-    return{
+  data() {
+    return {
       previewImage: "http://[::1]:5173/public/images/",
-    }
+    };
   },
   computed: {
     ...mapState(useUserStore, [
@@ -29,33 +27,30 @@ export default {
     initMap() {
       let map = "";
       if (this.userLocationAnswered) {
-        
         if (this.longitude) {
           map = L.map("map", {
             center: [this.latitude, this.longitude],
             zoom: 13,
           });
-          
+
           L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
             attribution: "© OpenStreetMap",
           }).addTo(map);
-          
+
           this.shops.forEach((shop) => {
-            
-              let fontAwesomeIcon = L.divIcon({
-                // on crée un icône correspondant à celui choisi pour la catégorie
-                //html: `${shop.category.category_icon}`,
-                html: `<span>${shop.category.category_icon}</span>`,
-                iconSize: [60, 60],
-                className: 'dummy',
+            let fontAwesomeIcon = L.divIcon({
+              // on crée un icône correspondant à celui choisi pour la catégorie
+              //html: `${shop.category.category_icon}`,
+              html: `<span>${shop.category.category_icon}</span>`,
+              iconSize: [60, 60],
+              className: "dummy",
+            });
+
+            L.marker([shop.latitude, shop.longitude], {
+              icon: fontAwesomeIcon,
+            }).addTo(map);
           });
-
-          L.marker([shop.latitude, shop.longitude],{icon: fontAwesomeIcon}).addTo(map);
-
-          });
-
-         
         } else {
           map = L.map("map", {
             center: [46.321829377357595, -0.4690948369241785],
@@ -65,18 +60,18 @@ export default {
             maxZoom: 19,
             attribution: "© OpenStreetMap",
           }).addTo(map);
-          
+
           console.log(this.shops);
           this.shops.forEach((shop) => {
             let fontAwesomeIcon = L.divIcon({
-            // on crée un icône correspondant à celui choisi pour la catégorie
-            html: `<span style="text-shadow: 2px 2px 4px #fff; color: ${shop.category.category_color}">${shop.category.category_name}</span>`,
-            iconSize: [40, 40],
-          });
+              // on crée un icône correspondant à celui choisi pour la catégorie
+              html: `<span style="text-shadow: 2px 2px 4px #fff; color: ${shop.category.category_color}">${shop.category.category_name}</span>`,
+              iconSize: [40, 40],
+            });
 
-          L.marker([shop.latitude, shop.longitude], {
-            icon: fontAwesomeIcon,
-          }).addTo(map);
+            L.marker([shop.latitude, shop.longitude], {
+              icon: fontAwesomeIcon,
+            }).addTo(map);
           });
         }
       }
@@ -111,19 +106,24 @@ export default {
 </script>
   
   <style lang="css" scoped>
+@media (max-width: 1100px) {
+  #map {
+    height: 50vh !important;
+    width: 100% !important;
+    min-width: 300px;
+    position: absolute !important;
+    top:10%; 
+  }
+}
 #map {
-  height: 75vh;
+  height: 90vh;
   min-width: 300px;
-  width: 50vw;
-  max-width: 800px;
+  width: 60%;
   margin: auto;
   position: fixed;
-  right: 5%;
   border-radius: 5px;
-
-  box-shadow: -1px 1px 9px 1px #ABABAB;
--webkit-box-shadow: -1px 1px 9px 1px  #ABABAB;
--moz-box-shadow: -1px 1px 9px 1px #ABABAB;
+  box-shadow: -1px 1px 9px 1px #ababab;
+  -webkit-box-shadow: -1px 1px 9px 1px #ababab;
+  -moz-box-shadow: -1px 1px 9px 1px #ababab;
 }
-
 </style>

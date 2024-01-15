@@ -40,20 +40,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+@media (max-width: 1100px) {
+  .ShopContent{
+    flex-direction: column-reverse;
+  }
+  .ShopContent-info {
+    width: clamp(500px , 100% , 100%) !important;
+    margin-top: 60vh;
+}
+}
 .ShopContent {
   display: flex;
+  flex-wrap: wrap;
+  
 }
 .shop-list-card{
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
-  padding: 0 1rem
+  padding: 0 1rem; 
+  justify-content: space-around;
 
 }
 .ShopContent-info {
-  width: 50%;
+  width: clamp(500px , 50% , 800px);
 }
 .ShopContent-map {
-  width: 50%;
+  width: 20%;
 }
 </style>

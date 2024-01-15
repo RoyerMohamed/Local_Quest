@@ -2,12 +2,14 @@
   <div class="shop-filters">
     <div class="shop-filters-top">
       <div class="shop-filters-top-produit">
-        <form @submit.prevent="sort" class="p-4">
+        <form  @change.prevent="sort" class="p-4">
           <!-- filter by departments -->
           <div class="wrapper d-flex">
             <div class="filter_department">
               <select name="department" v-model="selectDepartment">
-                <option :value="null"></option>
+                <option value="" disabled selected>
+            Sélectionnez un department 
+          </option>
                 <option
                   :value="department.id"
                   v-for="department in this.departments"
@@ -20,7 +22,9 @@
 
             <div class="filter_category">
               <select name="categories" v-model="selectCategory">
-                <option :value="null"></option>
+                <option value="" disabled selected>
+            Sélectionnez une categorie 
+          </option>
                 <option
                   :value="categorie.id"
                   v-for="categorie in this.categories"
@@ -36,6 +40,7 @@
                 type="search"
                 name="shop_title"
                 id=""
+                placeholder="recherce par titre"
                 v-model="shop_title"
               />
             </div>
@@ -57,12 +62,10 @@
               </div>
             </div>
           </div>
-          <div class="search_bar_btn">
-            <button type="submit">filtré</button>
-            
-                    <button @click="resetFilter()">reset filters</button>
-          </div>
         </form>
+        <div class="search_bar_btn"  @click="resetFilter()">
+          <button >reset filters</button>
+        </div>
       </div>
       <div class="shop-filters-top-departement"></div>
       <div class="shop-filters-top-region"></div>
@@ -121,10 +124,6 @@ export default {
       }
     },
     resetFilter() {
-      this.selectDepartment = null;
-      this.selectCategory = null;
-      this.shop_title = null;
-
       this.setShop();
     },
 
@@ -159,6 +158,9 @@ export default {
 </script>
 
 <style scoped>
+.shop-filters-top-produit > .search_bar_btn{
+  margin: 1.5rem;
+}
 .wrapper {
   justify-content: space-between;
 }
@@ -193,7 +195,8 @@ export default {
 }
 .filter_products_list > div {
   display: flex;
-  width: 25%;
+  width: 40%;
+  align-items: center;
   gap: 1rem;
 }
 .filter_products_list > div > label {
