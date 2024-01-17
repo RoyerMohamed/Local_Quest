@@ -15,7 +15,7 @@ export const useShopStore = defineStore({
 
   actions: {
     setShops(data) {
-      console.log(data);
+     
     this.shops = data
     },
     setDepartments(data){
@@ -43,12 +43,12 @@ export const useShopStore = defineStore({
     result = result.join('&');
 
       axios.get(`http://127.0.0.1:8000/api/sortShops?${result}`).then((res) => {
-        console.log(res.data.commercant) 
+       
         res.data.commercant.length !== 0 ? this.shops = res.data.commercant : this.shops = []
       }).catch((err) => console.log(err))
     }, 
     addShop(data){
-      console.log(data);
+     
       let validation = ""
       axios.post(`http://127.0.0.1:8000/api/shops`,data).then((res) => {
         validation = res.data.message;
@@ -66,12 +66,12 @@ export const useShopStore = defineStore({
      
     },
     sortShopByProduct(data){
-      console.log(this.shops);
+      
       if (data.length > 0) {
         this.shops = data
-        console.log(this.shops);
+        
       } else {
-        console.log("no data");
+        
        this.setShops();
       }
     }
@@ -83,7 +83,7 @@ export const useShopStore = defineStore({
     getFilteredShopByProducts() {
       return(filters)=>{
 
-        //console.log(filters);
+        
       }
 
      

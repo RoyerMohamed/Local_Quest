@@ -1,5 +1,12 @@
 <template>
-
+ <ValidationErrors
+      :errors="this.validationErrors"
+      v-if="this.validationErrors"
+    />
+    <ValidationResponse
+      :message="this.validationResponse"
+      v-if="this.validationResponse"
+    />
   <!-- message de validation checkbox -->
   <div>
     <h1 @click="getAllAdminShop" class="btn btn-primary">liste de commerces</h1>
@@ -59,13 +66,13 @@
             <td>{{ shop.website }}</td>
             <td>{{ shop.phone_number }}</td>
             
-            <td> <input type="checkbox" :checked="shop.shop_status" @click="getId(shop.id)" @change="updateStatus" />  </td>
+            <td class=""> <input type="checkbox" class="form-check-input"  :checked="shop.shop_status" @click="getId(shop.id)" @change="updateStatus" />  </td>
             <td>
-                <router-link :to="`/editShop/${shop.id}`" >Modifier</router-link>
+                <router-link :to="`/editShop/${shop.id}`" ><button type="button" class="btn btn-warning">Modifier</button></router-link>
             </td>
             <td>
               <form @submit.prevent="deleteShop(shop.id)">
-                <button class="btn " type="submit">supprimer</button>
+                <button class="btn btn-danger" type="submit">supprimer</button>
               </form>
             </td>
           </tr>
@@ -79,6 +86,8 @@
 </template>
 
 <script>
+import ValidationErrors from "../utils/ValidationErrors.vue";
+import ValidationResponse from "../utils/ValidationResponse.vue";
 import {mapWritableState , mapActions } from 'pinia'
 import { useShopStore } from '../../stores/shopStore';
 import axios from "axios";
@@ -92,8 +101,11 @@ export default {
       toggle:false,
       show:"display : none", 
       shop_id : "",
+      validationErrors: "",
+      validationResponse: "",
     };
   },
+  components: { ValidationErrors, ValidationResponse },
   computed: {
     ...mapWritableState(useShopStore , ["shops"]), 
   },
@@ -111,7 +123,7 @@ export default {
       } 
       ).then((res)=>{
         let index =  this.shops.findIndex(shop => shop.id === this.shop_id);
-       // console.log(this.shops[index]);
+       
         this.shops[index] = res.data.commercant
         this.setShops(this.shops); 
       }).catch((err)=>{
@@ -134,27 +146,13 @@ export default {
       axios
         .delete(`http://127.0.0.1:8000/api/shops/${id}`)
         .then((res) => {
-          console.log('this.shops.findIndex(shop => shop.id === this)');
-
-           let index =  this.shops.findIndex(shop => shop.id === id);
-      //  // console.log(this.shops[index]);
-         delete this.shops[index] 
-        console.log(index);
-        this.setShops(this.shops);
-        this.$router.push('/admin')
-
-        //   axios
-        // .get("http://127.0.0.1:8000/api/adminShops")
-        // .then((res) => {
-        //   this.shops = res.data.commercant;
-        // })
-        // .catch((err) => {
-        //   console.log(err);
-        // });
-          // shopStore.getShopByUserId();
+         this.setShops(this.shops.filter(shop => shop.id !== id));
+         this.validationErrors = ""; 
+         this.validationResponse = res.data.message;
         })
         .catch((err) => {
-          console.log(err);
+          this.validationResponse = '';
+          this.validationErrors = err.response.data[0].errors;
         });
     },
   },

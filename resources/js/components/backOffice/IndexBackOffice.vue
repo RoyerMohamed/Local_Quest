@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapWritebleState } from "pinia";
+import { mapState } from "pinia";
 import { useShopStore } from "../../stores/shopStore";
 import { useUserStore } from "../../stores/userStore";
 import ShopsBackOffice from "./shopsBackOffice.vue";
@@ -17,12 +17,12 @@ export default {
   data(){
     return {
       users :[], 
-      shops : []
+  
     }
   },
   components: { ShopsBackOffice , UserBackOffice },
   computed: {
-   ...mapWritebleState(useShopStore, ['shops'])
+   ...mapState(useShopStore, ['shops'])
    
   },created(){
     

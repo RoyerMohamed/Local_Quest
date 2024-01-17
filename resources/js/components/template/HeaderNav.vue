@@ -405,7 +405,7 @@ export default {
     ...mapState(useShopStore, ["categories"]),
   },
   methods: {
-    ...mapActions(useUserStore, ["setLocationAnswered", "setLocation"]),
+    ...mapActions(useUserStore, ["setLocationAnswered", "setLocation","setAllUsers"]),
     ...mapActions(useShopStore, ["getShopByUserId", "filterShops", "setShops"]),
     logOut() {
       const userStore = useUserStore();
@@ -418,7 +418,7 @@ export default {
     setAllShop() {
 
         axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
-          ;
+          
           this.setShops(res.data.commercant)
         }).catch((err) => console.log(err))
        
@@ -453,26 +453,26 @@ export default {
       let toggle_menu = document.getElementById("toggle_menu");
 
       if (toggle_menu.style.display == "flex") {
-        console.log(toggle_menu.style.display == "flex");
+        
         toggle_menu.style.display = "none";
       } else {
-        console.log("no");
+        
         toggle_menu.style.display = "flex";
       }
     },
     showMobilMenu(){
       const toggle_menu = document.getElementById("menu_links_mobile")
       const ul = document.getElementById("")
-      // console.log(toggle_menu.style.display == "none");
+ 
       if (toggle_menu.style.display == "flex") {
         toggle_menu.style.display = "none";
       } else {
-        console.log(ul);
+        
         toggle_menu.style.display = "flex";
         toggle_menu.style.justifyContent = "center";
         toggle_menu.style.justifyContent = "center";
       }
-      console.log(toggle_menu);
+    
     }
   },
   created() {
@@ -482,6 +482,11 @@ export default {
     axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
           this.setShops(res.data.commercant)
         }).catch((err) => console.log(err))
+
+    axios.get('http://127.0.0.1:8000/api/users').then((res)=>{
+     
+        this.setAllUsers(res.data.Utilisateurs);
+      })
   },
 };
 </script>

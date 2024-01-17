@@ -108,7 +108,6 @@ export default {
     ]),
 
     sort() {
-      // console.log(typeof this.selectDepartment , typeof this.selectCategory  , typeof this.shop_title );
       if (
         this.selectDepartment !== null ||
         this.selectCategory !== null ||

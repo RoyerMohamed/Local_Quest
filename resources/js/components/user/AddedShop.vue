@@ -4,11 +4,37 @@
     v-if="Array.isArray(this.userShop) && this.userShop.length > 0"
   >
     <div class="card" v-for="shop in this.userShop" :key="shop.id">
-      <div class="header">
-        <span>{{ shop.shop_title }}</span>
-      </div>
-      <div class="info">
-        <p class="title"></p>
+      <div class="header" >
+
+        <img
+        v-if="
+          shop.images.length === 1 &&
+          shop.images[0].image_name !== 'default_shop.jpg'
+        "
+        :src="this.previewImageStorage + shop.images[0].image_name"
+        alt=""
+      />
+        <img
+        v-else-if="
+          shop.images.length === 1 &&
+          shop.images[0].image_name === 'default_shop.jpg'
+        "
+        :src="this.previewImagePublic + shop.images[0].image_name"
+        alt=""
+      />
+        <img
+        v-else-if="
+          shop.images.length > 1 &&
+          shop.images[0].image_name !== 'default_shop.jpg'
+        "
+        :src="this.previewImageStorage + shop.images[0].image_name"
+        alt=""
+       
+      />
+    </div>
+    <div class="info">
+        
+        <p class="title">{{ shop.shop_title }}</p>
         <p>
             {{ shop.adresse }} , {{ shop.zip_code }}
         </p>
@@ -30,6 +56,12 @@ import { useShopStore } from "../../stores/shopStore";
 import { mapState } from "pinia";
 export default {
   name: "AddedShop",
+  data(){
+    return {
+      previewImagePublic: "http://[::1]:5173/public/images/",
+      previewImageStorage: "http://[::1]:5173/public/storage/",
+    };
+  }, 
   computed: {
     ...mapState(useShopStore, ["userShop"]),
   },
@@ -64,13 +96,14 @@ export default {
   margin-left: 1rem;
   margin-right: 1rem;
   border-radius: 0.75rem;
-  background-color: rgb(33 150 243);
-  box-shadow: 0 10px 15px -3px rgba(33, 150, 243, 0.4),
-    0 4px 6px -4px rgba(33, 150, 243, 0.4);
   height: 14rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.header > img{
+  width: 200px;
+  height: 150px;
 }
 
 .info {

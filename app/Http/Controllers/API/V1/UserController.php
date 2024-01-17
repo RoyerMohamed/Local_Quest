@@ -27,7 +27,7 @@ class UserController extends Controller
             return response()->json(['message' => 'Pas de utilisateurs trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Utilisateurs trouvé', 'Utilisateurs' => User::latest()->paginate()], 200);
+        return response()->json(['message' => 'Utilisateurs trouvé', 'Utilisateurs' => User::latest()->get()], 200);
     }
 
     /**

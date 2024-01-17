@@ -160,7 +160,7 @@ export default {
       this.formData.append("email", this.email);
       this.formData.append("image", this.$refs.image.files[0]);
       this.formData.append("password", this.password);
-      // console.log({user_name :this.user_name ,email: this.email ,image : this.$refs.image.files[0] , password :this.password},);
+      console.log(this.user.password === this.user.password_confimation);
       if (this.user.password === this.user.password_confimation){
         axios
           .post(

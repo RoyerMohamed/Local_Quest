@@ -221,7 +221,8 @@
             <!-- a voir  -->
             <label for="product"> Products </label>
             <div class="filter_product">
-              <div v-for="product in products" :key="product">
+              <div v-for="product  in products" :key="product">
+                <!-- {{ console.log(this.shop.products.some(obj1 => products.some(obj2 => obj1.id === obj2.id))) }} -->
                 <input
                   type="checkbox"
                   name="product"
@@ -233,7 +234,6 @@
               </div>
             </div>
           </div>
-
           <div class="addShop_description">
             <label for="description">Description : </label>
             <textarea
@@ -323,8 +323,6 @@ export default {
       .get(`http://127.0.0.1:8000/api/shops/${this.shop_id}`)
       .then((res) => {
         this.shop = res.data.shop;
-
-        // cree une function pour actualiser le shop
       })
       .catch((err) => {
         console.log(err);
@@ -334,9 +332,8 @@ export default {
       .get("http://127.0.0.1:8000/api/department")
       .then((res) => {
         this.departments = res.data.Departement;
-      })
+      }).catch((err) => console.log(err));
 
-      .catch((err) => console.log(err));
     axios
       .get("http://127.0.0.1:8000/api/categories")
       .then((res) => {
@@ -352,6 +349,8 @@ export default {
       .catch((err) => console.log(err));
   },
   methods: {
+    ...mapActions(useShopStore, ['setShops','getShopByUserId']),
+ 
     shopUpdate(id) {
       axios
         .put(`http://127.0.0.1:8000/api/shops/${id}`, {
@@ -372,8 +371,11 @@ export default {
           products_id: this.products_id.length === 0 ? null : this.products_id,
         })
         .then((res) => {
-          console.log(res);
+          console.log(this.$route);
+          
+          this.getShopByUserId(); 
           this.validationResponse = res.data.message;
+         // this.$router.push('/AddedShop')
         })
         .catch((err) => console.log(err));
     },

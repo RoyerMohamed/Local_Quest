@@ -96,6 +96,7 @@
                   id="checkbox"
                   :value="product.id"
                   v-model="products_id"
+                  
                 />
                 <label for="scales">{{ product.product_name }}</label>
               </div>
