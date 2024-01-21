@@ -59,7 +59,7 @@ class UserController extends Controller
         ]);
 
         if ($request->has('image')) {
-            dd($request->image);
+           
             $user->update([
                 "profil_picture" => $request->hasFile('image') ? UploadImage($request->image, $user->id) : 0
             ]);

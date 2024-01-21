@@ -10,7 +10,8 @@ export const useShopStore = defineStore({
     categories: [],
     OpeningHours: [], 
     products : [], 
-    userShop : []
+    userShop : [], 
+    bestRaitingShops : []
   }),
 
   actions: {
@@ -31,22 +32,15 @@ export const useShopStore = defineStore({
       this.products = data
     },
     filterShops(data) {
-      this.shops = [];
-      let result = [];
-
-      for (const key in data) {
-          if (data.hasOwnProperty(key) && data[key] !== null) {
-              result.push(`filter[${key}]=${data[key]}`);
-          }
-      }
-  
-    result = result.join('&');
-
-      axios.get(`http://127.0.0.1:8000/api/sortShops?${result}`).then((res) => {
-       
-        res.data.commercant.length !== 0 ? this.shops = res.data.commercant : this.shops = []
-      }).catch((err) => console.log(err))
+      this.shops = []
+      this.shops = data ;
+      console.log(this.shops);
     }, 
+    updateShop(data){
+      let shop = this.shops.filter(shop => shop.id !== data.id);
+      shop.push(data);
+      this.shops = shop.sort((a, b) => a.id - b.id);
+    },
     addShop(data){
      
       let validation = ""
@@ -72,9 +66,44 @@ export const useShopStore = defineStore({
         
       } else {
         
-       this.setShops();
+         axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+          this.shops = res.data.commercant
+        }).catch((err) => console.log(err))
       }
+    }, 
+   async sortByDepartment(data){
+     
+       await axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+        this.shops = res.data.commercant
+      }).catch((err) => console.log(err))
+
+      console.log(this.shops.filter((shop) => shop.department_id == data));
+     this.shops = this.shops.filter((shop) => shop.department_id == data)
+    //let filterShops = temps.filter((shop) => shop.department_id == data);
+    },
+   async sortByCategory(data){
+     
+       await axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+        this.shops = res.data.commercant
+      }).catch((err) => console.log(err))
+
+      this.shops = this.shops.filter((shop) => shop.category_id == data)
+      console.log(this.shops);
+    //let filterShops = temps.filter((shop) => shop.department_id == data);
+    },
+   async sortByTitle(data){
+     
+       await axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
+        this.shops = res.data.commercant
+      }).catch((err) => console.log(err))
+
+       this.shops = this.shops.filter((shop) => shop.shop_title.includes(data))
+      
+    },
+    setRaitingShops(data){
+      this.bestRaitingShops = data
     }
+
   },
   getters: {
     getShopById: (state) => {

@@ -32,6 +32,7 @@
                 <li>
                   <router-link to="/">Accueil</router-link>
                 </li>
+
                 <li>
                   <router-link @click="this.setAllShop" to="/commerces"
                     >Commerçants</router-link
@@ -44,27 +45,23 @@
                     >Proposer un commerçant <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
-                <li id="profil_btn" @click="showLinks">
-                  <i class="fa-solid fa-user" style="color: #ffffff"></i>
+
+                <li>
+                  <router-link to="/profil" @click="setUserShop"
+                    >Profil</router-link
+                  >
                 </li>
-                <div id="toggle_menu">
-                  <li>
-                    <router-link to="/profil" @click="setUserShop"
-                      >Profil</router-link
-                    >
-                  </li>
-                  <li v-if="this.is_admin" @click="getAllAdminShop">
-                    <router-link to="/admin">Admin</router-link>
-                  </li>
-                  <li>
-                    <a @click="logOut" id="log_out"
-                      ><i
-                        class="fa-solid fa-right-from-bracket"
-                        style="color: #ffffff"
-                      ></i
-                    ></a>
-                  </li>
-                </div>
+                <li v-if="this.is_admin" @click="getAllAdminShop">
+                  <router-link to="/admin">Admin</router-link>
+                </li>
+                <li>
+                  <a @click="logOut" id="log_out"
+                    ><i
+                      class="fa-solid fa-right-from-bracket"
+                      style="color: #ffffff"
+                    ></i
+                  ></a>
+                </li>
               </div>
             </div>
           </ul>
@@ -76,25 +73,28 @@
           <router-link to="/" class="">
             <img src="../../../../public/images/logo.png" alt="" />
           </router-link>
-          <div class="toggle_menu_mobil" id="toggle_menu_mobil" @click="showMobilMenu">
+          <div
+            class="toggle_menu_mobil"
+            id="toggle_menu_mobil"
+            @click="showMobilMenu"
+          >
             <i class="fa-solid fa-bars"></i>
           </div>
         </div>
         <div class="menu_links" id="menu_links_mobile">
           <ul>
             <div v-if="!this.token" class="menu_visitor_links">
-                <li>
-                  <router-link to="/">Accueil</router-link>
-                </li>
-                <li>
-                  <router-link @click="this.setAllShop" to="/commerces"
-                    >Commerçants</router-link
-                  >
-                </li>
-                <li>
-                  <router-link to="/login"> Connexion </router-link>
-                </li>
-             
+              <li>
+                <router-link to="/">Accueil</router-link>
+              </li>
+              <li>
+                <router-link @click="this.setAllShop" to="/commerces"
+                  >Commerçants</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/login"> Connexion </router-link>
+              </li>
             </div>
             <div v-else class="menu_user_links">
               <div class="menu_visitor_links_left">
@@ -108,32 +108,28 @@
                 </li>
               </div>
               <div class="menu_visitor_links_right">
-                <li id="btn_add_shop">
+                <li id="">
                   <router-link @click="this.setAllShop" to="/ajoutCommerce"
                     >Proposer un commerçant <i class="fa-solid fa-plus"></i
                   ></router-link>
                 </li>
-                <li id="profil_btn" @click="showLinks">
-                  <i class="fa-solid fa-user" style="color: #ffffff"></i>
+
+                <li>
+                  <router-link to="/profil" @click="setUserShop"
+                    >Profil</router-link
+                  >
                 </li>
-                <div id="toggle_menu">
-                  <li>
-                    <router-link to="/profil" @click="setUserShop"
-                      >Profil</router-link
-                    >
-                  </li>
-                  <li v-if="this.is_admin" @click="getAllAdminShop">
-                    <router-link to="/admin">Admin</router-link>
-                  </li>
-                  <li>
-                    <a @click="logOut" id="log_out"
-                      ><i
-                        class="fa-solid fa-right-from-bracket"
-                        style="color: #ffffff"
-                      ></i
-                    ></a>
-                  </li>
-                </div>
+                <li v-if="this.is_admin" @click="getAllAdminShop">
+                  <router-link to="/admin">Admin</router-link>
+                </li>
+                <li>
+                  <a @click="logOut" id="log_out"
+                    ><i
+                      class="fa-solid fa-right-from-bracket"
+                      style="color: #ffffff"
+                    ></i
+                  ></a>
+                </li>
               </div>
             </div>
           </ul>
@@ -143,75 +139,75 @@
     <!-- SEARCH SHOP -->
     <div class="hero-search">
       <div class="hero-search-icons">
-        <a href="">
+        <a @click="handleForm(true ,'Épicerie')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-shop"></i>
             <p>Épicerie</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Fruits & Légumes')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-carrot"></i>
             <p>Fruits & Légumes</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Boulangerie')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-bread-slice"></i>
             <p>Boulangerie</p>
           </div>
         </a>
 
-        <a href="">
+        <a @click="handleForm(true ,'Pâtisserie')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-cookie"></i>
             <p>Pâtisserie</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Boucherie & Charcuterie')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-cow"></i>
             <p>Boucherie</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Poissonnerie')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-fish"></i>
             <p>Poissonnerie</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Fromagerie')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-cheese"></i>
             <p>Fromagerie</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Caviste')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-wine-bottle"></i>
             <p>Caviste</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Fermes')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-tractor"></i>
             <p>Fermes</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Produits locaux')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-jar"></i>
             <p>Produits locaux</p>
           </div>
         </a>
-        <a href="">
+        <a @click="handleForm(true ,'Marché de producteurs')">
           <div class="hero-search-icons-item">
             <i class="fa-solid fa-store"></i>
             <p>Marché de producteurs</p>
           </div>
         </a>
       </div>
-      <form class="input-group" @submit.prevent="handleForm">
+      <form class="input-group" @submit.prevent="handleForm(false , null)">
         <select
           class="form-select"
           v-model="selectCategory"
@@ -318,25 +314,28 @@
           <router-link to="/" class="">
             <img src="../../../../public/images/logo.png" alt="" />
           </router-link>
-          <div class="toggle_menu_mobil" id="toggle_menu_mobil" @click="showMobilMenu">
+          <div
+            class="toggle_menu_mobil"
+            id="toggle_menu_mobil"
+            @click="showMobilMenu"
+          >
             <i class="fa-solid fa-bars"></i>
           </div>
         </div>
         <div class="menu_links" id="menu_links_mobile">
           <ul>
             <div v-if="!this.token" class="menu_visitor_links">
-                <li>
-                  <router-link to="/">Accueil</router-link>
-                </li>
-                <li>
-                  <router-link @click="this.setAllShop" to="/commerces"
-                    >Commerçants</router-link
-                  >
-                </li>
-                <li>
-                  <router-link to="/login"> Connexion </router-link>
-                </li>
-             
+              <li>
+                <router-link to="/">Accueil</router-link>
+              </li>
+              <li>
+                <router-link @click="this.setAllShop" to="/commerces"
+                  >Commerçants</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/login"> Connexion </router-link>
+              </li>
             </div>
             <div v-else class="menu_user_links">
               <div class="menu_visitor_links_left">
@@ -405,8 +404,12 @@ export default {
     ...mapState(useShopStore, ["categories"]),
   },
   methods: {
-    ...mapActions(useUserStore, ["setLocationAnswered", "setLocation","setAllUsers"]),
-    ...mapActions(useShopStore, ["getShopByUserId", "filterShops", "setShops"]),
+    ...mapActions(useUserStore, [
+      "setLocationAnswered",
+      "setLocation",
+      "setAllUsers",
+    ]),
+    ...mapActions(useShopStore, ["getShopByUserId", "filterShops", "setShops", "setRaitingShops"]),
     logOut() {
       const userStore = useUserStore();
       const shopStore = useShopStore();
@@ -416,12 +419,12 @@ export default {
       this.$router.push("/");
     },
     setAllShop() {
-
-        axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
-          
-          this.setShops(res.data.commercant)
-        }).catch((err) => console.log(err))
-       
+      axios
+        .get("http://127.0.0.1:8000/api/shops")
+        .then((res) => {
+          this.setShops(res.data.commercant);
+        })
+        .catch((err) => console.log(err));
     },
     setAllRecipe() {
       const useRecipe = useRecipeStore();
@@ -435,58 +438,61 @@ export default {
     setUserShop() {
       this.getShopByUserId();
     },
-    getAllAdminData() {
-      axios
-        .get("http://127.0.0.1:8000/api/admin")
-        .then((res) => {
-          this.shops = res.data.Commerçants;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    handleForm() {
-      this.filterShops({ category_id: this.selectCategory });
-      this.$router.push("/commerces");
+    handleForm(isNotForm , category_name) {
+      //console.log(category_name);
+      if (isNotForm) {
+        let cat = this.categories.filter(
+          (cat) => cat.category_name === category_name
+        );
+        this.filterShops(cat[0].shops);
+        this.$router.push("/commerces");
+      } else {
+
+        let cat = this.categories.filter(cat => cat.id === this.selectCategory)
+        //console.log(cat[0].shops);
+        this.filterShops(cat[0].shops);
+        this.$router.push("/commerces");
+      }
     },
     showLinks() {
       let toggle_menu = document.getElementById("toggle_menu");
 
       if (toggle_menu.style.display == "flex") {
-        
         toggle_menu.style.display = "none";
       } else {
-        
         toggle_menu.style.display = "flex";
       }
     },
-    showMobilMenu(){
-      const toggle_menu = document.getElementById("menu_links_mobile")
-      const ul = document.getElementById("")
- 
+    showMobilMenu() {
+      const toggle_menu = document.getElementById("menu_links_mobile");
+      const ul = document.getElementById("");
+
       if (toggle_menu.style.display == "flex") {
         toggle_menu.style.display = "none";
       } else {
-        
         toggle_menu.style.display = "flex";
         toggle_menu.style.justifyContent = "center";
         toggle_menu.style.justifyContent = "center";
       }
-    
-    }
+    },
   },
   created() {
     if (this.$route.name != "Home") {
       this.headerStyle = "height:10vh";
     }
-    axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
-          this.setShops(res.data.commercant)
+    axios.get('http://127.0.0.1:8000/api/shopsNote').then((res) => {
+          this.setRaitingShops(res.data.commercant)
         }).catch((err) => console.log(err))
-
-    axios.get('http://127.0.0.1:8000/api/users').then((res)=>{
-     
-        this.setAllUsers(res.data.Utilisateurs);
+    axios
+      .get("http://127.0.0.1:8000/api/shops")
+      .then((res) => {
+        this.setShops(res.data.commercant);
       })
+      .catch((err) => console.log(err));
+
+    axios.get("http://127.0.0.1:8000/api/users").then((res) => {
+      this.setAllUsers(res.data.Utilisateurs);
+    });
   },
 };
 </script>
@@ -514,32 +520,57 @@ export default {
     margin: 1rem;
     gap: 3rem;
   }
-  .toggle_menu_mobil  {
+  .toggle_menu_mobil {
     color: #ff8528;
     background-color: white;
-    padding: .25rem;
+    padding: 0.25rem;
   }
   .toggle_menu_mobil > i {
     color: #ff8528;
     background-color: white;
-    padding: .25rem;
+    padding: 0.25rem;
   }
-  .hero-search > form{
-    display: none !important;
+  .hero-search > form {
+    /* display: none !important; */
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero-search > form > select {
+    /* display: none !important; */
+    width: 100%;
+    padding: 1rem;
+    border-radius: 5px !important;
   }
   .hero-search {
-    padding-top: 10rem !important;
+    padding: 5rem 0 !important;
   }
-  .hero-search-icons{
+  .hero-search-icons {
     flex-wrap: wrap;
+    display: none !important;
   }
-  .hero-search-icons > a{
-   min-width: 100px ;
+  .hero-search-icons > a {
+    min-width: 100px;
   }
 
   header {
-  height: 100% !important;
-}
+    height: 100% !important;
+  }
+  .menu_visitor_links,
+  .menu_user_links {
+    flex-direction: column;
+    gap: 1rem;
+    height: auto !important;
+    transition: all 500ms;
+  }
+  .menu_visitor_links,
+  .menu_user_links > .menu_visitor_links_left,
+  .menu_visitor_links_right {
+    flex-direction: column;
+  }
+  .master-btn {
+    border-radius: 5px !important;
+    justify-content: center;
+  }
 }
 header {
   background-image: url(../../../../public/images/hero.png);
@@ -560,7 +591,7 @@ header {
 .menu_wrapper_mobile {
   display: none;
 }
-#menu_links_mobile >ul> .menu_visitor_links {
+#menu_links_mobile > ul > .menu_visitor_links {
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
@@ -626,6 +657,7 @@ a {
   width: 100%;
   height: 65px;
   align-items: center;
+  transition: height 500ms;
 }
 
 .menu_visitor_links_left {

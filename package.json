@@ -5,7 +5,7 @@
     "test:unit": "vue-cli-service test:unit",
     "cypress:open": "cypress open",
     "dev": "vite",
-    "test":"jest"
+    "test": "jest"
   },
   "dependencies": {
     "mysql2": "^3.6.5",

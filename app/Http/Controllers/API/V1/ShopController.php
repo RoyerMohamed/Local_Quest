@@ -18,7 +18,7 @@ class ShopController extends Controller
 
     public function __construct()
     {
-        $this->middleware("auth:sanctum")->except(["index", "show", "sortByDepartments" , "sortShops"]);
+        $this->middleware("auth:sanctum")->except(["index", "show", "sortByDepartments" , "sortShops" , 'note']);
         
     }
 
@@ -47,6 +47,7 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         // a compléter 
+      
         $validator = Validator::make(
             $request->all(),
             [
@@ -148,6 +149,7 @@ class ShopController extends Controller
                 "latitude" => 'nullable',
                 "department_id" => 'nullable',
                 "category_id" => 'nullable',
+               
             ]
         );
         if ($validator->fails()) {
@@ -155,7 +157,6 @@ class ShopController extends Controller
         }
 
         $user = auth()->user();
-        //dd(isset($request->department_id));
         if(isset($request->department_id) ){
             $shop->update(
                 [
@@ -191,8 +192,30 @@ class ShopController extends Controller
             $shop->products()->attach($request->products_id);
         }
 
+        return response()->json(['message' => 'Le commerçant a été modifié ', 'commercant' => $shop], 200);
+    }
+    public function updateImage(Request $request,  $id)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'files.*' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
+                ]
+            );
+            //dd($request->hasFile('files'));
 
-        return response()->json(['message' => 'Le commerçant a été modifié ', 'Commerçant' => $shop], 200);
+        if ($validator->fails()) {
+            return response()->json([['errors' => $validator->errors()]], 422);
+        }
+
+       // dd($request->files); 
+        if ($request->hasFile('files')) {
+            $shopImage = UploadImage($request->files, Auth::user()->id , $id);
+          
+             return response()->json(['message' => 'L\'image a été modifier', 'shopImage' => $shopImage], 200);
+        }
+
+        return response()->json(['errors' => "il y a un soucis avec votre images"], 200);
     }
 
     public function sortShops()
@@ -228,6 +251,13 @@ class ShopController extends Controller
             "shop_status" => $request->shop_status,
         ]); 
         return response()->json(['message' => 'Le commerçant a été modifié ', 'commercant' => $shop], 200); 
+    }
+
+
+    public function note(){
+        $ratedShops = Shop::where("rating",">=",4)->take(4)->get(); 
+        return response()->json(['message' => 'Commerçants trouvé', 'commercant' => $ratedShops], 200);
+        //dd($ratedShops);
     }
     /**
      * Remove the specified resource from storage.

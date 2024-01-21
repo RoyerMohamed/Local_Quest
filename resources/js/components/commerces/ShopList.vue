@@ -47,13 +47,13 @@ export default {
   }
   .ShopContent-info {
     width: clamp(500px , 100% , 100%) !important;
-    margin-top: 60vh;
+    margin-top: 25rem
 }
 }
+
 .ShopContent {
   display: flex;
   flex-wrap: wrap;
-  
 }
 .shop-list-card{
   display: flex;
@@ -65,8 +65,13 @@ export default {
 }
 .ShopContent-info {
   width: clamp(500px , 50% , 800px);
+  overflow-y: scroll;
+  height: 100dvh;
+}
+.ShopContent-info::-webkit-scrollbar {
+    display: none;
 }
 .ShopContent-map {
-  width: 20%;
+  width: 50%;
 }
 </style>

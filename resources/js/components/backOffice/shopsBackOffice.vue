@@ -7,9 +7,10 @@
       :message="this.validationResponse"
       v-if="this.validationResponse"
     />
+ 
   <!-- message de validation checkbox -->
-  <div>
-    <h1 @click="getAllAdminShop" class="btn btn-primary">liste de commerces</h1>
+  <div class="d-flex">
+    
     <div
       class="favoris_valide"
       v-if="Array.isArray(this.shops) && this.shops.length > 0 && this.toggle"
@@ -79,9 +80,6 @@
         </tbody>
       </table>
     </div>
-    <div class="favoris_valide" v-else>
-      <h3>vous avez pas encore ajouter de commerce</h3>
-    </div>
   </div>
 </template>
 
@@ -93,12 +91,11 @@ import { useShopStore } from '../../stores/shopStore';
 import axios from "axios";
 export default {
   name: "ShopsBackOffice",
- 
+  props: ["toggle"],
   data() {
     return {
       previewImagePublic: "http://[::1]:5173/public/images/",
       previewImageStorage: "http://[::1]:5173/public/storage/",
-      toggle:false,
       show:"display : none", 
       shop_id : "",
       validationErrors: "",
@@ -131,16 +128,16 @@ export default {
       })
     }, 
 
-    getAllAdminShop() {
-
-      if (this.show == "display : none" ) {
-        this.show = "display : flex"
-      }else{
-        this.show = "display : none"
-      }
-      this.toggle = !this.toggle
+    // getAllAdminShop() {
+    //   console.log('test');
+    //   if (this.show == "display : none" ) {
+    //     this.show = "display : flex"
+    //   }else{
+    //     this.show = "display : none"
+    //   }
+    //   this.toggle = !this.toggle
      
-    },
+    // },
     deleteShop(id) {
       //const shopStore = useShopStore();
       axios
@@ -156,8 +153,21 @@ export default {
         });
     },
   },
+  watch:{
+    toggle(){
+      if (this.show == "display : none") {
+        this.show = "display : flex";
+      } else {
+        this.show = "display : none";
+      }
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.favoris_valide{
+  overflow: scroll;
+  height:50dvh;
+}
 </style>

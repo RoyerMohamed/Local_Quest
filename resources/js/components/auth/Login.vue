@@ -36,14 +36,14 @@
         </form>
       </div>
       <div class="register" id="register">
-        <form @submit.prevent="register" enctype="multipart/form-data">
+        <form @submit.prevent="registerUser" enctype="multipart/form-data">
           <div class="mb-3">
             <input
               type="text"
               id="pseudo"
               placeholder="Pseudo"
               name="pseudo"
-              v-model="user_name"
+              v-model="register.user_name"
             />
           </div>
           <div class="mb-3">
@@ -52,7 +52,7 @@
               placeholder="Adresse mail"
               id="email"
               name="email"
-              v-model="email"
+              v-model="register.email"
             />
           </div>
           <div class="mb-3">
@@ -62,14 +62,14 @@
               placeholder="Mot de passe"
               id="password"
               name="password"
-              v-model="password"
+              v-model="register.password"
             />
           </div>
           <div class="mb-3">
             <input
             type="password"
             name="password_confimation"
-            v-model="user.password_confimation"
+            v-model="register.password_confimation"
             placeholder="Confirmation de mot de passe"
           />
 
@@ -111,9 +111,15 @@ export default {
       user: {
         user_name: "",
         password: "",
-        password_confimation: "",
         err: ''
       },
+      register : {
+        user_name: "",
+        password: "",
+        email : "" ,
+        password_confimation: "", 
+        
+      }, 
       formData: new FormData(),
       validationErrors: "",
     };
@@ -125,17 +131,21 @@ export default {
 
     async handleLogin() {
       axios
-        .get("sanctum/csrf-cookie")
-        .then(() => {
-
-
-          axios
-            .post("http://127.0.0.1:8000/api/login", {
-              user_name: this.user.user_name,
-              password: this.user.password,
-            })
-            .then((res) => {
-              if (res.data.user.role.role_name === "admin") {
+      .get("sanctum/csrf-cookie")
+      .then(() => {
+        
+        
+        axios
+        .post("http://127.0.0.1:8000/api/login", {
+          user_name: this.user.user_name,
+          password: this.user.password,
+        })
+        .then((res) => {
+          console.log({
+                  user_name: this.user.user_name,
+                  password: this.user.password,
+                });
+          if (res.data.user.role.role_name === "admin") {
               
                 this.setIsAdmin(true);
               } else {
@@ -155,21 +165,16 @@ export default {
         })
         .catch((err) => console.log(err));
     },
-    register() {
-      this.formData.append("user_name", this.user_name);
-      this.formData.append("email", this.email);
-      this.formData.append("image", this.$refs.image.files[0]);
-      this.formData.append("password", this.password);
-      console.log(this.user.password === this.user.password_confimation);
-      if (this.user.password === this.user.password_confimation){
+    registerUser() {
+      if (this.register.password === this.register.password_confimation){
         axios
           .post(
             "http://127.0.0.1:8000/api/users",
             {
-              user_name: this.user_name,
-              email: this.email,
+              user_name: this.register.user_name,
+              email: this.register.email,
               image: this.$refs.image.files[0],
-              password: this.password,
+              password: this.register.password,
             },
             {
               headers: {

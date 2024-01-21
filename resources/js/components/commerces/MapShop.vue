@@ -27,6 +27,7 @@ export default {
     initMap() {
       let map = "";
       if (this.userLocationAnswered) {
+
         if (this.longitude) {
           map = L.map("map", {
             center: [this.latitude, this.longitude],
@@ -42,8 +43,8 @@ export default {
             let fontAwesomeIcon = L.divIcon({
               // on crée un icône correspondant à celui choisi pour la catégorie
               //html: `${shop.category.category_icon}`,
-              html: `<span>${shop.category.category_icon}</span>`,
-              iconSize: [60, 60],
+              html: `<span style="text-shadow: 2px 2px 4px #fff;font-size: 2rem; color: ${shop.category.category_color}">${shop.category.category_icon}</span>`,
+              iconSize: [200, 200],
               className: "dummy",
             });
 
@@ -67,6 +68,7 @@ export default {
               // on crée un icône correspondant à celui choisi pour la catégorie
               html: `<span style="text-shadow: 2px 2px 4px #fff; color: ${shop.category.category_color}">${shop.category.category_name}</span>`,
               iconSize: [40, 40],
+              className: "dummy",
             });
 
             L.marker([shop.latitude, shop.longitude], {
@@ -76,11 +78,20 @@ export default {
         }
       }
     },
+    removeMap(){
+      document.getElementById('map').innerHTML = '<div id="map"></div>'
+    }
   },
   watch: {
     userLocationAnswered() {
       this.initMap();
     },
+    shops(){
+      console.log("tr");
+      //this.removeMap()
+     // this.initMap();
+      this.$forceUpdate();
+    }
   },
   mounted() {
     if (!this.userLocationAnswered) {
@@ -108,7 +119,7 @@ export default {
   <style lang="css" scoped>
 @media (max-width: 1100px) {
   #map {
-    height: 50vh !important;
+    height: 40dvh !important;
     width: 100% !important;
     min-width: 300px;
     position: absolute !important;
@@ -118,9 +129,9 @@ export default {
 #map {
   height: 90vh;
   min-width: 300px;
-  width: 60%;
+  width: 100%;
   margin: auto;
-  position: fixed;
+  position: sticky;
   border-radius: 5px;
   box-shadow: -1px 1px 9px 1px #ababab;
   -webkit-box-shadow: -1px 1px 9px 1px #ababab;

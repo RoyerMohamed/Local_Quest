@@ -244,7 +244,7 @@ export default {
           .then((res) => {
             console.log(this.shops);
             this.shops.push(res.data.commercant)
-            // this.setShops(this.shops)
+             this.setShops(this.shops)
              this.validationResponse = res.data.message;
              this.$router.push("/commerces");
           })

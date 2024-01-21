@@ -33,6 +33,7 @@ Route::get('/getRecipesHome', [App\Http\Controllers\API\V1\RecipeController::cla
 Route::apiResource('/opening_hours',  App\Http\Controllers\API\V1\OpeningHourController::class);
 Route::apiResource('/shops', App\Http\Controllers\API\V1\ShopController::class);
 Route::get('/sortShops', [App\Http\Controllers\API\V1\ShopController::class , 'sortShops']);
+Route::get('/shopsNote', [App\Http\Controllers\API\V1\ShopController::class , 'note']);
 Route::get('/getShopByUserId', [App\Http\Controllers\API\V1\ShopController::class , 'getShopByUserId']);
 //Route::get('/truc', [App\Http\Controllers\API\V1\ShopController::class , 'test']);
 Route::get('/shops/sortByCategories/{id}', [App\Http\Controllers\API\V1\ShopController::class , 'sortByCategories']);
@@ -40,6 +41,7 @@ Route::apiResource('/department',  App\Http\Controllers\API\V1\DepartmentControl
 Route::apiResource('/categories',  App\Http\Controllers\API\V1\CategoryController::class);
 Route::apiResource('/users',  App\Http\Controllers\API\V1\UserController::class);
 Route::post('/users/updateImage/{id}',  [App\Http\Controllers\API\V1\UserController::class , 'updateImage']);
+Route::post('/shops/updateImage/{id}',  [App\Http\Controllers\API\V1\ShopController::class , 'updateImage']);
 Route::put('/update-password/{user}',  [App\Http\Controllers\API\V1\UserController::class , "updatepassword"])->name('updatePasswors');
 Route::post('/login' , [App\Http\Controllers\API\V1\LoginController::class , 'loginUser'])->name('login');
 

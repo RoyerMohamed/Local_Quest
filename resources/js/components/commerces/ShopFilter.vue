@@ -2,14 +2,18 @@
   <div class="shop-filters">
     <div class="shop-filters-top">
       <div class="shop-filters-top-produit">
-        <form  @change.prevent="sort" class="p-4">
+        <form class="p-4">
           <!-- filter by departments -->
           <div class="wrapper d-flex">
             <div class="filter_department">
-              <select name="department" v-model="selectDepartment">
+              <select
+                name="department"
+                v-model="selectDepartment"
+                @change="sortDepartment"
+              >
                 <option value="" disabled selected>
-            Sélectionnez un department 
-          </option>
+                  Sélectionnez un department
+                </option>
                 <option
                   :value="department.id"
                   v-for="department in this.departments"
@@ -21,10 +25,10 @@
             </div>
 
             <div class="filter_category">
-              <select name="categories" v-model="selectCategory">
+              <select name="categories" v-model="selectCategory" @change="sortCategory">
                 <option value="" disabled selected>
-            Sélectionnez une categorie 
-          </option>
+                  Sélectionnez une categorie
+                </option>
                 <option
                   :value="categorie.id"
                   v-for="categorie in this.categories"
@@ -42,6 +46,7 @@
                 id=""
                 placeholder="recherce par titre"
                 v-model="shop_title"
+                @change="sortTitle"
               />
             </div>
           </div>
@@ -63,13 +68,12 @@
             </div>
           </div>
         </form>
-        <div class="search_bar_btn"  @click="resetFilter()">
-          <button >reset filters</button>
-        </div>
+        
       </div>
       <div class="shop-filters-top-departement"></div>
       <div class="shop-filters-top-region"></div>
     </div>
+    
   </div>
 </template>
 
@@ -98,36 +102,29 @@ export default {
       "products",
       "getFilteredShopByProducts",
     ]),
-    ...mapWritableState(useShopStore, ["shops"]),
+    ...mapState(useShopStore, ["shops"]),
   },
   methods: {
     ...mapActions(useShopStore, [
       "filterShops",
       "setShops",
       "sortShopByProduct",
+      "sortByDepartment",
+      'sortByCategory' ,
+      "sortByTitle"
     ]),
 
-    sort() {
-      if (
-        this.selectDepartment !== null ||
-        this.selectCategory !== null ||
-        this.shop_title !== null
-      ) {
-        this.filterShops({
-          department_id:
-            this.selectDepartment === null ? null : this.selectDepartment,
-          category_id:
-            this.selectCategory === null ? null : this.selectCategory,
-          shop_title: this.shop_title !== null ? this.shop_title : null,
-        });
-      }
+    sortDepartment() {
+      this.sortByDepartment (this.selectDepartment);
     },
-    resetFilter() {
-      axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
-          this.setShops(res.data.commercant)
-        }).catch((err) => console.log(err))
+    sortCategory() {
+      this.sortByCategory(this.selectCategory)
+      console.log("hs");
+     
     },
-
+    sortTitle(){
+      this.sortByTitle(this.shop_title);
+    },
     selectedProductsHandler(product_name) {
       //this.shops = this.allShops;
 
@@ -149,17 +146,29 @@ export default {
           return this.checkValues.includes(produit);
         });
       });
-      
-        this.sortShopByProduct(result);
-      
-      //console.log(result);
+
+      console.log(result);
+      this.sortShopByProduct(result);
+
+
+
     },
   },
 };
 </script>
 
 <style scoped>
-.shop-filters-top-produit > .search_bar_btn{
+@media (max-width: 1000px) {
+.wrapper{
+  flex-direction: column;
+  margin-top: 5rem;
+  align-items: center;
+}
+.wrapper > .filter_department , .filter_category ,.search{
+  width: 80% !important;
+}
+}
+.shop-filters-top-produit > .search_bar_btn {
   margin: 1.5rem;
 }
 .wrapper {

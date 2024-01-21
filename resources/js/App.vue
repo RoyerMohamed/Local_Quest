@@ -14,6 +14,37 @@
         </div>
         <div class="commerçants-box">
           <div class="commerçants-box-content">
+
+            <!-- <div v-if="this.bestRaitingShops">
+              {{ console.log(this.bestRaitingShops)}}
+  gbs
+  <a v-for="shop in this.bestRaitingShops" :key="shop.id" href="" class="commerçants-box-content-item">
+              <div>
+                <div class="commerçants-box-content-item-icon">
+                  <i class="fa-solid fa-shop"></i>
+                </div>
+                <div class="commerçants-box-content-item-img">
+                  <img src="/images/epicerie-1.png" alt="" />
+                </div>
+                <div class="commerçants-box-content-item-info">
+                  <h4>La ferme en colis</h4>
+                  <p>12 Rue de la Reine des Prés, 79460 Magné</p>
+                  <div class="commerçants-box-content-item-info-rate">
+                    <span>5</span>
+                    <div>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+</div> -->
+
+
             <a href="" class="commerçants-box-content-item">
               <div>
                 <div class="commerçants-box-content-item-icon">
@@ -390,8 +421,9 @@ export default {
     'departments',
     'categories',
     'OpeningHours', 
-    'products'  ]),
-    ...mapActions(useShopStore, [ "setProducts","setOpeningHours","setCategories","setShops","setDepartments", "filterShops"]),
+    'products' , 
+  'bestRaitingShops' ]),
+    ...mapActions(useShopStore, [ "setProducts","setOpeningHours","setCategories","setShops","setDepartments", "filterShops" ]),
     categories(type) {
       this.filterShops({
         category_id: type,
@@ -399,33 +431,28 @@ export default {
     },
   },
   created() {
+
     axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
           this.setShops(res.data.commercant)
         }).catch((err) => console.log(err))
-
-       
-        axios.get('http://127.0.0.1:8000/api/department').then((res) => {
+    
+    axios.get('http://127.0.0.1:8000/api/department').then((res) => {
           this.setDepartments(res.data.Departement)
         }).catch((err) => console.log(err))
-      
-        
-        axios.get('http://127.0.0.1:8000/api/categories').then((res) => {
+          
+    axios.get('http://127.0.0.1:8000/api/categories').then((res) => {
           this.setCategories(res.data.Categories)
         }).catch((err) => console.log(err))
-      
-        
-        axios.get('http://127.0.0.1:8000/api/opening_hours').then((res) => {
+           
+    axios.get('http://127.0.0.1:8000/api/opening_hours').then((res) => {
           this.setOpeningHours(res.data.horaire)
         }).catch((err) => console.log(err))
-      
-        
-        axios.get('http://127.0.0.1:8000/api/products').then((res) => {
+           
+    axios.get('http://127.0.0.1:8000/api/products').then((res) => {
           this.setProducts( res.data.Produits)
         }).catch((err) => console.log(err))
       
-
-    axios
-      .get("http://127.0.0.1:8000/api/getRecipesHome")
+    axios.get("http://127.0.0.1:8000/api/getRecipesHome")
       .then((res) => {
         this.homeRecipes = res.data.Recette;
       })

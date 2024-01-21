@@ -221,7 +221,7 @@
             <!-- a voir  -->
             <label for="product"> Products </label>
             <div class="filter_product">
-              <div v-for="product  in products" :key="product">
+              <div v-for="product in products" :key="product">
                 <!-- {{ console.log(this.shop.products.some(obj1 => products.some(obj2 => obj1.id === obj2.id))) }} -->
                 <input
                   type="checkbox"
@@ -296,7 +296,7 @@
 
 <script>
 import axios from "axios";
-import { mapActions , mapState } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useShopStore } from "../../stores/shopStore";
 import ValidationErrors from "../utils/ValidationErrors.vue";
 import ValidationResponse from "../utils/ValidationResponse.vue";
@@ -318,7 +318,7 @@ export default {
   },
   components: { ValidationErrors, ValidationResponse },
   created() {
- 
+    this.getShopByUserId(this.shop_id);
     axios
       .get(`http://127.0.0.1:8000/api/shops/${this.shop_id}`)
       .then((res) => {
@@ -332,7 +332,8 @@ export default {
       .get("http://127.0.0.1:8000/api/department")
       .then((res) => {
         this.departments = res.data.Departement;
-      }).catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
 
     axios
       .get("http://127.0.0.1:8000/api/categories")
@@ -349,33 +350,78 @@ export default {
       .catch((err) => console.log(err));
   },
   methods: {
-    ...mapActions(useShopStore, ['setShops','getShopByUserId']),
- 
+    ...mapActions(useShopStore, ["setShops", "getShopByUserId", "updateShop"]),
+    ...mapState(useShopStore, "shops"),
+
     shopUpdate(id) {
+      console.log({
+        shop_title: this.shop.shop_title,
+        adresse: this.shop.adresse,
+        category_id:
+          this.selectCategory.length === 0 ? null : this.selectCategory,
+        department_id:
+          this.selectDepartment.length === 0 ? null : this.selectDepartment,
+        city: this.shop.city,
+        description: this.shop.description,
+        zip_code: this.shop.zip_code,
+        website: this.shop.website,
+        phone_number: this.shop.phone_number,
+        longitude: this.shop.longitude,
+        latitude: this.shop.latitude,
+        image: this.$refs.image.files,
+        products_id: this.products_id.length === 0 ? null : this.products_id,
+      });
+     
+
       axios
-        .put(`http://127.0.0.1:8000/api/shops/${id}`, {
-          shop_title: this.shop.shop_title,
-          adresse: this.shop.adresse,
-          category_id:
-            this.selectCategory.length === 0 ? null : this.selectCategory,
-          department_id:
-            this.selectDepartment.length === 0 ? null : this.selectDepartment,
-          city: this.shop.city,
-          description: this.shop.description,
-          zip_code: this.shop.zip_code,
-          website: this.shop.website,
-          phone_number: this.shop.phone_number,
-          longitude: this.shop.longitude,
-          latitude: this.shop.latitude,
-          image: this.$refs.image.files[0],
-          products_id: this.products_id.length === 0 ? null : this.products_id,
-        })
+        .put(
+          `http://127.0.0.1:8000/api/shops/${id}`,
+          {
+            shop_title: this.shop.shop_title,
+            adresse: this.shop.adresse,
+            category_id:
+              this.selectCategory.length === 0 ? null : this.selectCategory,
+            department_id:
+              this.selectDepartment.length === 0 ? null : this.selectDepartment,
+            city: this.shop.city,
+            description: this.shop.description,
+            zip_code: this.shop.zip_code,
+            website: this.shop.website,
+            phone_number: this.shop.phone_number,
+            longitude: this.shop.longitude,
+            latitude: this.shop.latitude,
+            image: this.$refs.image.files,
+            products_id:
+              this.products_id.length === 0 ? null : this.products_id,
+          }
+        )
         .then((res) => {
-          console.log(this.$route);
-          
-          this.getShopByUserId(); 
+          console.log(this.$refs.image.files);
+          const formData = new FormData()
+          formData.append('image' ,this.$refs.image.files )
+          axios
+          .post(
+            `http://127.0.0.1:8000/api/shops/updateImage/${id}`,
+            this.$refs.image.files,{ "content-type": "multipart/form-data" }
+          )
+          .then((res) => {
+            console.log(res);
+            // this.setUserImage(res.data.userImage);
+            // this.validationResponse = res.data.message;
+            // this.validationErrors = "";
+          })
+          .catch((err) => {
+            // this.validationResponse = ""
+            console.log(err);
+            // this.validationResponse ='';
+            // this.validationErrors = err.response.data[0].errors;
+          });
+
+          this.updateShop(res.data.commercant);
+
+          this.getShopByUserId();
           this.validationResponse = res.data.message;
-         // this.$router.push('/AddedShop')
+          // this.$router.push('/AddedShop')
         })
         .catch((err) => console.log(err));
     },

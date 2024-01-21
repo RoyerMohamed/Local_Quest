@@ -1,6 +1,74 @@
 <template>
   <!-- add slider simple hugo  -->
   <div id="shop">
+    <swiper
+      :slidesPerView="3"
+      :spaceBetween="0"
+      :freeMode="true"
+      :pagination="{
+        clickable: true,
+      }"
+      :modules="modules"
+      class="mySwiper"
+      v-if="this.setCurrentShop.images.length > 1"
+    >
+      <swiper-slide
+        style="width: clamp(200px, 500px, 550px)"
+        v-for="image in this.setCurrentShop.images"
+        :key="image.id"
+      >
+        <img
+          class="slider-img"
+          :src="this.previewImageStorage + image.image_name"
+          alt=""
+        />
+      </swiper-slide>
+    </swiper>
+
+    <swiper
+      :slidesPerView="3"
+      :spaceBetween="30"
+      :freeMode="true"
+      :pagination="{
+        clickable: true,
+      }"
+      :modules="modules"
+      class="mySwiper"
+      v-if="
+        this.setCurrentShop.images.length == 1 &&
+        this.setCurrentShop.images[0].image_name !== 'default_shop.jpg'
+      "
+    >
+      <swiper-slide v-for="image in this.setCurrentShop.images" :key="image.id">
+        <img
+          class="slider-img"
+          :src="this.previewImageStorage + image.image_name"
+          alt=""
+        />
+      </swiper-slide>
+    </swiper>
+
+    <!-- <swiper
+      :slidesPerView="3"
+      :spaceBetween="30"
+      :freeMode="true"
+      :pagination="{
+        clickable: true,
+      }"
+      :modules="modules"
+      class="mySwiper"
+      v-else
+    >
+      <swiper-slide  
+        :key="image.id" >
+        <img
+        :src="this.previewImage + this.setCurrentShop.images[0].image_name"
+        alt=""
+        srcset=""
+      />
+      </swiper-slide>
+    </swiper> -->
+    <!-- 
     <div v-if="this.setCurrentShop.images.length > 1" class="shop_hero">
       <img
         v-for="image in this.setCurrentShop.images"
@@ -8,7 +76,7 @@
         :src="this.previewImageStorage + image.image_name"
         alt=""
       />
-    </div>
+    </div> -->
 
     <div
       v-if="
@@ -39,25 +107,6 @@
         srcset=""
       />
     </div>
-
-    <div v-else class="shop_hero">
-      <img
-        :src="this.previewImage + this.setCurrentShop.images[0].image_name"
-        alt=""
-        srcset=""
-      />
-      <img
-        :src="this.previewImage + this.setCurrentShop.images[0].image_name"
-        alt=""
-        srcset=""
-      />
-      <img
-        :src="this.previewImage + this.setCurrentShop.images[0].image_name"
-        alt=""
-        srcset=""
-      />
-    </div>
-
     <div class="after-hero">
       <div class="after-hero-wrapper pt-3">
         <Breadcrumb class="" />
@@ -108,7 +157,7 @@
               referrerpolicy="no-referrer-when-downgrade"
             >
             </iframe>
-           
+
             <div class="shop-info-map-title">
               <h4>{{ this.setCurrentShop.shop_title }}</h4>
             </div>
@@ -128,7 +177,6 @@
               <a href="http://"> https:// {{ this.setCurrentShop.website }}</a>
             </div>
           </div>
-          
         </div>
       </div>
 
@@ -148,6 +196,14 @@ import { useUserStore } from "../../stores/userStore";
 import { mapState } from "pinia";
 import Breadcrumb from "../utils/Breadcrumb.vue";
 import Reviews from "../reviews/Review.vue";
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+// import required modules
+import { FreeMode, Pagination } from "swiper/modules";
 
 export default {
   data() {
@@ -155,19 +211,19 @@ export default {
       previewImage: "http://[::1]:5173/public/images/",
       previewImageStorage: "http://[::1]:5173/public/storage/",
       shop: "",
+      modules: [FreeMode, Pagination],
     };
   },
   components: {
     Breadcrumb,
     Reviews,
+    Swiper,
+    SwiperSlide,
   },
   computed: {
     ...mapState(useUserStore, ["id"]),
     setCurrentShop() {
       const store = useShopStore();
-      // this.shop = store.getShopById(parseInt(this.$route.params.id))
-      console.log(this.id);
-
       return store.getShopById(parseInt(this.$route.params.id));
     },
   },
@@ -178,6 +234,25 @@ export default {
 
 
 <style lang="scss" scoped>
+@media (max-width: 425px) {
+  .shop-desc {
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 769px) {
+  .shop-info{
+    margin-top : 0; 
+  }
+  .shop-desc-container{
+    width: 100%;
+  }
+  .shop-desc {
+    flex-direction: column-reverse;
+  }
+}
+iframe {
+  width: 100%;
+}
 #map {
   height: 20vh;
   min-width: 300px;
@@ -192,6 +267,7 @@ export default {
   -webkit-box-shadow: -1px 1px 9px 1px #ababab;
   -moz-box-shadow: -1px 1px 9px 1px #ababab;
 }
+
 .shop_hero {
   display: flex;
   height: 30vh;
@@ -302,10 +378,10 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  min-width: 65%;
+  width: 65%;
   // -webkit-line-clamp: 3;
 }
-.shop-desc-container > div> p {
+.shop-desc-container > div > p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 6;
@@ -328,5 +404,9 @@ export default {
 .shop-products > h2 {
   font-size: 1.5rem;
   text-transform: capitalize;
+}
+.slider-img {
+  width: 100%;
+  height: 300px;
 }
 </style>
