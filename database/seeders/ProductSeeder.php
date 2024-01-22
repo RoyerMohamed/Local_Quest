@@ -61,5 +61,15 @@ class ProductSeeder extends Seeder
             'product_icon' => "spécialités_locales.png",
             'product_color' => "#ffffff"
         ]);
+        Product::create([
+            'product_name' => "Pain",
+            'product_icon' => "spécialités_locales.png",
+            'product_color' => "#ffffff"
+        ]);
+        Product::create([
+            'product_name' => "Pâtisserie Locale",
+            'product_icon' => "spécialités_locales.png",
+            'product_color' => "#ffffff"
+        ]);
     }
 }

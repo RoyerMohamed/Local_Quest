@@ -2,7 +2,7 @@
 
 use App\Models\Image;
 use App\Models\User;
-use Hamcrest\Arrays\IsArray;
+
 
 /** 
  *  UploadImage Helpers
@@ -39,7 +39,7 @@ function UploadImage($image, $user_id, $shop_id = null, $recipe_id = null, $is_p
         }
 
     } else {
-        dd($image->files);
+        
         if (is_array($image)) {
             $imageName =  time() . '.' . $image[0]->extension();
             $image[0]->storeAs('public', $imageName);

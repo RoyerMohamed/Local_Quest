@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Image;
+use App\Models\Shop;
 
 class ImageSeeder extends Seeder
 {
@@ -12,16 +13,21 @@ class ImageSeeder extends Seeder
      */
     public function run(): void
     {
+        $shops = Shop::all(); 
 
-        for ($i = 1; $i < 51; $i++) {
+        foreach($shops as $shop){
+
             Image::create([
-                "image_name" => "default_shop.jpg",
+                "image_name" => $shop->category->default_shop_image,
                 "image_status" => 1,
                 "user_id" => rand(1,50),
-                "shop_id" => $i,
-                "recipe_id" => $i,
+                "shop_id" => $shop->id,
+                "recipe_id" => null,
                 "is_profil" => rand(0,1),
             ]);
         }
+
+        // for ($i = 1; $i < Shop::count() ; $i++) {
+        // }
     }
 }

@@ -142,7 +142,8 @@
       <div class="shop-desc">
         <div class="shop-desc-container">
           <div class="">
-            <p>{{ this.setCurrentShop.description }}</p>
+            <p class="shop-desc-text-small" id="shop-desc-text">{{ this.setCurrentShop.description }} </p>
+            <span @click="handleDescripltion" id="more">...Lire plus </span> <span @click="handleDescripltion" id="less">...Reduire</span>
           </div>
         </div>
         <div class="shop-info">
@@ -212,6 +213,7 @@ export default {
       previewImageStorage: "http://[::1]:5173/public/storage/",
       shop: "",
       modules: [FreeMode, Pagination],
+      readMore : false
     };
   },
   components: {
@@ -227,7 +229,28 @@ export default {
       return store.getShopById(parseInt(this.$route.params.id));
     },
   },
-  methods: {},
+  methods: {
+    handleDescripltion(){
+      let more = document.getElementById('more')
+      let less = document.getElementById('less')
+      let description = document.getElementById('shop-desc-text')
+      console.log(description.classList);
+      if(!this.readMore){
+        description.classList.remove('shop-desc-text-small')
+        description.classList.add('shop-desc-text-long')
+        more.style.display = 'none'
+        less.style.display = 'block'
+        this.readMore = !this.readMore
+        console.log(more , less );
+      }else{
+        description.classList.add('shop-desc-text-small')
+        description.classList.remove('shop-desc-text-long')
+        this.readMore = !this.readMore
+        more.style.display = 'block'
+        less.style.display = 'none'
+     }
+    }
+  },
 };
 </script>
 
@@ -249,6 +272,20 @@ export default {
   .shop-desc {
     flex-direction: column-reverse;
   }
+}
+#more{
+  display:flex; 
+     
+      cursor: pointer;
+      color: blue;
+      text-decoration: underline;
+}
+#less{
+  display: none;
+    
+      cursor: pointer;
+      color: blue;
+      text-decoration: underline;
 }
 iframe {
   width: 100%;
@@ -381,10 +418,17 @@ iframe {
   width: 65%;
   // -webkit-line-clamp: 3;
 }
-.shop-desc-container > div > p {
+.shop-desc-text-small {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 6;
+  overflow: hidden;
+
+}
+.shop-desc-text-long  {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: none;
   overflow: hidden;
 }
 

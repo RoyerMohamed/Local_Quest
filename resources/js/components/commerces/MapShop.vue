@@ -12,6 +12,7 @@ export default {
   data() {
     return {
       previewImage: "http://[::1]:5173/public/images/",
+      renderComponent: true,
     };
   },
   computed: {
@@ -78,19 +79,28 @@ export default {
         }
       }
     },
-    removeMap(){
-      document.getElementById('map').innerHTML = '<div id="map"></div>'
+    async forceRerender() {
+      // Remove MyComponent from the DOM
+      this.renderComponent = false;
+
+            // Wait for the change to get flushed to the DOM
+      await this.$nextTick();
+
+      // Add the component back in
+      this.renderComponent = true;
     }
   },
   watch: {
     userLocationAnswered() {
       this.initMap();
     },
-    shops(){
+     shops(){
       console.log("tr");
       //this.removeMap()
-     // this.initMap();
-      this.$forceUpdate();
+      // this.initMap();
+      this.$forceUpdate()
+       this.forceRerender()
+    
     }
   },
   mounted() {
@@ -128,8 +138,7 @@ export default {
 }
 #map {
   height: 90vh;
-  min-width: 300px;
-  width: 100%;
+  width: clamp(50% , 100% , 1200px);
   margin: auto;
   position: sticky;
   border-radius: 5px;

@@ -14,7 +14,7 @@
     </div>
 
     <div class="ShopContent-map ">
-      <MapShop />
+      <MapShop :key="key" />
     </div>
   </div>
 </template>
@@ -33,9 +33,24 @@ export default {
     ShopFilter,
     Shop,
   },
+  data(){
+    return {
+      key:  1 , 
+    }
+  }, 
   computed: {
     ...mapState(useShopStore, ["shops"]),
   },
+  methods:{
+    forceRerender() {
+      this.key += 1;
+    }
+  }, 
+  watch:{
+shops(){
+  this.forceRerender()
+}
+  }
 };
 </script>
 
@@ -53,7 +68,7 @@ export default {
 
 .ShopContent {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .shop-list-card{
   display: flex;

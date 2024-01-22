@@ -8,6 +8,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Facades\Validator;
@@ -105,8 +106,9 @@ class ShopController extends Controller
             //dd($request->image);
             $shopImage = UploadImage($request->image, Auth::user()->id ,$shop->id );
         }else{
+            $defaultImage = Category::find($shop->category_id); 
             Image::create([
-                "image_name" => "default_shop.jpg",
+                "image_name" =>  $defaultImage->default_shop_image,
                 "image_status" => Auth::user()->role->role_name === "admin"  ? 1 : 0,
                 "user_id" => Auth::user()->id,
                 "shop_id" =>  $shop->id,

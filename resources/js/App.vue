@@ -100,7 +100,7 @@
                   <i class="fa-solid fa-cheese"></i>
                 </div>
                 <div class="commerçants-box-content-item-img">
-                  <img src="/images/fromaegrie-1.png" alt="" />
+                  <img src="/images/fromagerie-1.png" alt="" />
                 </div>
                 <div class="commerçants-box-content-item-info">
                   <h4>L'opéra des fromages</h4>
@@ -479,6 +479,7 @@ export default {
 }
 html {
   scroll-behavior: smooth;
+  transition: all 500ms;
 }
 
 a {

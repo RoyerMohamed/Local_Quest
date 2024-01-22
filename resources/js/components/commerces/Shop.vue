@@ -9,6 +9,13 @@
         :src="this.previewImageStorage + this.shop.images[0].image_name"
         alt=""
       />
+      <img
+        v-if="
+          this.shop.images.length === 1 
+        "
+        :src="this.previewImagePublic + this.shop.images[0].image_name"
+        alt=""
+      />
 
       <img
         v-else
@@ -71,7 +78,7 @@ export default {
 .shop-card-img > img {
   border-radius: 5px;
   width: clamp(300px, 100%, 500px);
-  height: 400px;
+
 }
 .shop-card-stars {
   display: flex;

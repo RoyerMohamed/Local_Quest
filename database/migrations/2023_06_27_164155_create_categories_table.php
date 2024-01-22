@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('category_name',100);
             $table->string('category_icon',50);
             $table->char('category_color',7);
+            $table->string('default_shop_image',100);
             $table->timestamps();
         });
     }

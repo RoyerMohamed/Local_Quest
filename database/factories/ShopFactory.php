@@ -30,7 +30,7 @@ class ShopFactory extends Factory
             'shop_status' => fake()->numberBetween($min = 0, $max = 1),  
             'user_id' => fake()->numberBetween($min = 1, $max = 30),  
             'department_id' => fake()->numberBetween($min = 1, $max = 100),  
-            'category_id' => fake()->numberBetween($min = 1, $max = 9)  
+            'category_id' => fake()->numberBetween($min = 1, $max = 11 )  
         ];
     }
 }
