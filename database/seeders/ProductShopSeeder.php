@@ -16,7 +16,6 @@ class ProductShopSeeder extends Seeder
     public function run(): void
     {
         $shops = Shop::all(); 
-
         foreach($shops as $shop){
          $cat =   $shop->category->category_name;
          $products = []; 

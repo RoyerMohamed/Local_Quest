@@ -32,7 +32,7 @@ export default {
         if (this.longitude) {
           map = L.map("map", {
             center: [this.latitude, this.longitude],
-            zoom: 13,
+            zoom: 6,
           });
 
           L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -56,7 +56,7 @@ export default {
         } else {
           map = L.map("map", {
             center: [46.321829377357595, -0.4690948369241785],
-            zoom: 13,
+            zoom: 6,
           });
           L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,

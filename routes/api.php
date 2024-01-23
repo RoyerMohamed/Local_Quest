@@ -35,6 +35,7 @@ Route::apiResource('/shops', App\Http\Controllers\API\V1\ShopController::class);
 Route::get('/sortShops', [App\Http\Controllers\API\V1\ShopController::class , 'sortShops']);
 Route::get('/shopsNote', [App\Http\Controllers\API\V1\ShopController::class , 'note']);
 Route::get('/getShopByUserId', [App\Http\Controllers\API\V1\ShopController::class , 'getShopByUserId']);
+Route::post('/shopsRaiting/{id}', [App\Http\Controllers\API\V1\ShopController::class, 'shopsRaiting']);
 //Route::get('/truc', [App\Http\Controllers\API\V1\ShopController::class , 'test']);
 Route::get('/shops/sortByCategories/{id}', [App\Http\Controllers\API\V1\ShopController::class , 'sortByCategories']);
 Route::apiResource('/department',  App\Http\Controllers\API\V1\DepartmentController::class);

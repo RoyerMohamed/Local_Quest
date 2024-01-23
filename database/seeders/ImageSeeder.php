@@ -27,7 +27,6 @@ class ImageSeeder extends Seeder
             ]);
         }
 
-        // for ($i = 1; $i < Shop::count() ; $i++) {
-        // }
+        
     }
 }

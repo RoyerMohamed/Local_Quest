@@ -14,37 +14,6 @@
         </div>
         <div class="commerçants-box">
           <div class="commerçants-box-content">
-
-            <!-- <div v-if="this.bestRaitingShops">
-              {{ console.log(this.bestRaitingShops)}}
-  gbs
-  <a v-for="shop in this.bestRaitingShops" :key="shop.id" href="" class="commerçants-box-content-item">
-              <div>
-                <div class="commerçants-box-content-item-icon">
-                  <i class="fa-solid fa-shop"></i>
-                </div>
-                <div class="commerçants-box-content-item-img">
-                  <img src="/images/epicerie-1.png" alt="" />
-                </div>
-                <div class="commerçants-box-content-item-info">
-                  <h4>La ferme en colis</h4>
-                  <p>12 Rue de la Reine des Prés, 79460 Magné</p>
-                  <div class="commerçants-box-content-item-info-rate">
-                    <span>5</span>
-                    <div>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-</div> -->
-
-
             <a href="" class="commerçants-box-content-item">
               <div>
                 <div class="commerçants-box-content-item-icon">
@@ -154,22 +123,26 @@
           </div>
           <div class="cta_banner_text">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipiscing elit, luctus
-              nisi malesuada taciti turpis habitant hendrerit, auctor augue
-              nulla non dui dapibus. Ante montes ullamcorper aptent malesuada
-              dui nisi nunc, vehicula accumsan conubia pulvinar habitant
-              sollicitudin auctor, a fringilla dignissim at mattis parturient.
+              Optimisez votre quotidien en favorisant la consommation locale. En
+              privilégiant les produits de votre région, vous soutenez
+              l'économie locale tout en réduisant l'empreinte carbone liée aux
+              transports. Choisissez des options durables et contribuez ainsi à
+              la préservation de l'environnement tout en participant au
+              dynamisme de votre communauté. Une consommation locale, c'est une
+              façon simple et efficace d'améliorer votre vie quotidienne.
             </p>
           </div>
           <div class="cta_banner_btn">
-              <div  class="master-btn">
-                Voir les commerçants locaux 
-                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff"></i>
-              </div>
+            <div class="master-btn">
+              Voir les commerçants locaux
+              <i
+                class="fa-solid fa-magnifying-glass"
+                style="color: #ffffff"
+              ></i>
+            </div>
           </div>
         </div>
       </div>
-
 
       <!--Comment fonctionne l'app-->
       <div class="howitswork">
@@ -181,8 +154,7 @@
             <div class="howitswork-step-item">
               <span>1</span>
               <h4>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Inventore
+                Consulter une large liste de commerces.
               </h4>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -194,8 +166,7 @@
             <div class="howitswork-step-item">
               <span>2</span>
               <h4>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Inventore
+                Créez un compte pour une meilleure expérience.
               </h4>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -207,8 +178,7 @@
             <div class="howitswork-step-item">
               <span>3</span>
               <h4>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Inventore
+                Participez en ajoutant des commerces locaux.
               </h4>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -237,10 +207,10 @@
             </p>
           </div>
           <div class="cta_banner_btn">
-              <div  class="master-btn">
-                Créer mon compte commerçant 
-                <i class="fa-solid fa-chevron-right"></i>
-              </div>
+            <div class="master-btn">
+              Créer mon compte commerçant
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -356,7 +326,6 @@
               </div>
             </div>
           </div>
-          
         </div>
       </div>
 
@@ -417,13 +386,22 @@ export default {
     Footer,
   },
   methods: {
-    ...mapState(useShopStore, [ 'shops',
-    'departments',
-    'categories',
-    'OpeningHours', 
-    'products' , 
-  'bestRaitingShops' ]),
-    ...mapActions(useShopStore, [ "setProducts","setOpeningHours","setCategories","setShops","setDepartments", "filterShops" ]),
+    ...mapState(useShopStore, [
+      "shops",
+      "departments",
+      "categories",
+      "OpeningHours",
+      "products",
+      "bestRaitingShops",
+    ]),
+    ...mapActions(useShopStore, [
+      "setProducts",
+      "setOpeningHours",
+      "setCategories",
+      "setShops",
+      "setDepartments",
+      "filterShops",
+    ]),
     categories(type) {
       this.filterShops({
         category_id: type,
@@ -431,28 +409,43 @@ export default {
     },
   },
   created() {
+    axios
+      .get("http://127.0.0.1:8000/api/shops")
+      .then((res) => {
+        this.setShops(res.data.commercant);
+      })
+      .catch((err) => console.log(err));
 
-    axios.get('http://127.0.0.1:8000/api/shops').then((res) => {
-          this.setShops(res.data.commercant)
-        }).catch((err) => console.log(err))
-    
-    axios.get('http://127.0.0.1:8000/api/department').then((res) => {
-          this.setDepartments(res.data.Departement)
-        }).catch((err) => console.log(err))
-          
-    axios.get('http://127.0.0.1:8000/api/categories').then((res) => {
-          this.setCategories(res.data.Categories)
-        }).catch((err) => console.log(err))
-           
-    axios.get('http://127.0.0.1:8000/api/opening_hours').then((res) => {
-          this.setOpeningHours(res.data.horaire)
-        }).catch((err) => console.log(err))
-           
-    axios.get('http://127.0.0.1:8000/api/products').then((res) => {
-          this.setProducts( res.data.Produits)
-        }).catch((err) => console.log(err))
-      
-    axios.get("http://127.0.0.1:8000/api/getRecipesHome")
+    axios
+      .get("http://127.0.0.1:8000/api/department")
+      .then((res) => {
+        this.setDepartments(res.data.Departement);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("http://127.0.0.1:8000/api/categories")
+      .then((res) => {
+        this.setCategories(res.data.Categories);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("http://127.0.0.1:8000/api/opening_hours")
+      .then((res) => {
+        this.setOpeningHours(res.data.horaire);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("http://127.0.0.1:8000/api/products")
+      .then((res) => {
+        this.setProducts(res.data.Produits);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("http://127.0.0.1:8000/api/getRecipesHome")
       .then((res) => {
         this.homeRecipes = res.data.Recette;
       })
@@ -464,18 +457,18 @@ export default {
 </script>
 <style>
 @media (max-width: 1000px) {
-  .cta_recipes_wrapper{
-   width: 100% !important;
+  .cta_recipes_wrapper {
+    width: 100% !important;
   }
   .avisclient-box-content {
-  width: 90% !important;
-}
-.avisclient-box-content-item-avatar > img{
-  margin: 0 auto;
-}
-.avisclient-box-content-item {
-  text-align: center;
-}
+    width: 90% !important;
+  }
+  .avisclient-box-content-item-avatar > img {
+    margin: 0 auto;
+  }
+  .avisclient-box-content-item {
+    text-align: center;
+  }
 }
 html {
   scroll-behavior: smooth;
@@ -486,9 +479,7 @@ a {
   text-decoration: none !important;
 }
 
-
-
-.shops_type_grid_infos_image>img {
+.shops_type_grid_infos_image > img {
   background-color: #ff8528;
   border-radius: 50%;
   max-width: 32px;
@@ -505,8 +496,6 @@ a {
   gap: 10px;
   padding: 1.5rem 1.5rem;
 }
-
-
 
 /*Commerçant à l'honneur*/
 .commerçants {
@@ -660,12 +649,12 @@ a {
   gap: 1rem;
 }
 
-.cta_recipes_title>h2 {
+.cta_recipes_title > h2 {
   font-size: 40px;
   font-weight: 600;
 }
 
-.cta_banner_btn > .master-btn{
+.cta_banner_btn > .master-btn {
   display: flex;
   align-items: center;
   justify-items: center;
@@ -949,24 +938,24 @@ a {
 
 .avisclient-box-content-item {
   display: flex;
-  width: clamp(500px , 30% , 800px);
+  width: clamp(500px, 30%, 800px);
   gap: 1rem;
 }
 .master-btn {
-    transition: all 250ms;
-    height: 4rem;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ff8528;
-    background-color: #ff8528;
-    color: white;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 1.248px;
-    text-transform: uppercase;
+  transition: all 250ms;
+  height: 4rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ff8528;
+  background-color: #ff8528;
+  color: white;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.248px;
+  text-transform: uppercase;
 }
 
 .avisclient-box-content-item-avatar {
@@ -988,7 +977,7 @@ a {
   align-items: center;
 }
 
-.avisclient-box-content-item-avatar-icon >i {
+.avisclient-box-content-item-avatar-icon > i {
   display: flex;
   justify-content: center;
   align-items: center;

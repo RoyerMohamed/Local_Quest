@@ -21,6 +21,7 @@ return new class extends Migration
             $table->char('zip_code',5);
             $table->string('city',150);
             $table->float('rating',2,1)->nullable();
+            $table->integer('nb_rating')->nullable();
             $table->decimal('longitude',10,7);
             $table->decimal('latitude',10,7);
             $table->boolean('shop_status');

@@ -8,134 +8,6 @@
       :message="this.validationResponse"
       v-if="this.validationResponse"
     />
-    <!-- <div class="addShop_wrapper">
-      <form @submit.prevent="shopUpdate(this.shop.id)" enctype="multipart/form-data">
-        <div class="addShop_shopName">
-          <label for="">Identité</label>
-          <input
-            type="text"
-            name=""
-            id=""
-            placeholder="Entrez l’identité du commerce"
-            v-model="this.shop.shop_title"
-          />
-        </div>
-
-        <div class="addShop_adresse">
-          <div class="addShop_adresse_label">
-            <label for="adresse">Adresse</label>
-          </div>
-          <div class="addShop_adresse_inputs">
-            <input
-              type="text"
-              name="adresse"
-              id=""
-              v-model="this.shop.adresse"
-              placeholder="Adresse"
-            />
-            <input
-              type="number"
-              name=""
-              id=""
-              max="99999"
-              v-model="this.shop.zip_code"
-              placeholder="Code postale"
-            />
-            <input
-              type="text"
-              name="city"
-              id=""
-              v-model="this.shop.city"
-              placeholder="Ville"
-            />
-          </div>
-        </div>
-        <div class="addShop_department">
-          <label for="">Départment</label>
-          <select name="department" v-model="selectDepartment">
-            <optgroup label="departement du commmerce">
-              <option selected="selected">
-                {{ this.shop.department.department_name }}
-              </option>
-            </optgroup>
-            <optgroup label="changer le departement du commmerce">
-              <option
-                :value="department.id"
-                v-for="department in this.departments"
-                :key="department.id"
-              >
-                {{ department.department_name }}
-              </option>
-            </optgroup>
-            
-          </select>
-        </div>
-        <div class="addShop_category">
-          <label for="category">Type de commerce</label>
-
-          <select name="categories" v-model="selectCategory">
-              <option id="placeholderValue" value="" disabled selected>
-                Type de commerce
-              </option>
-              <option
-                :value="categorie.id"
-                v-for="categorie in this.categories"
-                :key="categorie.id"
-              >
-                {{ categorie.category_name }}
-              </option>
-            </select>
-        </div>
-        <div class="addShop_product">
-        
-          <label for="product"> Products </label>
-          <div class="filter_product">
-              <div v-for="product in this.products" :key="product">
-                <input
-                  type="checkbox"
-                  name="product"
-                  id="checkbox"
-                  :value="product.id"
-                  v-model="products_id" 
-                />
-                <label for="scales">{{ product.product_name }}</label>
-              </div>
-            </div>
-        </div>
-
-        <div class="addShop_description">
-          <label for="description">Description : </label>
-          <textarea
-            name="description"
-            id=""
-            v-model="this.shop.description"
-          ></textarea>
-        </div>
-
-        <div class="assShop_image">
-          <div class="assShop_image_img">
-
-          </div>
-          <label for="image">images </label>
-          <input type="file" ref="image" name="image" />
-        </div>
-
-        <label for="">
-          site internet
-          <input type="url" name="" id="" v-model="this.shop.website" />
-        </label>
-
-        <label for=""> horaires d'ouverture personalisé </label>
-        <label for="">
-          Numero de Telephone
-          <input type="number" v-model="this.shop.phone_number" />
-        </label>
-        
-        <div class="btn_validation">
-          <button type="submit">modifier mon commerce</button>
-        </div>
-      </form>
-    </div> -->
     <div class="addShop">
       <div class="addShop_title">
         <div><h1>modifier le commerce</h1></div>
@@ -429,7 +301,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 input,
 select,
 textarea {
@@ -453,7 +325,7 @@ label {
   font-size: 1rem;
 }
 .addShop_wrapper {
-  width: 40vw;
+  width:clamp(400px , 55% , 800px);
   background-color: #edeae1;
   padding: 2rem;
   border-radius: 15px;
@@ -501,11 +373,13 @@ label {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-basis: 25%;
+  min-width: 200px;
 }
 .filter_product {
   display: flex;
   flex-wrap: wrap;
+
+  padding: 1rem;
 }
 .addShop_description {
   display: flex;
@@ -515,5 +389,23 @@ label {
 }
 .addShop_description > textarea {
   height: 20vh;
+}
+.addShop_image {
+  display: flex;
+}
+.addShop_number{
+  display: flex;
+  flex-direction: column;
+}
+.btn_validation{
+ margin: 1rem 0;
+ display: flex;
+ justify-content: end;
+}
+.btn_validation > button{
+  background-color: #ff8528;
+  padding: .5rem 1rem;
+  border-radius: 5px; 
+  color: white;
 }
 </style>

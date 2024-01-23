@@ -24,89 +24,7 @@
         />
       </swiper-slide>
     </swiper>
-
-    <swiper
-      :slidesPerView="3"
-      :spaceBetween="30"
-      :freeMode="true"
-      :pagination="{
-        clickable: true,
-      }"
-      :modules="modules"
-      class="mySwiper"
-      v-if="
-        this.setCurrentShop.images.length == 1 &&
-        this.setCurrentShop.images[0].image_name !== 'default_shop.jpg'
-      "
-    >
-      <swiper-slide v-for="image in this.setCurrentShop.images" :key="image.id">
-        <img
-          class="slider-img"
-          :src="this.previewImageStorage + image.image_name"
-          alt=""
-        />
-      </swiper-slide>
-    </swiper>
-
-    <!-- <swiper
-      :slidesPerView="3"
-      :spaceBetween="30"
-      :freeMode="true"
-      :pagination="{
-        clickable: true,
-      }"
-      :modules="modules"
-      class="mySwiper"
-      v-else
-    >
-      <swiper-slide  
-        :key="image.id" >
-        <img
-        :src="this.previewImage + this.setCurrentShop.images[0].image_name"
-        alt=""
-        srcset=""
-      />
-      </swiper-slide>
-    </swiper> -->
-    <!-- 
-    <div v-if="this.setCurrentShop.images.length > 1" class="shop_hero">
-      <img
-        v-for="image in this.setCurrentShop.images"
-        :key="image.id"
-        :src="this.previewImageStorage + image.image_name"
-        alt=""
-      />
-    </div> -->
-
-    <div
-      v-if="
-        this.setCurrentShop.images.length == 1 &&
-        this.setCurrentShop.images[0].image_name !== 'default_shop.jpg'
-      "
-      class="shop_hero"
-    >
-      <img
-        v-for="image in this.setCurrentShop.images"
-        :key="image.id"
-        :src="this.previewImageStorage + image.image_name"
-        alt=""
-      />
-      <img
-        :src="this.previewImage + this.setCurrentShop.images[0].image_name"
-        alt=""
-        srcset=""
-      />
-      <img
-        :src="this.previewImage + this.setCurrentShop.images[0].image_name"
-        alt=""
-        srcset=""
-      />
-      <img
-        :src="this.previewImage + this.setCurrentShop.images[0].image_name"
-        alt=""
-        srcset=""
-      />
-    </div>
+    <div v-if=" this.setCurrentShop.images.length == 1 " class="bg-shop" :style="{ backgroundImage: `url(${this.previewImageStorage + this.setCurrentShop.images[0].image_name})` } ">></div>
     <div class="after-hero">
       <div class="after-hero-wrapper pt-3">
         <Breadcrumb class="" />
@@ -121,8 +39,9 @@
             <i
               v-if="star > Math.round(this.setCurrentShop.rating)"
               class="fa-regular fa-star"
+              @click="setRaiting(star)"
             ></i>
-            <i v-else class="fa-solid fa-star" style="color: #f2072b"></i>
+            <i v-else  @click="setRaiting(star)" class="fa-solid fa-star" style="color: #f2072b"></i>
           </div>
         </div>
         <div v-if="this.setCurrentShop.products" class="shop-products">
@@ -158,6 +77,7 @@
               referrerpolicy="no-referrer-when-downgrade"
             >
             </iframe>
+            
 
             <div class="shop-info-map-title">
               <h4>{{ this.setCurrentShop.shop_title }}</h4>
@@ -205,7 +125,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 // import required modules
 import { FreeMode, Pagination } from "swiper/modules";
-
+import axios from "axios";
 export default {
   data() {
     return {
@@ -249,6 +169,14 @@ export default {
         more.style.display = 'block'
         less.style.display = 'none'
      }
+    }, 
+    setRaiting(data){
+      console.log(data);
+      axios.post(`http://127.0.0.1:8000/api/shopsRaiting/${this.$route.params.id}`, {raiting : data}).then((res)=>{
+        console.log(res);
+      }).catch((err)=>{
+        console.log(err);
+      })
     }
   },
 };
@@ -452,5 +380,11 @@ iframe {
 .slider-img {
   width: 100%;
   height: 300px;
+}
+.bg-shop{
+  height: 50dvh;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 </style>

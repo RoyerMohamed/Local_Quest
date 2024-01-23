@@ -201,7 +201,7 @@ export default {
     ...mapWritableState(useShopStore , ["shops"]),
   },
   methods: {
-    ...mapActions(useShopStore, ["categories"]),
+    ...mapActions(useShopStore, ["categories" , 'setShops']),
     async handleForm() {
       await axios
         .get(
@@ -213,7 +213,8 @@ export default {
           this.latitude = res.data[0].boundingbox[0];
         })
         .catch((err) => {
-          this.validationErrors = err.response.data[0].errors;
+          console.log(err);
+          //this.validationErrors = err.response.data[0].errors;
         });
 
       if (this.longitude && this.latitude) {

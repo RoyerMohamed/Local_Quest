@@ -32,7 +32,7 @@ class ShopController extends Controller
             return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
         }
 
-        return response()->json(['message' => 'Commerçants trouvé', 'commercant' => Shop::latest()->get()], 200);
+        return response()->json(['message' => 'Commerçants trouvé', 'commercant' => Shop::where("shop_status","=",1)->latest()->get()], 200);
     }
 
     public function getShopByCategorie(){
@@ -260,6 +260,22 @@ class ShopController extends Controller
         $ratedShops = Shop::where("rating",">=",4)->take(4)->get(); 
         return response()->json(['message' => 'Commerçants trouvé', 'commercant' => $ratedShops], 200);
         //dd($ratedShops);
+    }
+    public function shopsRaiting(Request $request , $id){
+        $shop = Shop::find($id); 
+
+        if (!$shop) {
+            return response()->json(['message' => 'Aucun commerçant trouvé'], 404);
+        }
+
+      
+        $shop->update([
+            "rating"=> $request->raiting
+        ]); 
+
+        return response()->json(['message' => 'Merci pour votre note'], 200);
+
+
     }
     /**
      * Remove the specified resource from storage.

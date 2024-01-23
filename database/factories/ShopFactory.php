@@ -25,6 +25,7 @@ class ShopFactory extends Factory
             'zip_code' => fake()->numberBetween($min = 01000, $max = 97600), 
             'city' => fake()->city(), 
             'rating' => fake()->randomFloat($nbMaxDecimals = 1, $min = 0, $max = 5), 
+            'nb_rating' => rand(0,100),
             'latitude' => rand(44, 49),
             'longitude' => rand(-1, 6.9),
             'shop_status' => fake()->numberBetween($min = 0, $max = 1),  

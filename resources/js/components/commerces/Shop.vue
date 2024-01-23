@@ -3,26 +3,20 @@
     <div class="shop-card-img">
       <img
         v-if="
-          this.shop.images.length === 1 &&
-          this.shop.images[0].image_name !== 'default_shop.jpg'
+          this.shop.images.length === 1 
         "
         :src="this.previewImageStorage + this.shop.images[0].image_name"
         alt=""
       />
       <img
         v-if="
-          this.shop.images.length === 1 
+          this.shop.images.length > 1 
         "
-        :src="this.previewImagePublic + this.shop.images[0].image_name"
+        :src="this.previewImageStorage + this.shop.images[0].image_name"
         alt=""
       />
 
-      <img
-        v-else
-        :src="this.previewImagePublic + 'default_shop.jpg'"
-        class=""
-        alt=""
-      />
+  
     </div>
     <div class="shop-card-wrapper p-3">
       <h5 class="">
